@@ -100,7 +100,7 @@ const handleSubmit = async () => {
     form.password = "";
 
     setTimeout(() => {
-      router.push("/index");
+      router.push('/')
     }, 1500);
 
   } catch (e) {
