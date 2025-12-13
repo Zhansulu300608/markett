@@ -1,0 +1,1884 @@
+{
+    "data": [
+        {
+            "id": 753,
+            "attributes": {
+                "order": 1,
+                "header": "Колесо подарков Magnum",
+                "sub_header": null,
+                "link": "https://magnum.kz/kolesopodarkov",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-12T13:08:18.498Z",
+                "updatedAt": "2025-11-13T10:14:10.420Z",
+                "publishedAt": "2025-11-13T10:14:07.285Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 754,
+                            "attributes": {
+                                "header": "Magnum-ның сыйлықтар дөңгелегі",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kolesopodarkov",
+                                "order": 1,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-12T13:11:12.100Z",
+                                "updatedAt": "2025-11-13T10:14:10.387Z",
+                                "publishedAt": "2025-11-13T10:14:10.380Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35508,
+                        "attributes": {
+                            "name": "RU_576x540.jpg",
+                            "alternativeText": "RU_576x540.jpg",
+                            "caption": "RU_576x540.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_RU_576x540_25ffc8fc32.jpg",
+                                    "hash": "thumbnail_RU_576x540_25ffc8fc32",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_RU_576x540.jpg",
+                                    "path": null,
+                                    "size": 6.49,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "RU_576x540_25ffc8fc32",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 189.9,
+                            "url": "/uploads/RU_576x540_25ffc8fc32.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-12T12:58:32.574Z",
+                            "updatedAt": "2025-11-12T12:58:32.574Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35511,
+                        "attributes": {
+                            "name": "RU_2360х1016.jpg",
+                            "alternativeText": "RU_2360х1016.jpg",
+                            "caption": "RU_2360х1016.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_RU_2360h1016_a4659e165b.jpg",
+                                    "hash": "thumbnail_RU_2360h1016_a4659e165b",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_RU_2360х1016.jpg",
+                                    "path": null,
+                                    "size": 8.65,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "RU_2360h1016_a4659e165b",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 365.63,
+                            "url": "/uploads/RU_2360h1016_a4659e165b.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-12T12:58:32.670Z",
+                            "updatedAt": "2025-11-12T12:58:32.670Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 763,
+            "attributes": {
+                "order": 1,
+                "header": "Стаканчики",
+                "sub_header": null,
+                "link": "https://magnum.kz/zhanazhylmagnum",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-12-01T10:41:45.963Z",
+                "updatedAt": "2025-12-10T12:14:28.137Z",
+                "publishedAt": "2025-12-01T11:24:49.301Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 764,
+                            "attributes": {
+                                "header": "Стакандар",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/zhanazhylmagnum",
+                                "order": 1,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-12-01T10:42:35.501Z",
+                                "updatedAt": "2025-12-10T12:14:28.084Z",
+                                "publishedAt": "2025-12-01T11:25:08.423Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 36095,
+                        "attributes": {
+                            "name": "Banner (3).png",
+                            "alternativeText": "Banner (3).png",
+                            "caption": "Banner (3).png",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_Banner_3_7fe1cd936b.png",
+                                    "hash": "thumbnail_Banner_3_7fe1cd936b",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_Banner (3).png",
+                                    "path": null,
+                                    "size": 28.04,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "Banner_3_7fe1cd936b",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 117.2,
+                            "url": "/uploads/Banner_3_7fe1cd936b.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-10T12:13:49.610Z",
+                            "updatedAt": "2025-12-10T12:13:49.610Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 36096,
+                        "attributes": {
+                            "name": "Banner (2).png",
+                            "alternativeText": "Banner (2).png",
+                            "caption": "Banner (2).png",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_Banner_2_cf4848803e.png",
+                                    "hash": "thumbnail_Banner_2_cf4848803e",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_Banner (2).png",
+                                    "path": null,
+                                    "size": 30.82,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "Banner_2_cf4848803e",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 158.38,
+                            "url": "/uploads/Banner_2_cf4848803e.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-10T12:13:49.630Z",
+                            "updatedAt": "2025-12-10T12:13:49.630Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 499,
+            "attributes": {
+                "order": 2,
+                "header": "Magnum Пайда",
+                "sub_header": "Новая неделя - новые скидки",
+                "link": "https://magnum.kz/stocks/magnum-paida",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2024-02-27T03:46:41.717Z",
+                "updatedAt": "2025-08-12T05:46:10.787Z",
+                "publishedAt": "2024-10-30T08:33:09.136Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 500,
+                            "attributes": {
+                                "header": "Magnum Пайда",
+                                "sub_header": "Жаңа апта - жаңа жеңілдіктер",
+                                "link": "https://magnum.kz/kz/stocks/nauzyz-paida",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2024-02-27T03:47:37.744Z",
+                                "updatedAt": "2025-08-12T05:46:10.830Z",
+                                "publishedAt": "2024-10-30T08:33:04.978Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 31420,
+                        "attributes": {
+                            "name": "576x540_RU.jpg",
+                            "alternativeText": "576x540_RU.jpg",
+                            "caption": "576x540_RU.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576x540_RU_9ad88aa76e.jpg",
+                                    "hash": "thumbnail_576x540_RU_9ad88aa76e",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576x540_RU.jpg",
+                                    "path": null,
+                                    "size": 8.37,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576x540_RU_9ad88aa76e",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 186.55,
+                            "url": "/uploads/576x540_RU_9ad88aa76e.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-01-29T17:28:41.113Z",
+                            "updatedAt": "2025-01-29T17:28:41.113Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 31416,
+                        "attributes": {
+                            "name": "2360х1016_RU.jpg",
+                            "alternativeText": "2360х1016_RU.jpg",
+                            "caption": "2360х1016_RU.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360h1016_RU_58040a132e.jpg",
+                                    "hash": "thumbnail_2360h1016_RU_58040a132e",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360х1016_RU.jpg",
+                                    "path": null,
+                                    "size": 7.19,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360h1016_RU_58040a132e",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 177.61,
+                            "url": "/uploads/2360h1016_RU_58040a132e.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-01-29T17:28:35.449Z",
+                            "updatedAt": "2025-01-29T17:28:35.449Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 733,
+            "attributes": {
+                "order": 2,
+                "header": "Выигрывай призы за нежность!",
+                "sub_header": "1 000 000 ₸ ежемесячно",
+                "link": "https://magnum.kz/stocks/milka",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-10-02T05:28:49.397Z",
+                "updatedAt": "2025-10-02T09:57:03.404Z",
+                "publishedAt": "2025-10-02T05:28:50.454Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 734,
+                            "attributes": {
+                                "header": "Нәзіктік үшін жүлделер ұтып ал!",
+                                "sub_header": "1 000 000 ₸ ай сайын",
+                                "link": "https://magnum.kz/kz/stocks/milka",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-10-02T05:29:44.863Z",
+                                "updatedAt": "2025-10-02T09:57:03.465Z",
+                                "publishedAt": "2025-10-02T05:29:45.937Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 34799,
+                        "attributes": {
+                            "name": "576х540.jpg",
+                            "alternativeText": "576х540.jpg",
+                            "caption": "576х540.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576h540_96d1903e2d.jpg",
+                                    "hash": "thumbnail_576h540_96d1903e2d",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576х540.jpg",
+                                    "path": null,
+                                    "size": 6.77,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576h540_96d1903e2d",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 258.77,
+                            "url": "/uploads/576h540_96d1903e2d.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-01T09:58:09.273Z",
+                            "updatedAt": "2025-10-01T09:58:09.273Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 34796,
+                        "attributes": {
+                            "name": "2360х1016.jpg",
+                            "alternativeText": "2360х1016.jpg",
+                            "caption": "2360х1016.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360h1016_713a0bbaa7.jpg",
+                                    "hash": "thumbnail_2360h1016_713a0bbaa7",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360х1016.jpg",
+                                    "path": null,
+                                    "size": 6.97,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360h1016_713a0bbaa7",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 395.38,
+                            "url": "/uploads/2360h1016_713a0bbaa7.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-01T09:58:09.258Z",
+                            "updatedAt": "2025-10-01T09:58:09.258Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 735,
+            "attributes": {
+                "order": 2,
+                "header": "Ты не ты, когда голоден",
+                "sub_header": "Сканируй пачки и выигрывай призы каждую неделю!",
+                "link": "https://magnum.kz/stocks/ty-ne-ty-kogda-goloden",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-10-08T11:25:03.645Z",
+                "updatedAt": "2025-10-08T11:25:48.074Z",
+                "publishedAt": "2025-10-08T11:25:06.680Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 736,
+                            "attributes": {
+                                "header": "Аш болсаң, өзіңе ұқсамайсың",
+                                "sub_header": "Қаптамаларды сканерле де, апта сайын керемет жүлделер ұтып ал!",
+                                "link": "https://magnum.kz/kz/stocks/ty-ne-ty-kogda-goloden",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-10-08T11:25:47.090Z",
+                                "updatedAt": "2025-10-08T11:25:48.032Z",
+                                "publishedAt": "2025-10-08T11:25:48.027Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 34935,
+                        "attributes": {
+                            "name": "SNK_web_576x540_rus.png",
+                            "alternativeText": "SNK_web_576x540_rus.png",
+                            "caption": "SNK_web_576x540_rus.png",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_SNK_web_576x540_rus_3f115609a9.png",
+                                    "hash": "thumbnail_SNK_web_576x540_rus_3f115609a9",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_SNK_web_576x540_rus.png",
+                                    "path": null,
+                                    "size": 30.45,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "SNK_web_576x540_rus_3f115609a9",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 152.41,
+                            "url": "/uploads/SNK_web_576x540_rus_3f115609a9.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-08T11:05:45.038Z",
+                            "updatedAt": "2025-10-08T11:05:45.038Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 34939,
+                        "attributes": {
+                            "name": "SNK_web_2360x1016_rus.png",
+                            "alternativeText": "SNK_web_2360x1016_rus.png",
+                            "caption": "SNK_web_2360x1016_rus.png",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_SNK_web_2360x1016_rus_e19f9cb3c7.png",
+                                    "hash": "thumbnail_SNK_web_2360x1016_rus_e19f9cb3c7",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_SNK_web_2360x1016_rus.png",
+                                    "path": null,
+                                    "size": 29.86,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "SNK_web_2360x1016_rus_e19f9cb3c7",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 135.9,
+                            "url": "/uploads/SNK_web_2360x1016_rus_e19f9cb3c7.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-08T11:05:45.396Z",
+                            "updatedAt": "2025-10-08T11:05:45.396Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 739,
+            "attributes": {
+                "order": 2,
+                "header": "Забота от NIVEA - техника от BOSCH",
+                "sub_header": "Собери 10 электронных наклеек с Nivea и получи скидку 50% на технику BOSCH",
+                "link": "https://magnum.kz/stocks/nivea-and-bosch",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-10-16T05:12:45.397Z",
+                "updatedAt": "2025-10-16T05:14:30.637Z",
+                "publishedAt": "2025-10-16T05:12:46.585Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 740,
+                            "attributes": {
+                                "header": "NIVEA-дан қамқорлық - BOSCH техникасы",
+                                "sub_header": "Nivea-мен 10 жапсырма жинап ал да, BOSCH техникасына 50% жеңілдік ал",
+                                "link": "https://magnum.kz/kz/stocks/nivea-and-bosch",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-10-16T05:14:28.680Z",
+                                "updatedAt": "2025-10-16T05:14:30.604Z",
+                                "publishedAt": "2025-10-16T05:14:30.601Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 34992,
+                        "attributes": {
+                            "name": "КВ_576Х540 копия.jpg",
+                            "alternativeText": "КВ_576Х540 копия.jpg",
+                            "caption": "КВ_576Х540 копия.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_KV_576_H540_kopiya_608655c02c.jpg",
+                                    "hash": "thumbnail_KV_576_H540_kopiya_608655c02c",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_КВ_576Х540 копия.jpg",
+                                    "path": null,
+                                    "size": 9.34,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "KV_576_H540_kopiya_608655c02c",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 293.27,
+                            "url": "/uploads/KV_576_H540_kopiya_608655c02c.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-13T08:43:18.622Z",
+                            "updatedAt": "2025-10-13T08:43:18.622Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 34995,
+                        "attributes": {
+                            "name": "вк_2360х1016 копия 2.jpg",
+                            "alternativeText": "вк_2360х1016 копия 2.jpg",
+                            "caption": "вк_2360х1016 копия 2.jpg",
+                            "width": 1573,
+                            "height": 677,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_vk_2360h1016_kopiya_2_fcb745e516.jpg",
+                                    "hash": "thumbnail_vk_2360h1016_kopiya_2_fcb745e516",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_вк_2360х1016 копия 2.jpg",
+                                    "path": null,
+                                    "size": 9.48,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "vk_2360h1016_kopiya_2_fcb745e516",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 369.04,
+                            "url": "/uploads/vk_2360h1016_kopiya_2_fcb745e516.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-10-13T08:43:18.951Z",
+                            "updatedAt": "2025-10-13T08:43:18.951Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 755,
+            "attributes": {
+                "order": 2,
+                "header": "Собирай звезд ФК \"Кайрат\"!",
+                "sub_header": "Покупай SNICKERS® на 1000 тг в одном чеке и получай карточки футболистов!",
+                "link": "https://magnum.kz/stocks/mars_promo",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-14T12:46:09.076Z",
+                "updatedAt": "2025-11-15T19:00:00.066Z",
+                "publishedAt": "2025-11-15T19:00:00.053Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 756,
+                            "attributes": {
+                                "header": "\"Қайрат\" ФК жұлдыздарын жина!",
+                                "sub_header": "1000 тг-ден асырып SNICKERS® сатып ал да, футболшы карточкаларын жина!",
+                                "link": "https://magnum.kz/kz/stocks/mars_promo",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-14T12:47:44.469Z",
+                                "updatedAt": "2025-11-15T19:00:00.055Z",
+                                "publishedAt": "2025-11-15T19:00:00.039Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35607,
+                        "attributes": {
+                            "name": "SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus.jpg",
+                            "alternativeText": "SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus.jpg",
+                            "caption": "SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus_7890c7d8ac.jpg",
+                                    "hash": "thumbnail_SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus_7890c7d8ac",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus.jpg",
+                                    "path": null,
+                                    "size": 9.75,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus_7890c7d8ac",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 157.24,
+                            "url": "/uploads/SNK_Kairat_Magnum_Web_mobile_akcii_576x540_rus_7890c7d8ac.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-14T11:28:05.902Z",
+                            "updatedAt": "2025-11-14T11:28:05.902Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35608,
+                        "attributes": {
+                            "name": "SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus.jpg",
+                            "alternativeText": "SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus.jpg",
+                            "caption": "SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus_17fa51c4e8.jpg",
+                                    "hash": "thumbnail_SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus_17fa51c4e8",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus.jpg",
+                                    "path": null,
+                                    "size": 8.82,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus_17fa51c4e8",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 216.3,
+                            "url": "/uploads/SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus_17fa51c4e8.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-14T11:28:05.956Z",
+                            "updatedAt": "2025-11-14T11:28:05.956Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 757,
+            "attributes": {
+                "order": 2,
+                "header": "90 дней подписки на Freedom Media",
+                "sub_header": "Скачай Freedom SuperApp и введи промокод MAGNUM в онлайн-кинотеатре",
+                "link": "https://freedombank.onelink.me/WNLd/ic2fbzpo",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-18T12:16:21.100Z",
+                "updatedAt": "2025-11-18T12:17:39.220Z",
+                "publishedAt": "2025-11-18T12:16:22.145Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 758,
+                            "attributes": {
+                                "header": "Freedom Media-ға 90 күндік жазылым",
+                                "sub_header": "Freedom SuperApp-ты жүктеп,  онлайн-кинотеатрда MAGNUM промокодын енгіз",
+                                "link": "https://freedombank.onelink.me/WNLd/ic2fbzpo",
+                                "order": 2,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-18T12:17:38.276Z",
+                                "updatedAt": "2025-11-18T12:17:39.195Z",
+                                "publishedAt": "2025-11-18T12:17:39.187Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35633,
+                        "attributes": {
+                            "name": "Mobile 576x540.png",
+                            "alternativeText": "Mobile 576x540.png",
+                            "caption": "Mobile 576x540.png",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_Mobile_576x540_855e2a128a.png",
+                                    "hash": "thumbnail_Mobile_576x540_855e2a128a",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_Mobile 576x540.png",
+                                    "path": null,
+                                    "size": 47.26,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "Mobile_576x540_855e2a128a",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 84.07,
+                            "url": "/uploads/Mobile_576x540_855e2a128a.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-18T11:24:17.910Z",
+                            "updatedAt": "2025-11-18T11:24:17.910Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35636,
+                        "attributes": {
+                            "name": "Desktop 2360x1016.png",
+                            "alternativeText": "Desktop 2360x1016.png",
+                            "caption": "Desktop 2360x1016.png",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".png",
+                                    "url": "/uploads/thumbnail_Desktop_2360x1016_8defe50d24.png",
+                                    "hash": "thumbnail_Desktop_2360x1016_8defe50d24",
+                                    "mime": "image/png",
+                                    "name": "thumbnail_Desktop 2360x1016.png",
+                                    "path": null,
+                                    "size": 52.14,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "Desktop_2360x1016_8defe50d24",
+                            "ext": ".png",
+                            "mime": "image/png",
+                            "size": 566.84,
+                            "url": "/uploads/Desktop_2360x1016_8defe50d24.png",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-18T11:24:18.655Z",
+                            "updatedAt": "2025-11-18T11:24:18.655Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 759,
+            "attributes": {
+                "order": 3,
+                "header": "Олимпийские игры с Visa!",
+                "sub_header": "Выигрывайте поездку на Олимпийские Игры в Милан!",
+                "link": "https://magnum.kz/stocks/visa-olimpijskie-igry",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-18T12:42:50.282Z",
+                "updatedAt": "2025-11-18T12:43:48.490Z",
+                "publishedAt": "2025-11-18T12:42:52.215Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 760,
+                            "attributes": {
+                                "header": "Олимпиада ойындарына Visa-мен барыңыз!",
+                                "sub_header": "Миландағы Олимпиада ойындарына жолдама ұтып алыңыз!",
+                                "link": "https://magnum.kz/kz/stocks/visa-olimpijskie-igry",
+                                "order": 3,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-18T12:43:47.297Z",
+                                "updatedAt": "2025-11-18T12:43:48.469Z",
+                                "publishedAt": "2025-11-18T12:43:48.466Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35644,
+                        "attributes": {
+                            "name": "RU_576x540.jpg",
+                            "alternativeText": "RU_576x540.jpg",
+                            "caption": "RU_576x540.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_RU_576x540_4051db511f.jpg",
+                                    "hash": "thumbnail_RU_576x540_4051db511f",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_RU_576x540.jpg",
+                                    "path": null,
+                                    "size": 10.25,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "RU_576x540_4051db511f",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 304.68,
+                            "url": "/uploads/RU_576x540_4051db511f.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-18T12:36:51.029Z",
+                            "updatedAt": "2025-11-18T12:36:51.029Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35643,
+                        "attributes": {
+                            "name": "RU_2360x1016.jpg",
+                            "alternativeText": "RU_2360x1016.jpg",
+                            "caption": "RU_2360x1016.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_RU_2360x1016_a1acb27722.jpg",
+                                    "hash": "thumbnail_RU_2360x1016_a1acb27722",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_RU_2360x1016.jpg",
+                                    "path": null,
+                                    "size": 9.32,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "RU_2360x1016_a1acb27722",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 311.93,
+                            "url": "/uploads/RU_2360x1016_a1acb27722.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-18T12:36:51.029Z",
+                            "updatedAt": "2025-11-18T12:36:51.029Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 765,
+            "attributes": {
+                "order": 4,
+                "header": "Новогоднее комбо за 1597 тенге",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/kunde-december2025",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-12-12T05:25:01.737Z",
+                "updatedAt": "2025-12-12T05:25:52.111Z",
+                "publishedAt": "2025-12-12T05:25:04.300Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 766,
+                            "attributes": {
+                                "header": "1597 теңгеге Жаңа жылдық комбо",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/kunde-december2025",
+                                "order": 4,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-12-12T05:25:51.191Z",
+                                "updatedAt": "2025-12-12T05:25:52.082Z",
+                                "publishedAt": "2025-12-12T05:25:52.078Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 36107,
+                        "attributes": {
+                            "name": "576x540_RU.jpg",
+                            "alternativeText": "576x540_RU.jpg",
+                            "caption": "576x540_RU.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576x540_RU_f7d0c49a93.jpg",
+                                    "hash": "thumbnail_576x540_RU_f7d0c49a93",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576x540_RU.jpg",
+                                    "path": null,
+                                    "size": 8.72,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576x540_RU_f7d0c49a93",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 241.5,
+                            "url": "/uploads/576x540_RU_f7d0c49a93.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-12T05:20:57.121Z",
+                            "updatedAt": "2025-12-12T05:20:57.121Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 36106,
+                        "attributes": {
+                            "name": "2360х1016_RU.jpg",
+                            "alternativeText": "2360х1016_RU.jpg",
+                            "caption": "2360х1016_RU.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360h1016_RU_208c48851a.jpg",
+                                    "hash": "thumbnail_2360h1016_RU_208c48851a",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360х1016_RU.jpg",
+                                    "path": null,
+                                    "size": 8.09,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360h1016_RU_208c48851a",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 347.16,
+                            "url": "/uploads/2360h1016_RU_208c48851a.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-12T05:20:57.112Z",
+                            "updatedAt": "2025-12-12T05:20:57.112Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 527,
+            "attributes": {
+                "order": 5,
+                "header": "«Совместное промо Bonduelle & Magnum» - “Добавьте овощи в друзья”»",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/promocode-bonduelle",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2024-04-03T06:06:08.732Z",
+                "updatedAt": "2025-11-06T04:54:44.692Z",
+                "publishedAt": "2025-11-06T04:54:44.689Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 528,
+                            "attributes": {
+                                "header": "«Bonduelle & Magnum бірлескен жарнамасы\" - “Көкөністерді достарға қосыңыз”»",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/stocks/promocode-bonduelle",
+                                "order": 5,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2024-04-03T06:07:41.514Z",
+                                "updatedAt": "2025-11-06T04:54:44.712Z",
+                                "publishedAt": "2025-11-06T04:54:42.119Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35370,
+                        "attributes": {
+                            "name": "576x540 (5).jpg",
+                            "alternativeText": "576x540 (5).jpg",
+                            "caption": "576x540 (5).jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576x540_5_408e2eec45.jpg",
+                                    "hash": "thumbnail_576x540_5_408e2eec45",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576x540 (5).jpg",
+                                    "path": null,
+                                    "size": 9.27,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576x540_5_408e2eec45",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 163.94,
+                            "url": "/uploads/576x540_5_408e2eec45.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-03T04:45:22.806Z",
+                            "updatedAt": "2025-11-03T04:45:22.806Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 26863,
+                        "attributes": {
+                            "name": "Баннеры2360х1016_ru.jpg",
+                            "alternativeText": "Баннеры2360х1016_ru.jpg",
+                            "caption": "Баннеры2360х1016_ru.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_Bannery2360h1016_ru_d80ebfe19b.jpg",
+                                    "hash": "thumbnail_Bannery2360h1016_ru_d80ebfe19b",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_Баннеры2360х1016_ru.jpg",
+                                    "path": null,
+                                    "size": 7.66,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "Bannery2360h1016_ru_d80ebfe19b",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 382.67,
+                            "url": "/uploads/Bannery2360h1016_ru_d80ebfe19b.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2024-03-19T03:50:35.547Z",
+                            "updatedAt": "2024-03-19T03:50:35.547Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 751,
+            "attributes": {
+                "order": 5,
+                "header": "Купите вкусное комбо выгодно!",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/vkusnoe-kombo2",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-03T09:59:26.215Z",
+                "updatedAt": "2025-12-11T05:57:14.264Z",
+                "publishedAt": "2025-12-11T05:56:47.834Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 752,
+                            "attributes": {
+                                "header": "Дәмді комбоны тиімді бағамен сатып алыңыз!",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/vkusnoe-kombo2",
+                                "order": 5,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-03T10:01:14.991Z",
+                                "updatedAt": "2025-12-11T05:57:14.233Z",
+                                "publishedAt": "2025-12-11T05:57:14.228Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 36098,
+                        "attributes": {
+                            "name": "576х540_ копия.jpg",
+                            "alternativeText": "576х540_ копия.jpg",
+                            "caption": "576х540_ копия.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576h540_kopiya_9e8ff069ae.jpg",
+                                    "hash": "thumbnail_576h540_kopiya_9e8ff069ae",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576х540_ копия.jpg",
+                                    "path": null,
+                                    "size": 9.33,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576h540_kopiya_9e8ff069ae",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 166.97,
+                            "url": "/uploads/576h540_kopiya_9e8ff069ae.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-11T05:55:28.247Z",
+                            "updatedAt": "2025-12-11T05:55:28.247Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 36099,
+                        "attributes": {
+                            "name": "2360х1016_ копия.jpg",
+                            "alternativeText": "2360х1016_ копия.jpg",
+                            "caption": "2360х1016_ копия.jpg",
+                            "width": 1495,
+                            "height": 643,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360h1016_kopiya_972e8a69ec.jpg",
+                                    "hash": "thumbnail_2360h1016_kopiya_972e8a69ec",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360х1016_ копия.jpg",
+                                    "path": null,
+                                    "size": 9.24,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360h1016_kopiya_972e8a69ec",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 368.58,
+                            "url": "/uploads/2360h1016_kopiya_972e8a69ec.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-11T05:55:28.556Z",
+                            "updatedAt": "2025-12-11T05:55:28.556Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 761,
+            "attributes": {
+                "order": 5,
+                "header": "Готовьтесь к Новому Году с нами!",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/novii-god2025",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-26T12:46:45.834Z",
+                "updatedAt": "2025-11-26T12:48:57.592Z",
+                "publishedAt": "2025-11-26T12:46:47.319Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 762,
+                            "attributes": {
+                                "header": "Бізбен Жаңа Жылға дайындалыныз!",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/novii-god2025",
+                                "order": 5,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-26T12:48:55.797Z",
+                                "updatedAt": "2025-11-26T12:48:57.566Z",
+                                "publishedAt": "2025-11-26T12:48:57.562Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35837,
+                        "attributes": {
+                            "name": "NF_NY_banners576x540 RU.jpg",
+                            "alternativeText": "NF_NY_banners576x540 RU.jpg",
+                            "caption": "NF_NY_banners576x540 RU.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_NF_NY_banners576x540_RU_9ae33b2b52.jpg",
+                                    "hash": "thumbnail_NF_NY_banners576x540_RU_9ae33b2b52",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_NF_NY_banners576x540 RU.jpg",
+                                    "path": null,
+                                    "size": 6.15,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "NF_NY_banners576x540_RU_9ae33b2b52",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 83.26,
+                            "url": "/uploads/NF_NY_banners576x540_RU_9ae33b2b52.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-26T11:55:55.256Z",
+                            "updatedAt": "2025-11-26T11:55:55.256Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35839,
+                        "attributes": {
+                            "name": "NF_NY_banners2360х1016 RU.jpg",
+                            "alternativeText": "NF_NY_banners2360х1016 RU.jpg",
+                            "caption": "NF_NY_banners2360х1016 RU.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_NF_NY_banners2360h1016_RU_97ee61dbb1.jpg",
+                                    "hash": "thumbnail_NF_NY_banners2360h1016_RU_97ee61dbb1",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_NF_NY_banners2360х1016 RU.jpg",
+                                    "path": null,
+                                    "size": 6.38,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "NF_NY_banners2360h1016_RU_97ee61dbb1",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 232.13,
+                            "url": "/uploads/NF_NY_banners2360h1016_RU_97ee61dbb1.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-26T11:55:55.524Z",
+                            "updatedAt": "2025-11-26T11:55:55.524Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 767,
+            "attributes": {
+                "order": 5,
+                "header": "Ловите волшебство!",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/lovite-volshebstvo",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-12-12T08:20:38.888Z",
+                "updatedAt": "2025-12-12T08:21:35.132Z",
+                "publishedAt": "2025-12-12T08:20:39.859Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 768,
+                            "attributes": {
+                                "header": "Ғаламатты ұстап алыңыз!",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/lovite-volshebstvo",
+                                "order": 5,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-12-12T08:21:32.535Z",
+                                "updatedAt": "2025-12-12T08:21:35.096Z",
+                                "publishedAt": "2025-12-12T08:21:35.092Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 36118,
+                        "attributes": {
+                            "name": "Juzzon+AVA___576х540_rus.jpg",
+                            "alternativeText": "Juzzon+AVA___576х540_rus.jpg",
+                            "caption": "Juzzon+AVA___576х540_rus.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_Juzzon_AVA_576h540_rus_7b2e89c89b.jpg",
+                                    "hash": "thumbnail_Juzzon_AVA_576h540_rus_7b2e89c89b",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_Juzzon+AVA___576х540_rus.jpg",
+                                    "path": null,
+                                    "size": 9.27,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "Juzzon_AVA_576h540_rus_7b2e89c89b",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 302.22,
+                            "url": "/uploads/Juzzon_AVA_576h540_rus_7b2e89c89b.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-12T08:16:29.946Z",
+                            "updatedAt": "2025-12-12T08:16:29.946Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 36117,
+                        "attributes": {
+                            "name": "Juzzon+AVA___2360x1016_rus.jpg",
+                            "alternativeText": "Juzzon+AVA___2360x1016_rus.jpg",
+                            "caption": "Juzzon+AVA___2360x1016_rus.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_Juzzon_AVA_2360x1016_rus_8115b8fe10.jpg",
+                                    "hash": "thumbnail_Juzzon_AVA_2360x1016_rus_8115b8fe10",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_Juzzon+AVA___2360x1016_rus.jpg",
+                                    "path": null,
+                                    "size": 9.67,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "Juzzon_AVA_2360x1016_rus_8115b8fe10",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 360.23,
+                            "url": "/uploads/Juzzon_AVA_2360x1016_rus_8115b8fe10.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-12-12T08:16:29.753Z",
+                            "updatedAt": "2025-12-12T08:16:29.753Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 693,
+            "attributes": {
+                "order": 8,
+                "header": "Подарок от Barni для именинников!",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/podarok-barni",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-07-28T07:59:16.604Z",
+                "updatedAt": "2025-10-08T11:21:15.075Z",
+                "publishedAt": "2025-07-31T19:00:00.067Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 694,
+                            "attributes": {
+                                "header": "Barni-ден туған күнге сыйлық!",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/podarok-barni",
+                                "order": 8,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-07-28T08:00:27.048Z",
+                                "updatedAt": "2025-10-08T11:21:15.026Z",
+                                "publishedAt": "2025-07-31T19:00:00.068Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 33581,
+                        "attributes": {
+                            "name": "mob-akciyi-ru-576x540.jpg",
+                            "alternativeText": "mob-akciyi-ru-576x540.jpg",
+                            "caption": "mob-akciyi-ru-576x540.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_mob_akciyi_ru_576x540_9528489168.jpg",
+                                    "hash": "thumbnail_mob_akciyi_ru_576x540_9528489168",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_mob-akciyi-ru-576x540.jpg",
+                                    "path": null,
+                                    "size": 8.7,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "mob_akciyi_ru_576x540_9528489168",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 146.24,
+                            "url": "/uploads/mob_akciyi_ru_576x540_9528489168.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-07-28T07:44:26.111Z",
+                            "updatedAt": "2025-07-28T07:44:26.111Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 33585,
+                        "attributes": {
+                            "name": "akciyi-desk-ru-2360x1016.jpg",
+                            "alternativeText": "akciyi-desk-ru-2360x1016.jpg",
+                            "caption": "akciyi-desk-ru-2360x1016.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_akciyi_desk_ru_2360x1016_b8dcc0e078.jpg",
+                                    "hash": "thumbnail_akciyi_desk_ru_2360x1016_b8dcc0e078",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_akciyi-desk-ru-2360x1016.jpg",
+                                    "path": null,
+                                    "size": 8.81,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "akciyi_desk_ru_2360x1016_b8dcc0e078",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 332.93,
+                            "url": "/uploads/akciyi_desk_ru_2360x1016_b8dcc0e078.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-07-28T07:44:26.310Z",
+                            "updatedAt": "2025-07-28T07:44:26.310Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 711,
+            "attributes": {
+                "order": 12,
+                "header": "ORBIT® ПОНЕДЕЛЬНИК – ДЕНЬ ЧИЛЛОВЫЙ",
+                "sub_header": "Покупай любой ORBIT® и выигрывай чилловые призы!",
+                "link": "https://magnum.kz/stocks/orbit-ponedelnik-den-ch-illovyj?",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-08-29T08:34:20.914Z",
+                "updatedAt": "2025-09-24T06:23:43.311Z",
+                "publishedAt": "2025-08-29T08:34:25.958Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 712,
+                            "attributes": {
+                                "header": "ORBIT® ДҮЙСЕНБІ – ЧИЛЛ КҮНІ",
+                                "sub_header": "Кез келген ORBIT® сатып ал да, чилл жүлделерін ұтып ал!",
+                                "link": "https://magnum.kz/kz/stocks/orbit-ponedelnik-den-ch-illovyj?",
+                                "order": 12,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-08-29T08:35:07.576Z",
+                                "updatedAt": "2025-09-24T06:23:43.350Z",
+                                "publishedAt": "2025-08-29T08:35:08.554Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 34281,
+                        "attributes": {
+                            "name": "576х540 ru (1).jpg",
+                            "alternativeText": "576х540 ru (1).jpg",
+                            "caption": "576х540 ru (1).jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576h540_ru_1_d440c5374e.jpg",
+                                    "hash": "thumbnail_576h540_ru_1_d440c5374e",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576х540 ru (1).jpg",
+                                    "path": null,
+                                    "size": 8.27,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576h540_ru_1_d440c5374e",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 128.97,
+                            "url": "/uploads/576h540_ru_1_d440c5374e.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-08-29T08:28:15.503Z",
+                            "updatedAt": "2025-08-29T08:28:15.503Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 34282,
+                        "attributes": {
+                            "name": "2360x1016р.jpg",
+                            "alternativeText": "2360x1016р.jpg",
+                            "caption": "2360x1016р.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360x1016r_17bfdb60a1.jpg",
+                                    "hash": "thumbnail_2360x1016r_17bfdb60a1",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360x1016р.jpg",
+                                    "path": null,
+                                    "size": 7.33,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360x1016r_17bfdb60a1",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 347.1,
+                            "url": "/uploads/2360x1016r_17bfdb60a1.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-08-29T08:28:15.624Z",
+                            "updatedAt": "2025-08-29T08:28:15.624Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 591,
+            "attributes": {
+                "order": 13,
+                "header": "Скидки Magnum Chef",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/skidkimagnumchef",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2024-10-06T12:40:11.730Z",
+                "updatedAt": "2025-08-12T05:43:42.025Z",
+                "publishedAt": "2025-01-28T10:20:00.047Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 592,
+                            "attributes": {
+                                "header": "Magnum Chef",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/skidkimagnumchef",
+                                "order": 13,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2024-10-06T12:40:45.338Z",
+                                "updatedAt": "2025-08-12T05:43:42.062Z",
+                                "publishedAt": "2025-01-28T10:20:00.043Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 29932,
+                        "attributes": {
+                            "name": "#2_Kulinariya-25%__576x540(288x270)_rus.jpg",
+                            "alternativeText": "#2_Kulinariya-25%__576x540(288x270)_rus.jpg",
+                            "caption": "#2_Kulinariya-25%__576x540(288x270)_rus.jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2_Kulinariya_25_576x540_288x270_rus_9ae26d0b77.jpg",
+                                    "hash": "thumbnail_2_Kulinariya_25_576x540_288x270_rus_9ae26d0b77",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_#2_Kulinariya-25%__576x540(288x270)_rus.jpg",
+                                    "path": null,
+                                    "size": 8.35,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "2_Kulinariya_25_576x540_288x270_rus_9ae26d0b77",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 189.92,
+                            "url": "/uploads/2_Kulinariya_25_576x540_288x270_rus_9ae26d0b77.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2024-10-06T08:14:45.426Z",
+                            "updatedAt": "2024-10-06T08:14:45.426Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 29936,
+                        "attributes": {
+                            "name": "#2_Kulinariya-25__2360х1016(1180x508)_rus.jpg",
+                            "alternativeText": "#2_Kulinariya-25__2360х1016(1180x508)_rus.jpg",
+                            "caption": "#2_Kulinariya-25__2360х1016(1180x508)_rus.jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2_Kulinariya_25_2360h1016_1180x508_rus_528b8fd077.jpg",
+                                    "hash": "thumbnail_2_Kulinariya_25_2360h1016_1180x508_rus_528b8fd077",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_#2_Kulinariya-25__2360х1016(1180x508)_rus.jpg",
+                                    "path": null,
+                                    "size": 8.91,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2_Kulinariya_25_2360h1016_1180x508_rus_528b8fd077",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 232.43,
+                            "url": "/uploads/2_Kulinariya_25_2360h1016_1180x508_rus_528b8fd077.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2024-10-06T08:14:47.745Z",
+                            "updatedAt": "2024-10-06T08:14:47.745Z"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "id": 747,
+            "attributes": {
+                "order": null,
+                "header": "Вы помогаете вдохновлять детей на здоровое питание, покупая Bonduelle в ноябре",
+                "sub_header": null,
+                "link": "https://magnum.kz/stocks/vy-pomogaete-vdohnovlyat-detej-na-zdorovoe-pitanie-pokupaya-bonduelle-v-noyabre",
+                "left_side_bg_color": null,
+                "left_side_text_color": null,
+                "createdAt": "2025-11-03T04:43:29.368Z",
+                "updatedAt": "2025-11-06T04:56:02.466Z",
+                "publishedAt": "2025-11-03T04:43:30.325Z",
+                "locale": "ru",
+                "localizations": {
+                    "data": [
+                        {
+                            "id": 748,
+                            "attributes": {
+                                "header": "Сіз қараша айында Bonduelle сатып алу арқылы балаларды дұрыс тамақтануға шабыттандыруға көмектесесіз",
+                                "sub_header": null,
+                                "link": "https://magnum.kz/kz/stocks/vy-pomogaete-vdohnovlyat-detej-na-zdorovoe-pitanie-pokupaya-bonduelle-v-noyabre?",
+                                "order": null,
+                                "left_side_bg_color": null,
+                                "left_side_text_color": null,
+                                "createdAt": "2025-11-03T04:44:15.941Z",
+                                "updatedAt": "2025-11-06T04:56:02.433Z",
+                                "publishedAt": "2025-11-03T04:44:17.144Z",
+                                "locale": "kk"
+                            }
+                        }
+                    ]
+                },
+                "image_mob": {
+                    "data": {
+                        "id": 35370,
+                        "attributes": {
+                            "name": "576x540 (5).jpg",
+                            "alternativeText": "576x540 (5).jpg",
+                            "caption": "576x540 (5).jpg",
+                            "width": 576,
+                            "height": 540,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_576x540_5_408e2eec45.jpg",
+                                    "hash": "thumbnail_576x540_5_408e2eec45",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_576x540 (5).jpg",
+                                    "path": null,
+                                    "size": 9.27,
+                                    "width": 166,
+                                    "height": 156
+                                }
+                            },
+                            "hash": "576x540_5_408e2eec45",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 163.94,
+                            "url": "/uploads/576x540_5_408e2eec45.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-03T04:45:22.806Z",
+                            "updatedAt": "2025-11-03T04:45:22.806Z"
+                        }
+                    }
+                },
+                "image": {
+                    "data": {
+                        "id": 35365,
+                        "attributes": {
+                            "name": "2360x1016 (5).jpg",
+                            "alternativeText": "2360x1016 (5).jpg",
+                            "caption": "2360x1016 (5).jpg",
+                            "width": 2360,
+                            "height": 1016,
+                            "formats": {
+                                "thumbnail": {
+                                    "ext": ".jpg",
+                                    "url": "/uploads/thumbnail_2360x1016_5_c391c97e39.jpg",
+                                    "hash": "thumbnail_2360x1016_5_c391c97e39",
+                                    "mime": "image/jpeg",
+                                    "name": "thumbnail_2360x1016 (5).jpg",
+                                    "path": null,
+                                    "size": 9.42,
+                                    "width": 245,
+                                    "height": 105
+                                }
+                            },
+                            "hash": "2360x1016_5_c391c97e39",
+                            "ext": ".jpg",
+                            "mime": "image/jpeg",
+                            "size": 204.06,
+                            "url": "/uploads/2360x1016_5_c391c97e39.jpg",
+                            "previewUrl": null,
+                            "provider": "local",
+                            "provider_metadata": null,
+                            "createdAt": "2025-11-03T04:39:37.177Z",
+                            "updatedAt": "2025-11-03T04:39:37.177Z"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "page": 1,
+            "pageSize": 300,
+            "pageCount": 1,
+            "total": 18
+        }
+    }
+}
