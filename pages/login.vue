@@ -100,7 +100,7 @@ const handleSubmit = async () => {
     form.password = "";
 
     setTimeout(() => {
-      router.push("pages/login");
+      router.push("/index.vue");
     }, 1500);
 
   } catch (e) {
