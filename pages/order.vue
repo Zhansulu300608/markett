@@ -12,7 +12,7 @@
 
         <!-- Name & email -->
         <div class="text-center mb-4">
-          <p class="font-semibold text-lg">Жансулу Ахметова</p>
+          <p class="font-semibold text-lg"></p>
           <p class="text-sm text-gray-500">zhansulu0808@gmail.com</p>
         </div>
 

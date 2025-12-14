@@ -1,88 +1,49 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-10">
-    <div
-      class="grid md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden max-w-5xl w-full"
-    >
+    <div class="grid md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden max-w-5xl w-full">
       <!-- LEFT -->
       <div class="p-10">
         <h1 class="text-3xl font-bold text-center mb-6">Зарегистрировать аккаунт</h1>
 
         <!-- Success -->
-        <p
-          v-if="success"
-          class="bg-green-100 text-green-700 text-center py-3 rounded-lg mb-4"
-        >
+        <p v-if="success" class="bg-green-100 text-green-700 text-center py-3 rounded-lg mb-4">
           {{ success }}
         </p>
 
         <!-- Error -->
-        <p
-          v-if="error"
-          class="bg-red-100 text-red-700 text-center py-3 rounded-lg mb-4"
-        >
+        <p v-if="error" class="bg-red-100 text-red-700 text-center py-3 rounded-lg mb-4">
           {{ error }}
         </p>
 
         <form @submit.prevent="handleSubmit" class="space-y-5">
-          <!-- Name -->
           <div>
             <label class="block text-sm font-semibold mb-1">Имя</label>
-            <input
-              v-model="form.name"
-              type="text"
-              placeholder="Введите ваше имя"
-              class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <input v-model="form.name" type="text" placeholder="Введите ваше имя" class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
 
-          <!-- Email -->
           <div>
             <label class="block text-sm font-semibold mb-1">Email</label>
-            <input
-              v-model="form.email"
-              type="email"
-              placeholder="example@email.com"
-              class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <input v-model="form.email" type="email" placeholder="example@email.com" class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
 
-          <!-- Password -->
           <div>
             <label class="block text-sm font-semibold mb-1">Пароль</label>
-            <input
-              v-model="form.password"
-              type="password"
-              placeholder="Создайте пароль"
-              class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <input v-model="form.password" type="password" placeholder="Создайте пароль" class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
 
-          <!-- Confirm Password -->
           <div>
             <label class="block text-sm font-semibold mb-1">Подтвердите пароль</label>
-            <input
-              v-model="form.confirmPassword"
-              type="password"
-              placeholder="Повторите пароль"
-              class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <input v-model="form.confirmPassword" type="password" placeholder="Повторите пароль" class="w-full border rounded-lg px-3 py-3 outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
 
-          <!-- Submit -->
-          <button
-            type="submit"
-            class="w-full bg-[#C1121F] hover:bg-[#780000] text-white py-3 rounded-lg text-lg transition"
-          >
+          <button type="submit" class="w-full bg-[#C1121F] hover:bg-[#780000] text-white py-3 rounded-lg text-lg transition">
             Зарегистрироваться
           </button>
-
-        
-       
         </form>
 
         <p class="text-center text-sm text-gray-600 mt-6">
           Уже есть аккаунт?
-          <a href="/login" class="text-[#C1121F] hover:underline">Войти</a>
+          <router-link to="/login" class="text-[#C1121F] hover:underline">Войти</router-link>
         </p>
       </div>
 
@@ -140,12 +101,16 @@ const handleSubmit = async () => {
       localStorage.setItem("token", response.data.token);
     }
 
+    // Очистить форму
     form.name = "";
     form.email = "";
     form.password = "";
     form.confirmPassword = "";
 
-    setTimeout(() => router.push("/home"), 1200);
+    // Через секунду перейти в профиль или домашнюю страницу
+    setTimeout(() => {
+      router.push("/profile"); // или /home если есть такая страница
+    }, 1200);
   } catch (err) {
     error.value = err.response?.data?.message || "Ошибка регистрации";
   }

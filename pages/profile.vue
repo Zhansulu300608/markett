@@ -55,19 +55,19 @@
 
         <!-- Menu -->
         <nav class="space-y-2">
-          <NuxtLink
+          <router-link
             to="/profile"
             class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-100 font-medium"
           >
             Профиль
-          </NuxtLink>
+          </router-link>
 
-          <NuxtLink
+          <router-link
             to="/order"
             class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100"
           >
             Мои заказы
-          </NuxtLink>
+          </router-link>
         </nav>
       </aside>
 
@@ -130,34 +130,37 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue"
-import axios from "axios"
-import { useRouter } from "vue-router"
+import { reactive, ref, onMounted } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 
 const user = reactive({
   name: "",
   email: "",
-})
+});
 
 const form = reactive({
   name: "",
   email: "",
   phone: "",
   address: "",
-})
+});
 
-const ordersCount = ref(0)
+const ordersCount = ref(0);
 
 const logout = () => {
-  localStorage.removeItem("token")
-  router.push("/login")
-}
+  localStorage.removeItem("token");
+  router.push("/login");
+};
 
 onMounted(async () => {
-  const token = localStorage.getItem("token")
-  if (!token) return router.push("/login")
+  const token = localStorage.getItem("token");
+  if (!token) {
+    router.push("/login");
+    return;
+  }
 
   try {
     const res = await axios.get(
@@ -165,34 +168,38 @@ onMounted(async () => {
       {
         headers: { Authorization: `Bearer ${token}` },
       }
-    )
+    );
 
-    user.name = res.data.name
-    user.email = res.data.email
+    user.name = res.data.name;
+    user.email = res.data.email;
 
-    form.name = res.data.name
-    form.email = res.data.email
-    form.phone = res.data.phone || ""
-    form.address = res.data.address || ""
+    form.name = res.data.name;
+    form.email = res.data.email;
+    form.phone = res.data.phone || "";
+    form.address = res.data.address || "";
 
-    ordersCount.value = res.data.ordersCount || 0
+    ordersCount.value = res.data.ordersCount || 0;
   } catch (e) {
-    localStorage.removeItem("token")
-    router.push("/login")
+    localStorage.removeItem("token");
+    router.push("/login");
   }
-})
+});
 
 const onSubmit = async () => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
-  await axios.put(
-    "https://medical-backend-54hp.onrender.com/api/auth/update",
-    form,
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  )
+  try {
+    await axios.put(
+      "https://medical-backend-54hp.onrender.com/api/auth/update",
+      form,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
 
-  alert("Данные обновлены")
-}
+    alert("Данные обновлены");
+  } catch (e) {
+    alert("Ошибка обновления данных");
+  }
+};
 </script>
