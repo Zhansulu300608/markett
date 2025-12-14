@@ -27,25 +27,19 @@
     <main class="max-w-7xl mx-auto px-4 flex gap-8 py-10">
       <!-- Sidebar -->
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
-        <!-- Avatar -->
-        <div class="w-28 h-28 rounded-full overflow-hidden bg-gray-200 mb-4 mx-auto">
-          <div class="w-full h-full bg-gray-300" />
-        </div>
+        <div class="w-28 h-28 rounded-full bg-gray-300 mb-4 mx-auto" />
 
-        <!-- Name & email -->
         <div class="text-center mb-4">
           <p class="font-semibold text-lg">{{ user.name }}</p>
           <p class="text-sm text-gray-500">{{ user.email }}</p>
         </div>
 
-        <!-- Role -->
         <span
           class="flex justify-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6"
         >
           Покупатель
         </span>
 
-        <!-- Stats -->
         <div
           class="w-full mb-6 rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center"
         >
@@ -53,7 +47,6 @@
           <div class="text-2xl font-semibold">{{ ordersCount }}</div>
         </div>
 
-        <!-- Menu -->
         <nav class="space-y-2">
           <NuxtLink
             to="/profile"
@@ -81,38 +74,22 @@
         >
           <div>
             <label class="block text-sm text-gray-600 mb-1">Имя</label>
-            <input
-              v-model="form.name"
-              type="text"
-              class="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-400"
-            />
+            <input v-model="form.name" class="input" />
           </div>
 
           <div>
             <label class="block text-sm text-gray-600 mb-1">Email</label>
-            <input
-              v-model="form.email"
-              type="email"
-              class="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-400"
-            />
+            <input v-model="form.email" class="input" />
           </div>
 
           <div>
             <label class="block text-sm text-gray-600 mb-1">Телефон</label>
-            <input
-              v-model="form.phone"
-              type="tel"
-              class="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-400"
-            />
+            <input v-model="form.phone" class="input" />
           </div>
 
           <div>
             <label class="block text-sm text-gray-600 mb-1">Адрес</label>
-            <input
-              v-model="form.address"
-              type="text"
-              class="w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-400"
-            />
+            <input v-model="form.address" class="input" />
           </div>
 
           <div class="md:col-span-2 mt-4">
@@ -132,7 +109,6 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from "vue"
 import axios from "axios"
-import { useRouter } from "vue-router"
 
 const router = useRouter()
 
@@ -149,7 +125,6 @@ const form = reactive({
 })
 
 const ordersCount = ref(0)
-
 const logout = () => {
   localStorage.removeItem("token")
   router.push("/login")
@@ -157,13 +132,19 @@ const logout = () => {
 
 onMounted(async () => {
   const token = localStorage.getItem("token")
-  if (!token) return router.push("/login")
+
+  if (!token) {
+    router.push("/login")
+    return
+  }
 
   try {
     const res = await axios.get(
       "https://medical-backend-54hp.onrender.com/api/auth/me",
       {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     )
 
@@ -184,15 +165,24 @@ onMounted(async () => {
 
 const onSubmit = async () => {
   const token = localStorage.getItem("token")
+  if (!token) return
 
   await axios.put(
     "https://medical-backend-54hp.onrender.com/api/auth/update",
     form,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }
   )
 
   alert("Данные обновлены")
 }
 </script>
+
+<style scoped>
+.input {
+  @apply w-full border rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-orange-400;
+}
+</style>
