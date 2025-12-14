@@ -79,7 +79,7 @@ const form = reactive({
 const error = ref("");
 const success = ref("");
 
-// LOGINconst handleSubmit = async () => {
+
   error.value = "";
   success.value = "";
 
@@ -91,7 +91,7 @@ const success = ref("");
 
     success.value = "Got it! You are logged in.";
 
-    // Токенді дәл осылай сақтаймыз:
+    
     if (res.data.data?.token) {
       localStorage.setItem("token", res.data.data.token);
     } else {
