@@ -109,6 +109,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted } from "vue"
 import axios from "axios"
+const token = localStorage.getItem("token")
 
 const router = useRouter()
 
