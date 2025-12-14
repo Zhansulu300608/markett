@@ -79,8 +79,7 @@ const form = reactive({
 const error = ref("");
 const success = ref("");
 
-// LOGIN
-const handleSubmit = async () => {
+// LOGINconst handleSubmit = async () => {
   error.value = "";
   success.value = "";
 
@@ -92,19 +91,21 @@ const handleSubmit = async () => {
 
     success.value = "Got it! You are logged in.";
 
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
+    // Токенді дәл осылай сақтаймыз:
+    if (res.data.data?.token) {
+      localStorage.setItem("token", res.data.data.token);
+    } else {
+      error.value = "Token not found in response";
+      return;
     }
 
     form.email = "";
     form.password = "";
 
     setTimeout(() => {
-      router.push('/')
+      router.push("/");
     }, 1500);
-
   } catch (e) {
     error.value = e?.response?.data?.message || "Login failed";
-  }
-};
+  };
 </script>
