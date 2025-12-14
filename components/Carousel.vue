@@ -1,9 +1,8 @@
-
 <template>
-  <div class="carousel-container max-w-7xl mx-auto px-4 py-6">
+  <div class="carousel-container max-w-7xl mx-auto px-4 py-4">
     <!-- Main Carousel Image Area -->
     <div class="relative overflow-hidden rounded-xl shadow-lg mb-4">
-      <div class="w-full h-96 bg-gray-200 flex items-center justify-center">
+      <div class="w-full h-[100] bg-gray-200 flex items-center justify-center">
         <!-- Placeholder for the main image -->
         <img 
           :src="currentSlide.image" 
@@ -12,7 +11,7 @@
         />
         
         <!-- Overlay text content -->
-        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
           <div class="text-white text-center p-6">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">{{ currentSlide.title }}</h2>
             <p class="text-xl md:text-2xl font-medium">{{ currentSlide.subtitle }}</p>
@@ -67,24 +66,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 // Define your slides data
 const slides = ref([
   {
-    image: '/SNK_web_2360x1016_rus_e19f9cb3c7.png',
-    title: 'ТЫ НЕ ТЫ, КОГДА ГОЛОДЕН',
-    subtitle: 'КУПИ • СКАНИРУЙ ВЫИГРЫВАЙ'
+    image: 'https://magnum.kz:1337/uploads/SNK_web_2360x1016_rus_e19f9cb3c7.png',
+  },
+   {
+    image: 'https://magnum.kz:1337/uploads/akciyi_desk_ru_2360x1016_b8dcc0e078.jpg',
+  },
+   {
+    image: 'https://magnum.kz:1337/uploads/2360x1016r_17bfdb60a1.jpg',
   },
   {
-    image: 'https://via.placeholder.com/1200x500?text=Second+Slide',
-    title: 'SECOND SLIDE TITLE',
-    subtitle: 'Second slide subtitle'
+    image: 'https://magnum.kz:1337/uploads/2360h1016_713a0bbaa7.jpg',
   },
   {
-    image: 'https://via.placeholder.com/1200x500?text=Third+Slide',
-    title: 'THIRD SLIDE TITLE',
-    subtitle: 'Third slide subtitle'
+    image: 'https://magnum.kz:1337/uploads/vk_2360h1016_kopiya_2_fcb745e516.jpg',
+  },
+   {
+    image: 'https://magnum.kz:1337/uploads/Desktop_2360x1016_8defe50d24.png',
+  },
+  {
+    image: 'https://magnum.kz:1337/uploads/Bannery2360h1016_ru_d80ebfe19b.jpg',
+  },
+   {
+    image: 'https://magnum.kz:1337/uploads/2360h1016_kopiya_972e8a69ec.jpg',
+  },
+  {
+    image: 'https://magnum.kz:1337/uploads/SNK_Kairat_Magnum_Web_desktop_banner_2360x1016_rus_17fa51c4e8.jpg',
   }
 ])
 
@@ -96,6 +107,7 @@ const hashtags = ref([
 ])
 
 const currentSlideIndex = ref(0)
+let autoplayInterval = null
 
 const currentSlide = computed(() => {
   return slides.value[currentSlideIndex.value]
@@ -108,6 +120,40 @@ const nextSlide = () => {
 const prevSlide = () => {
   currentSlideIndex.value = (currentSlideIndex.value - 1 + slides.value.length) % slides.value.length
 }
+
+// Автоплей функциясы
+const startAutoplay = () => {
+  autoplayInterval = setInterval(() => {
+    nextSlide()
+  }, 4000) // 4 секунд сайын
+}
+
+const stopAutoplay = () => {
+  if (autoplayInterval) {
+    clearInterval(autoplayInterval)
+    autoplayInterval = null
+  }
+}
+
+// Lifecycle hooks
+onMounted(() => {
+  startAutoplay()
+})
+
+onUnmounted(() => {
+  stopAutoplay()
+})
+
+// Опционал: тышқан немесе түрткен кезде автоплей тоқтатылып, қайта іске қосылуы мүмкін
+// Пайдаланушы өзі басқарғанда автоплей тоқтату үшін:
+const handleUserInteraction = () => {
+  stopAutoplay()
+  // Қажет болса, белгілі бір уақыттан кейін қайта іске қосуға болады:
+  // setTimeout(startAutoplay, 5000)
+}
+
+// Егер қалаған болсаңыз, prev/next батырмаларына handleUserInteraction қосыңыз:
+// @click="() => { prevSlide(); handleUserInteraction() }"
 </script>
 
 <style scoped>
