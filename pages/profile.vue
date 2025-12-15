@@ -112,14 +112,14 @@
     </main>
   </div>
 </template>
-
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue"
-import { useRouter } from "vue-router"
-import axios from "axios"
+import { reactive, ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import axios from "axios";
 
-const router = useRouter()
-const saving = ref(false)
+const router = useRouter();
+const saving = ref(false);
+
 const user = reactive({
   name: "",
   email: "",
@@ -132,7 +132,10 @@ const form = reactive({
   phone: "",
   address: "",
 });
+
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
+
+// Профильді жүктеу
 const loadProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return router.push("/login");
@@ -142,9 +145,7 @@ const loadProfile = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // 👇 нақты user объектіні аламыз
-    const profile = res.data.data || res.data.data?.user;
-
+    const profile = res.data?.data || res.data; // API форматына байланысты
     Object.assign(user, profile);
     Object.assign(form, profile);
 
@@ -155,21 +156,22 @@ const loadProfile = async () => {
   }
 };
 
-
-// Сақтау функциясы
+// Профильді сақтау
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return;
 
   saving.value = true;
   try {
-    const { data } = await axios.put(`${API_URL}/update`, form, {
+    const res = await axios.put(`${API_URL}/update`, form, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // Обновлениелерді localStorage-қа жазамыз
-    Object.assign(user, data);
-    localStorage.setItem("user", JSON.stringify(data));
+    // API жауабы арқылы user жаңарту
+    const updatedUser = res.data?.data || res.data;
+    Object.assign(user, updatedUser);
+    Object.assign(form, updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
 
     alert("Данные сохранены");
   } catch (err) {
@@ -180,10 +182,12 @@ const saveProfile = async () => {
   }
 };
 
-onMounted(loadProfile);
+// Шығу функциясы
 const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   router.push("/login");
 };
+
+onMounted(loadProfile);
 </script>

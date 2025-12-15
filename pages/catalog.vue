@@ -73,11 +73,7 @@
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
       <p class="text-sm text-gray-700">Категории товаров: <span class="font-semibold">186 товаров</span></p>
       <div class="flex gap-3">
-        <button class="px-4 py-2 rounded-full bg-gray-100 text-pink-600 font-medium">Скачать каталог</button>
-        <button class="px-4 py-2 rounded-full bg-gray-100 text-pink-600 font-medium flex items-center gap-2">
-          Сортировка
-          <span>⌄</span>
-        </button>
+       
       </div>
     </div>
 
