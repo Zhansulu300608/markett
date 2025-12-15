@@ -145,7 +145,7 @@ const handleSubmit = async () => {
     form.password = "";
     form.confirmPassword = "";
 
-    setTimeout(() => router.push("/home"), 1200);
+    setTimeout(() => router.push("/login"), 1200);
   } catch (err) {
     error.value = err.response?.data?.message || "Ошибка регистрации";
   }
