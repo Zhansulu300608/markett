@@ -157,23 +157,19 @@ const loadProfile = async () => {
   }
 };
 
-// Профильді сақтау
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return router.push("/login");
 
   saving.value = true;
   try {
-    const res = await axios.put(`${API_URL}/update`, form, {
+    const res = await axios.put(`${API_URL}/me`, form, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // API жауабы арқылы user жаңарту
     const updatedUser = res.data?.data || res.data;
-
     Object.assign(user, updatedUser);
     Object.assign(form, updatedUser);
-
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
     alert("Данные сохранены");
@@ -184,8 +180,6 @@ const saveProfile = async () => {
     saving.value = false;
   }
 };
-
-// Шығу функциясы
 const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
