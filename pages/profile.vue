@@ -52,8 +52,9 @@
           <p class="text-sm text-gray-500">{{ user.email }}</p>
         </div>
 
+        <!-- Показываем роль пользователя -->
         <span class="block text-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6">
-          Покупатель
+          {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
 
         <div class="rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center mb-6">
@@ -64,6 +65,15 @@
         <nav class="space-y-2">
           <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium">Профиль</NuxtLink>
           <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">Мои заказы</NuxtLink>
+
+          <!-- Только для админа -->
+          <NuxtLink
+            v-if="user.role === 'admin'"
+            to="/admin"
+            class="block px-4 py-3 rounded-xl text-red-600 hover:bg-gray-100 font-semibold"
+          >
+            Админ панель
+          </NuxtLink>
         </nav>
       </aside>
 
@@ -114,6 +124,7 @@ const saving = ref(false)
 const user = reactive({
   name: "",
   email: "",
+  role: "user", // по умолчанию user
 })
 
 const form = reactive({
@@ -128,6 +139,7 @@ const API_URL = "https://medical-backend-54hp.onrender.com/api/auth"
 // Logout функциясы
 const logout = () => {
   localStorage.removeItem("token")
+  localStorage.removeItem("user")
   router.push("/login")
 }
 
@@ -135,6 +147,7 @@ const loadProfile = async () => {
   const token = localStorage.getItem("token")
   if (!token) return router.push("/login")
 
+  // Сначала читаем из localStorage для быстрого отображения
   const savedUser = localStorage.getItem("user")
   if (savedUser) Object.assign(user, JSON.parse(savedUser))
 
@@ -161,6 +174,9 @@ const saveProfile = async () => {
     await axios.put(`${API_URL}/update`, form, {
       headers: { Authorization: `Bearer ${token}` },
     })
+    // После сохранения обновляем локальное хранилище
+    Object.assign(user, form)
+    localStorage.setItem("user", JSON.stringify(user))
     alert("Данные сохранены")
   } catch (error) {
     console.error(error)

@@ -96,7 +96,6 @@ const form = reactive({
 
 const error = ref("");
 const success = ref("");
-
 const handleSubmit = async () => {
   error.value = "";
   success.value = "";
@@ -108,12 +107,6 @@ const handleSubmit = async () => {
       form
     );
 
-    /**
-     * backend форматы:
-     * 1) res.data.token
-     * 2) res.data.data.token + user
-     */
-
     const token =
       res.data.token || res.data?.data?.token;
 
@@ -124,19 +117,21 @@ const handleSubmit = async () => {
       throw new Error("Токен не найден");
     }
 
+    // Сохраняем токен и user
     localStorage.setItem("token", token);
-
-    if (user) {
-      localStorage.setItem("user", JSON.stringify(user));
-    }
+    if (user) localStorage.setItem("user", JSON.stringify(user));
 
     success.value = "Вход выполнен успешно!";
-
     form.email = "";
     form.password = "";
 
     setTimeout(() => {
-      router.push("/profile");
+      // Редирект по роли
+      if (user?.role === "admin") {
+        router.push("/admin"); // админ панель
+      } else {
+        router.push("/profile"); // обычный пользователь
+      }
     }, 1000);
 
   } catch (err) {
@@ -147,4 +142,5 @@ const handleSubmit = async () => {
     loading.value = false;
   }
 };
+
 </script>
