@@ -161,7 +161,7 @@
     </div>
     <button
       type="submit"
-      class="w-full bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2.5 rounded-md"
+      class="w-full bg-[#003049] hover:bg-green-600 text-white text-sm font-medium py-2.5 rounded-md"
     >
       Отправить сообщение
     </button>
