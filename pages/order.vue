@@ -101,72 +101,44 @@
 
       <!-- CONTENT -->
       <main class="flex-1 bg-white rounded-2xl shadow-sm p-8">
-        <h1 class="text-2xl font-semibold mb-6">
-          История заказов
-        </h1>
  <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
+  <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
 
-    <div v-if="orders.length === 0" class="text-gray-500">
-      Заказов пока нет
-    </div>
+  <!-- Егер заказ жоқ -->
+  <div v-if="orders.length === 0" class="text-gray-500">
+    Заказов пока нет
+  </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-    <div
-  v-if="orders && orders.length"
-  class="grid grid-cols-2 md:grid-cols-4 gap-6"
->
+  <!-- Егер заказ бар -->
   <div
-    v-for="item in orders"
-    :key="item.id"
-    class="border rounded-xl p-4"
+    v-else
+    class="grid grid-cols-2 md:grid-cols-4 gap-6"
   >
-    <img
-      :src="item.image || '/images/no-image.png'"
-      class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
-    />
-    <p class="text-sm font-semibold line-clamp-2">
-      {{ item.name }}
-    </p>
-    <p class="font-bold mt-2">
-      {{ item.final_price }} тг
-    </p>
-  </div>
-</div>
+    <div
+      v-for="item in orders"
+      :key="item.id"
+      class="border rounded-xl p-4"
+    >
+      <!-- Фото -->
+      <img
+        :src="item.image || '/images/no-image.png'"
+        alt="product"
+        class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
+      />
 
-<div v-else class="text-gray-500">
-  Заказов пока нет
-</div>
+      <!-- Аты -->
+      <p class="text-sm font-semibold line-clamp-2">
+        {{ item.name || 'Без названия' }}
+      </p>
 
+      <!-- Бағасы -->
+      <p class="font-bold mt-2">
+        {{ item.final_price ?? '—' }} тг
+      </p>
     </div>
   </div>
-        <div class="space-y-4">
-          <OrderCard
-            date="15 января 2024 г."
-            sum="12500 ₽"
-            status="completed"
-          />
-          <OrderCard
-            date="20 февраля 2024 г."
-            sum="8000 ₽"
-            status="processing"
-          />
-          <OrderCard
-            date="10 марта 2024 г."
-            sum="23000 ₽"
-            status="completed"
-          />
-          <OrderCard
-            date="01 апреля 2024 г."
-            sum="5000 ₽"
-            status="cancelled"
-          />
-          <OrderCard
-            date="05 мая 2024 г."
-            sum="15000 ₽"
-            status="processing"
-          />
-        </div>
+</div>
+
       </main>
 
     </div>
