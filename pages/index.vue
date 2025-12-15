@@ -45,7 +45,7 @@
            <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
          Главная
         </NuxtLink>
-          <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
+          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
          Каталог
         </NuxtLink>
         <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>

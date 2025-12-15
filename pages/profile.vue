@@ -1,38 +1,24 @@
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Top bar -->
+    <!-- Logout -->
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-end">
       <button
         @click="logout"
         class="flex items-center gap-2 text-sm font-medium text-red-500 hover:text-red-600"
       >
-        <span class="hidden sm:inline">Выход</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M9 12h12m0 0l-3 3m3-3l-3-3"
-          />
-        </svg>
+        Выход
       </button>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 flex gap-8 py-10">
+    <main class="max-w-7xl mx-auto px-4 flex gap-8 pb-10">
       <!-- Sidebar -->
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
         <!-- Avatar -->
-        <div class="w-28 h-28 rounded-full overflow-hidden bg-gray-200 mb-4 mx-auto">
-          <div class="w-full h-full bg-gray-300" />
+        <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-3xl font-bold text-orange-600 mx-auto mb-4">
+          {{ user.name?.charAt(0) || "?" }}
         </div>
 
-        <!-- Name & email -->
+        <!-- User info -->
         <div class="text-center mb-4">
           <p class="font-semibold text-lg">{{ user.name }}</p>
           <p class="text-sm text-gray-500">{{ user.email }}</p>
@@ -40,44 +26,42 @@
 
         <!-- Role -->
         <span
-          class="flex justify-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6"
+          class="block text-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6"
         >
           Покупатель
         </span>
 
-        <!-- Stats -->
-        <div
-          class="w-full mb-6 rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center"
-        >
-          <div class="text-xs text-gray-500">Всего заказов</div>
-          <div class="text-2xl font-semibold">{{ ordersCount }}</div>
+        <!-- Orders count -->
+        <div class="rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center mb-6">
+          <span class="text-xs text-gray-500">Всего заказов</span>
+          <span class="text-2xl font-semibold">7</span>
         </div>
 
         <!-- Menu -->
         <nav class="space-y-2">
-          <router-link
+          <NuxtLink
             to="/profile"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl bg-gray-100 font-medium"
+            class="block px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium"
           >
             Профиль
-          </router-link>
+          </NuxtLink>
 
-          <router-link
-            to="/order"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100"
+          <NuxtLink
+            to="/orders"
+            class="block px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100"
           >
             Мои заказы
-          </router-link>
+          </NuxtLink>
         </nav>
       </aside>
 
       <!-- Content -->
-      <section class="flex-1">
+      <section class="flex-1 bg-white rounded-2xl shadow-sm p-8">
         <h1 class="text-3xl font-bold mb-8">Личные данные</h1>
 
         <form
-          @submit.prevent="onSubmit"
-          class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl"
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl"
+          @submit.prevent="saveProfile"
         >
           <div>
             <label class="block text-sm text-gray-600 mb-1">Имя</label>
@@ -115,12 +99,13 @@
             />
           </div>
 
-          <div class="md:col-span-2 mt-4">
+          <div class="md:col-span-2">
             <button
               type="submit"
-              class="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
+              :disabled="saving"
+              class="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-50"
             >
-              Сохранить изменения
+              {{ saving ? "Сохранение..." : "Сохранить изменения" }}
             </button>
           </div>
         </form>
@@ -130,76 +115,64 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue";
-import axios from "axios";
-import { useRouter } from "vue-router";
+import { reactive, ref, onMounted } from "vue"
+import { useRouter } from "vue-router"
+import axios from "axios"
 
-const router = useRouter();
+const router = useRouter()
+const saving = ref(false)
 
 const user = reactive({
   name: "",
   email: "",
-});
+})
 
 const form = reactive({
   name: "",
   email: "",
   phone: "",
   address: "",
-});
+})
 
-const ordersCount = ref(0);
+const API_URL = "https://medical-backend-54hp.onrender.com/api/auth"
 
 const logout = () => {
-  localStorage.removeItem("token");
-  router.push("/login");
-};
+  localStorage.removeItem("token")
+  localStorage.removeItem("user")
+  router.push("/login")
+}
 
-onMounted(async () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    router.push("/login");
-    return;
-  }
+const loadProfile = async () => {
+  const token = localStorage.getItem("token")
+  if (!token) return router.push("/login")
 
   try {
-    const res = await axios.get(
-      "https://medical-backend-54hp.onrender.com/api/auth/me",
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    const res = await axios.get(`${API_URL}/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
-    user.name = res.data.name;
-    user.email = res.data.email;
-
-    form.name = res.data.name;
-    form.email = res.data.email;
-    form.phone = res.data.phone || "";
-    form.address = res.data.address || "";
-
-    ordersCount.value = res.data.ordersCount || 0;
-  } catch (e) {
-    localStorage.removeItem("token");
-    router.push("/login");
+    Object.assign(user, res.data)
+    Object.assign(form, res.data)
+  } catch {
+    logout()
   }
-});
+}
 
-const onSubmit = async () => {
-  const token = localStorage.getItem("token");
+const saveProfile = async () => {
+  const token = localStorage.getItem("token")
+  if (!token) return
+
+  saving.value = true
 
   try {
-    await axios.put(
-      "https://medical-backend-54hp.onrender.com/api/auth/update",
-      form,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    alert("Данные обновлены");
-  } catch (e) {
-    alert("Ошибка обновления данных");
+    await axios.put(`${API_URL}/update`, form, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    alert("Данные сохранены")
+  } finally {
+    saving.value = false
   }
-};
+}
+
+onMounted(loadProfile)
 </script>

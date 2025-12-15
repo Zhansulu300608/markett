@@ -1,0 +1,197 @@
+<template>
+     <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat
+  bg-center h-40 text-white shadow-md relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- Left Section -->
+      <div class="flex items-center space-x-6">
+        <!-- Burger Menu -->
+        <!-- <button class="text-2xl">
+          <span class="material-icons">menu</span>
+        </button> -->
+
+        <!-- Logo -->
+        <div class="flex items-center space-x-2 text-[#003049]">
+          <img src="../public/images/logo.png" alt="Logo" class="h-10" />
+         
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="flex-1 mx-10 mt-5">
+        <div class="flex rounded-full overflow-hidden shadow-sm">
+          <input
+            type="text"
+            placeholder="Поиск"
+            class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
+          />
+          <button class="px-4 text-gray-600 border-l">по скидкам</button>
+        </div>
+      </div>
+
+      <!-- Location / Lang -->
+      <div class="flex items-center space-x-4">
+        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
+        <NuxtLink to="/login" class="login-btn text-[#003049]">Login</NuxtLink>
+        </button>
+        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
+          <span>RU</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
+      <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
+           <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
+         Главная
+        </NuxtLink>
+          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
+         Каталог
+        </NuxtLink>
+        <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>
+         <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
+         Профиль
+        </NuxtLink>
+         <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
+        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
+         Контакты
+        </NuxtLink>
+      </div>
+    </nav>
+  </header>
+  <div class="min-h-screen bg-white px-4 md:px-8 py-6">
+  
+    <div class="mb-6">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Каталог скидок</h1>
+      <p class="text-sm text-gray-600 mt-2 max-w-xl">
+        Все скидки Magnum в одном месте! Ежедневная экономия в любимом магазине.
+      </p>
+    </div>
+
+  
+    <!-- Info Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <p class="text-sm text-gray-700">Категории товаров: <span class="font-semibold">186 товаров</span></p>
+      <div class="flex gap-3">
+        <button class="px-4 py-2 rounded-full bg-gray-100 text-pink-600 font-medium">Скачать каталог</button>
+        <button class="px-4 py-2 rounded-full bg-gray-100 text-pink-600 font-medium flex items-center gap-2">
+          Сортировка
+          <span>⌄</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
+      <!-- Categories -->
+   <aside class="space-y-3">
+  <div
+    v-for="(category, index) in categories"
+    :key="index"
+    class="flex items-center gap-3 bg-gray-100 hover:bg-gray-200 transition rounded-xl p-4 cursor-pointer"
+  >
+    <span class="text-sm font-medium text-gray-800">
+      {{ category.name }}
+    </span>
+     <img
+      :src="category.image"
+      :alt="category.name"
+      class="w-16 h-16 object-contain"
+    />
+  </div>
+</aside>
+
+
+      <!-- Products -->
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+  <div
+    v-for="product in products"
+    :key="product.id"
+    class="border rounded-2xl p-4 relative flex flex-col bg-white"
+  >
+    <!-- Discount -->
+    <span
+      v-if="discountPercent(product)"
+      class="absolute top-3 left-3 bg-pink-600 text-white text-sm px-3 py-1 rounded-full"
+    >
+      -{{ discountPercent(product) }}%
+    </span>
+
+    <!-- Date -->
+    <p class="absolute top-3 right-3 text-xs text-gray-400">
+      до {{ formatDate(product.action_end) }}
+    </p>
+
+    <!-- Image -->
+    <img
+      :src="product.image"
+      :alt="product.name"
+      class="h-40 w-full object-contain bg-gray-100 rounded-xl mb-4"
+    />
+
+    <!-- Title -->
+    <h3 class="text-sm font-semibold mb-2 line-clamp-2">
+      {{ product.name }}
+    </h3>
+
+    <!-- Price -->
+    <div class="mt-auto">
+      <p class="text-xs line-through text-gray-400">
+        {{ product.start_price }} тг
+      </p>
+      <p class="bg-yellow-400 inline-block px-4 py-2 rounded-xl font-bold text-lg">
+        {{ product.final_price }} тг
+      </p>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</template>
+
+<script setup>
+const categories = [
+  { name: "Фрукты, овощи", image: "https://magnum.kz:1337/uploads/Frutky_i_ovoshhi_35bebc3cdc.png" },
+  { name: "Мясо", image: "https://magnum.kz:1337/uploads/myaso_24f87a2b63.png" },
+  { name: "Гастрономия", image: "https://magnum.kz:1337/uploads/Gastronomiya_785ab8a5c8.png" },
+  { name: "Безалкогольные напитки", image: "https://magnum.kz:1337/uploads/Bezalkogolnye_napitki_804131c63d.png" },
+  { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
+  { name: "Бакалея", image: "https://magnum.kz:1337/uploads/bakaleya_3110e86aae.png" },
+  { name: "Молочные продукты", image: "https://magnum.kz:1337/uploads/Molochnye_produkty_0fc46bfbd0.png" },
+  { name: "Собственное производство", image: "https://magnum.kz:1337/uploads/Sobstvennoe_proizvodstvo_432b6600ca.png" },
+  { name: "Чай, Кофе, Какао", image: "https://magnum.kz:1337/uploads/Chaj_kofe_kakao_6013945351.png" },
+  { name: "Консервы", image: "https://magnum.kz:1337/uploads/konservy_fe0bd212c3.png" },
+  { name: "Замороженные продукты", image: "https://magnum.kz:1337/uploads/Zamorozhennye_produkty_ca04644ef7.png" },
+  { name: "Бытовая химия", image: "https://magnum.kz:1337/uploads/Bytovaya_himiya_4e6942dd39.png" },
+  { name: "Канцелярские товары", image: "https://magnum.kz:1337/uploads/Kanczelyarskie_tovary_976ed32c3f.png" },
+  { name: "Средства гигиены", image: "https://magnum.kz:1337/uploads/Sredstva_gigieny_75f280ceb3.png" },
+  { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
+  { name: "Детские товары", image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
+  { name: "Другие товары", image: "https://magnum.kz:1337/uploads/Drugie_tovary_d07556ae4d.png" },
+];
+
+
+const { data: products } = await useFetch(
+  'https://67cbeea23395520e6af6ab52.mockapi.io/categorysale',
+  {
+    default: () => []
+  }
+);
+
+
+const discountPercent = (product) => {
+  if (!product.start_price || !product.final_price) return null;
+  return Math.round(
+    ((product.start_price - product.final_price) / product.start_price) * 100
+  );
+};
+
+
+const formatDate = (date) => {
+  const d = new Date(date);
+  return `${String(d.getDate()).padStart(2, '0')}.${String(
+    d.getMonth() + 1
+  ).padStart(2, '0')}`;
+};
+
+</script>
