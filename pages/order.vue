@@ -24,7 +24,7 @@
             placeholder="Поиск"
             class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
           />
-          <button class="px-4 text-gray-600 border-l">по скидкам</button>
+            <button class="px-4 text-white bg-[#003049] border-l">по скидкам</button>
         </div>
       </div>
 
