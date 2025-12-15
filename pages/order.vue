@@ -64,50 +64,40 @@
 
       <!-- SIDEBAR -->
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
-         <!-- Avatar -->
-        <div class="w-28 h-28 rounded-full overflow-hidden bg-gray-200 mb-4 ml-16">
-          <!-- Replace with <NuxtImg> or <img> -->
-          <div class="w-full h-full bg-gray-300" />
+        <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-3xl font-bold text-orange-600 mx-auto mb-4">
+          {{ user.name?.charAt(0) || "?" }}
         </div>
 
-        <!-- Name & email -->
         <div class="text-center mb-4">
-          <p class="font-semibold text-lg"></p>
-          <p class="text-sm text-gray-500">zhansulu0808@gmail.com</p>
+          <p class="font-semibold text-lg">{{ user.name }}</p>
+          <p class="text-sm text-gray-500">{{ user.email }}</p>
         </div>
 
-        <!-- Role badge -->
-        <span
-          class="inline-flex items-center ml-16 justify-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6"
-        >
-          Покупатель
+        <!-- Показываем роль пользователя -->
+        <span class="block text-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6">
+          {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
 
-        <!-- Stats -->
-        <div
-          class="w-full mb-6 rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center"
-        >
-          <div class="text-xs text-gray-500">Всего заказов</div>
-          <div class="text-2xl font-semibold">7</div>
+        <div class="rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center mb-6">
+          <span class="text-xs text-gray-500">Всего заказов</span>
+          <span class="text-2xl font-semibold">7</span>
         </div>
 
-        <!-- Menu -->
-   <nav class="mt-6 space-y-2">
-          <NuxtLink
-            to="/profile"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100"
-          >
-            Профиль
-          </NuxtLink>
+        <nav class="space-y-2">
+          <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium">Профиль</NuxtLink>
+          <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">Мои заказы</NuxtLink>
 
+          <!-- Только для админа -->
           <NuxtLink
-            to="/order"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium"
+            v-if="user.role === 'admin'"
+            to="/admin"
+            class="block px-4 py-3 rounded-xl text-red-600 hover:bg-gray-100 font-semibold"
           >
-            Мои заказы
+            Админ панель
           </NuxtLink>
         </nav>
       </aside>
+
 
       <!-- CONTENT -->
       <main class="flex-1 bg-white rounded-2xl shadow-sm p-8">
@@ -242,7 +232,81 @@
   
 </template>
 
-<script setup>
-// import OrderCard from '@/components/OrderCard.vue'
+
+
+
+<script setup lang="ts">
+import { reactive, ref, onMounted } from "vue"
+import { useRouter } from "vue-router"
+import axios from "axios"
 definePageMeta({ name: "profile-orders" })
+const router = useRouter()
+const saving = ref(false)
+const user = reactive({
+  name: "",
+  email: "",
+  role: "user",
+});
+
+const form = reactive({
+  name: "",
+  email: "",
+  phone: "",
+  address: "",
+});
+const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
+const loadProfile = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return router.push("/login");
+
+  try {
+    const res = await axios.get(`${API_URL}/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    // 👇 нақты user объектіні аламыз
+    const profile = res.data.data || res.data.data?.user;
+
+    Object.assign(user, profile);
+    Object.assign(form, profile);
+
+    localStorage.setItem("user", JSON.stringify(profile));
+  } catch (err) {
+    console.error(err);
+    logout();
+  }
+};
+
+
+// Сақтау функциясы
+const saveProfile = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  saving.value = true;
+  try {
+    const { data } = await axios.put(`${API_URL}/update`, form, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    // Обновлениелерді localStorage-қа жазамыз
+    Object.assign(user, data);
+    localStorage.setItem("user", JSON.stringify(data));
+
+    alert("Данные сохранены");
+  } catch (err) {
+    console.error(err);
+    alert("Ошибка при сохранении");
+  } finally {
+    saving.value = false;
+  }
+};
+
+onMounted(loadProfile);
+const logout = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  router.push("/login");
+};
 </script>
+
