@@ -83,7 +83,6 @@ const form = reactive({
 
 const error = ref("");
 const success = ref("");
-
 const handleSubmit = async () => {
   error.value = "";
   success.value = "";
@@ -100,7 +99,7 @@ const handleSubmit = async () => {
 
     if (!token) throw new Error("Токен не найден");
 
-    // Сохраняем token и user
+    // Сохраняем token и user в localStorage
     localStorage.setItem("token", token);
     if (user) localStorage.setItem("user", JSON.stringify(user));
 
@@ -109,17 +108,13 @@ const handleSubmit = async () => {
     form.password = "";
 
     setTimeout(() => {
-      // Редирект по роли
-      if (user?.role === "admin") {
-        router.push("/admin");
-      } else {
-        router.push("/profile");
-      }
-    }, 1000);
+      router.push("/profile"); // Профильге жібереміз
+    }, 500);
   } catch (err: any) {
     error.value = err.response?.data?.message || "Ошибка входа. Проверьте данные.";
   } finally {
     loading.value = false;
   }
 };
+
 </script>
