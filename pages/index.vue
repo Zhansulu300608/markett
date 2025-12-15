@@ -1,59 +1,65 @@
 <template>
-  <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat
-  bg-center h-40 text-white shadow-md relative overflow-hidden">
+ <header
+    class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat bg-center h-40 shadow-md relative"
+  >
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Left Section -->
-      <div class="flex items-center space-x-6">
-        <!-- Burger Menu -->
-        <!-- <button class="text-2xl">
-          <span class="material-icons">menu</span>
-        </button> -->
+      
+      <!-- Logo -->
+      <NuxtLink to="/" class="flex items-center space-x-2">
+        <img src="/images/logo.png" alt="Logo" class="h-10" />
+      </NuxtLink>
 
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 text-[#003049]">
-          <img src="../public/images/logo.png" alt="Logo" class="h-10" />
-         
-        </div>
-      </div>
-
-      <!-- Search Bar -->
+      <!-- Search -->
       <div class="flex-1 mx-10 mt-5">
-        <div class="flex rounded-full overflow-hidden shadow-sm">
+        <div class="flex rounded-full overflow-hidden shadow-sm bg-white">
           <input
             type="text"
             placeholder="Поиск"
             class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
           />
-           <button class="px-4 text-white bg-[#003049] border-l">по скидкам</button>
+          <button class="px-4 text-white bg-[#003049]">
+            по скидкам
+          </button>
         </div>
       </div>
 
-      <!-- Location / Lang -->
-   <div class="flex items-center space-x-4">
-  <!-- Егер user логин болса, профиль иконкасын көрсетеміз -->
-  <template v-if="user.name">
-    <NuxtLink to="/profile" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full shadow">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M5.121 17.804A9 9 0 1118.879 6.196 9 9 0 015.12 17.804z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-      </svg>
-      <span class="hidden sm:inline">{{ user.name?.split(" ")[0] }}</span>
-    </NuxtLink>
-  </template>
+      <!-- Auth / Lang -->
+      <div class="flex items-center gap-4">
+        
+        <!-- ЕСЛИ ЛОГИН БОЛСА -->
+        <NuxtLink
+          v-if="isAuth"
+          to="/profile"
+          class="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow hover:bg-gray-100 transition"
+        >
+          <!-- User Icon -->
+          <div
+            class="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold"
+          >
+            {{ user.name?.charAt(0).toUpperCase() }}
+          </div>
 
-  <!-- Егер user логин болмаса -->
-  <template v-else>
-    <NuxtLink to="/login" class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">Login</NuxtLink>
-  </template>
+          <span class="hidden sm:block text-gray-800 font-medium">
+            {{ user.name }}
+          </span>
+        </NuxtLink>
 
- 
-</div>
+        <!-- ЕСЛИ ЛОГИН ЖОҚ -->
+        <NuxtLink
+          v-else
+          to="/login"
+          class="bg-white text-gray-800 px-4 py-2 rounded-full shadow hover:bg-gray-100"
+        >
+          Login
+        </NuxtLink>
+
+        <!-- Language -->
+       
+      </div>
     </div>
 
-    <!-- Bottom Nav -->
-    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
+    <!-- Navigation -->
+     <nav class=" text-gray-800 py-4 mt-5 shadow-md">
       <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
            <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
          Главная
@@ -61,7 +67,7 @@
           <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
          Каталог
         </NuxtLink>
-       
+      
          <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
          Профиль
         </NuxtLink>
@@ -350,6 +356,19 @@ onUnmounted(() => {
   clearInterval(interval);
 });
 
+
+const user = ref<any>({});
+const isAuth = ref(false);
+
+onMounted(() => {
+  const token = localStorage.getItem("token");
+  const savedUser = localStorage.getItem("user");
+
+  if (token && savedUser) {
+    user.value = JSON.parse(savedUser);
+    isAuth.value = true;
+  }
+});
 const items = ref([
   {
     label: "Кондитерская",
