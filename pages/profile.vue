@@ -34,7 +34,7 @@
     <NuxtLink to="/login" class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">Login</NuxtLink>
   </template>
 
-  <button class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">RU</button>
+ 
 </div>
 
     </div>
