@@ -16,23 +16,13 @@
       </p>
 
       <!-- Error -->
-      <div
-        v-if="error"
-        class="mb-4 p-3 rounded-lg bg-red-100 border border-red-300"
-      >
-        <p class="text-red-600 text-sm text-center font-semibold">
-          {{ error }}
-        </p>
+      <div v-if="error" class="mb-4 p-3 rounded-lg bg-red-100 border border-red-300">
+        <p class="text-red-600 text-sm text-center font-semibold">{{ error }}</p>
       </div>
 
       <!-- Success -->
-      <div
-        v-if="success"
-        class="mb-4 p-3 rounded-lg bg-green-100 border border-green-300"
-      >
-        <p class="text-green-600 text-sm text-center font-semibold">
-          {{ success }}
-        </p>
+      <div v-if="success" class="mb-4 p-3 rounded-lg bg-green-100 border border-green-300">
+        <p class="text-green-600 text-sm text-center font-semibold">{{ success }}</p>
       </div>
 
       <!-- Form -->
@@ -68,10 +58,7 @@
 
       <p class="mt-5 text-center text-sm">
         Еще нет аккаунта?
-        <NuxtLink
-          to="/register"
-          class="text-[#C1121F] hover:underline font-semibold"
-        >
+        <NuxtLink to="/register" class="text-[#C1121F] hover:underline font-semibold">
           Зарегистрироваться
         </NuxtLink>
       </p>
@@ -79,7 +66,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
@@ -96,6 +83,7 @@ const form = reactive({
 
 const error = ref("");
 const success = ref("");
+
 const handleSubmit = async () => {
   error.value = "";
   success.value = "";
@@ -107,17 +95,12 @@ const handleSubmit = async () => {
       form
     );
 
-    const token =
-      res.data.token || res.data?.data?.token;
+    const token = res.data.token || res.data?.data?.token;
+    const user = res.data.user || res.data?.data?.user;
 
-    const user =
-      res.data.user || res.data?.data?.user;
+    if (!token) throw new Error("Токен не найден");
 
-    if (!token) {
-      throw new Error("Токен не найден");
-    }
-
-    // Сохраняем токен и user
+    // Сохраняем token и user
     localStorage.setItem("token", token);
     if (user) localStorage.setItem("user", JSON.stringify(user));
 
@@ -128,19 +111,15 @@ const handleSubmit = async () => {
     setTimeout(() => {
       // Редирект по роли
       if (user?.role === "admin") {
-        router.push("/admin"); // админ панель
+        router.push("/admin");
       } else {
-        router.push("/profile"); // обычный пользователь
+        router.push("/profile");
       }
     }, 1000);
-
-  } catch (err) {
-    error.value =
-      err.response?.data?.message ||
-      "Ошибка входа. Проверьте данные.";
+  } catch (err: any) {
+    error.value = err.response?.data?.message || "Ошибка входа. Проверьте данные.";
   } finally {
     loading.value = false;
   }
 };
-
 </script>
