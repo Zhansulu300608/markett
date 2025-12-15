@@ -1,61 +1,53 @@
 <template>
-     <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat
-  bg-center h-40 text-white shadow-md relative overflow-hidden">
+       <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat bg-center h-40 text-white shadow-md relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Left Section -->
-      <div class="flex items-center space-x-6">
-        <!-- Burger Menu -->
-        <!-- <button class="text-2xl">
-          <span class="material-icons">menu</span>
-        </button> -->
-
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 text-[#003049]">
-          <img src="../public/images/logo.png" alt="Logo" class="h-10" />
-         
-        </div>
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 text-[#003049]">
+        <img src="../public/images/logo.png" alt="Logo" class="h-10" />
       </div>
 
       <!-- Search Bar -->
       <div class="flex-1 mx-10 mt-5">
         <div class="flex rounded-full overflow-hidden shadow-sm">
-          <input
-            type="text"
-            placeholder="Поиск"
-            class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
-          />
-           <button class="px-4 text-white bg-[#003049] border-l">по скидкам</button>
+          <input type="text" placeholder="Поиск" class="flex-1 px-4 py-2 text-gray-700 focus:outline-none" />
+         <button class="px-4 text-white bg-[#003049] border-l">по скидкам</button>
         </div>
       </div>
 
-      <!-- Location / Lang -->
-      <div class="flex items-center space-x-4">
-        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
-        <NuxtLink to="/login" class="login-btn text-[#003049]">Login</NuxtLink>
-        </button>
-        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
-          <span>RU</span>
-        </button>
-      </div>
+     <!-- Login / Lang -->
+<div class="flex items-center space-x-4">
+  <!-- Егер user логин болса, профиль иконкасын көрсетеміз -->
+  <template v-if="user.name">
+    <NuxtLink to="/profile" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5.121 17.804A9 9 0 1118.879 6.196 9 9 0 015.12 17.804z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <span class="hidden sm:inline">{{ user.name?.split(" ")[0] }}</span>
+    </NuxtLink>
+  </template>
+
+  <!-- Егер user логин болмаса -->
+  <template v-else>
+    <NuxtLink to="/login" class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">Login</NuxtLink>
+  </template>
+
+  <button class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">RU</button>
+</div>
+
     </div>
 
-    <!-- Bottom Nav -->
-    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
+    <!-- Navigation -->
+    <nav class="text-gray-800 py-4 mt-5 shadow-md">
       <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
-           <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
-         Главная
-        </NuxtLink>
-          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
-         Каталог
-        </NuxtLink>
+        <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">Главная</NuxtLink>
+        <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">Каталог</NuxtLink>
         <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>
-         <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
-         Профиль
-        </NuxtLink>
-         <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
-        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
-         Контакты
-        </NuxtLink>
+        <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">Профиль</NuxtLink>
+        <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
+        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">Контакты</NuxtLink>
       </div>
     </nav>
   </header>
