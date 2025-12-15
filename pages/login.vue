@@ -136,7 +136,7 @@ const handleSubmit = async () => {
     form.password = "";
 
     setTimeout(() => {
-      router.push("/");
+      router.push("/profile");
     }, 1000);
 
   } catch (err) {
