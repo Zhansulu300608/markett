@@ -1,5 +1,5 @@
 <template>
-       <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat bg-center h-40 text-white shadow-md relative overflow-hidden">
+      <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat bg-center h-40 text-white shadow-md relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-center space-x-2 text-[#003049]">
