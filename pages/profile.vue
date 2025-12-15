@@ -111,8 +111,7 @@
       </section>
     </main>
   </div>
-</template>
-<script setup lang="ts">
+</template><script setup lang="ts">
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
@@ -145,13 +144,15 @@ const loadProfile = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    const profile = res.data?.data || res.data; // API форматына байланысты
+    // API нақты user объектісін қайтарады деп есептейміз
+    const profile = res.data?.data || res.data;
+
     Object.assign(user, profile);
     Object.assign(form, profile);
 
     localStorage.setItem("user", JSON.stringify(profile));
-  } catch (err) {
-    console.error(err);
+  } catch (err: any) {
+    console.error("Ошибка при загрузке профиля:", err.response?.data || err.message);
     logout();
   }
 };
@@ -159,7 +160,7 @@ const loadProfile = async () => {
 // Профильді сақтау
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
-  if (!token) return;
+  if (!token) return router.push("/login");
 
   saving.value = true;
   try {
@@ -169,14 +170,16 @@ const saveProfile = async () => {
 
     // API жауабы арқылы user жаңарту
     const updatedUser = res.data?.data || res.data;
+
     Object.assign(user, updatedUser);
     Object.assign(form, updatedUser);
+
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
     alert("Данные сохранены");
-  } catch (err) {
-    console.error(err);
-    alert("Ошибка при сохранении");
+  } catch (err: any) {
+    console.error("Ошибка при сохранении:", err.response?.data || err.message);
+    alert("Ошибка при сохранении: " + (err.response?.data?.message || err.message));
   } finally {
     saving.value = false;
   }
