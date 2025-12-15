@@ -14,11 +14,29 @@
         </div>
       </div>
 
-      <!-- Login / Lang -->
-      <div class="flex items-center space-x-4">
-        <NuxtLink to="/login" class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">Login</NuxtLink>
-        <button class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">RU</button>
-      </div>
+     <!-- Login / Lang -->
+<div class="flex items-center space-x-4">
+  <!-- Егер user логин болса, профиль иконкасын көрсетеміз -->
+  <template v-if="user.name">
+    <NuxtLink to="/profile" class="flex items-center gap-2 bg-white text-gray-800 px-4 py-2 rounded-full shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5.121 17.804A9 9 0 1118.879 6.196 9 9 0 015.12 17.804z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <span class="hidden sm:inline">{{ user.name?.split(" ")[0] }}</span>
+    </NuxtLink>
+  </template>
+
+  <!-- Егер user логин болмаса -->
+  <template v-else>
+    <NuxtLink to="/login" class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">Login</NuxtLink>
+  </template>
+
+  <button class="bg-white text-gray-800 px-4 py-2 rounded-full shadow">RU</button>
+</div>
+
     </div>
 
     <!-- Navigation -->
