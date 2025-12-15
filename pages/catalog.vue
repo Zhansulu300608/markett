@@ -79,20 +79,17 @@
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
       <!-- Categories -->
-   <aside class="space-y-3">
-  <div
-    v-for="(category, index) in categories"
-    :key="index"
-    class="flex items-center gap-3 bg-gray-100 hover:bg-gray-200 transition rounded-xl p-4 cursor-pointer"
-  >
-    <span class="text-sm font-medium text-gray-800">
-      {{ category.name }}
-    </span>
-     <img
-      :src="category.image"
-      :alt="category.name"
-      class="w-16 h-16 object-contain"
-    />
+  <aside class="space-y-3">
+  <div v-for="(category, index) in [...categories, {name:'Другие товары'}]" :key="index">
+    <h4 class="font-bold mb-2">{{ category.name }}</h4>
+    <div class="grid grid-cols-2 gap-3">
+      <div v-for="product in productsByCategory(category)" :key="product.id" class="border rounded-xl p-3">
+        <img :src="product.image" :alt="product.name" class="w-full h-24 object-contain mb-2" />
+        <h5 class="text-sm font-semibold">{{ product.name }}</h5>
+        <p class="text-xs line-through text-gray-400">{{ product.start_price }} тг</p>
+        <p class="text-lg font-bold bg-yellow-400 inline-block px-2 rounded">{{ product.final_price }} тг</p>
+      </div>
+    </div>
   </div>
 </aside>
 
@@ -242,47 +239,53 @@
 
 <script setup>
 const categories = [
-  { name: "Фрукты, овощи", image: "https://magnum.kz:1337/uploads/Frutky_i_ovoshhi_35bebc3cdc.png" },
-  { name: "Мясо", image: "https://magnum.kz:1337/uploads/myaso_24f87a2b63.png" },
-  { name: "Гастрономия", image: "https://magnum.kz:1337/uploads/Gastronomiya_785ab8a5c8.png" },
-  { name: "Безалкогольные напитки", image: "https://magnum.kz:1337/uploads/Bezalkogolnye_napitki_804131c63d.png" },
-  { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
-  { name: "Бакалея", image: "https://magnum.kz:1337/uploads/bakaleya_3110e86aae.png" },
-  { name: "Молочные продукты", image: "https://magnum.kz:1337/uploads/Molochnye_produkty_0fc46bfbd0.png" },
-  { name: "Собственное производство", image: "https://magnum.kz:1337/uploads/Sobstvennoe_proizvodstvo_432b6600ca.png" },
-  { name: "Чай, Кофе, Какао", image: "https://magnum.kz:1337/uploads/Chaj_kofe_kakao_6013945351.png" },
-  { name: "Консервы", image: "https://magnum.kz:1337/uploads/konservy_fe0bd212c3.png" },
-  { name: "Замороженные продукты", image: "https://magnum.kz:1337/uploads/Zamorozhennye_produkty_ca04644ef7.png" },
-  { name: "Бытовая химия", image: "https://magnum.kz:1337/uploads/Bytovaya_himiya_4e6942dd39.png" },
-  { name: "Канцелярские товары", image: "https://magnum.kz:1337/uploads/Kanczelyarskie_tovary_976ed32c3f.png" },
-  { name: "Средства гигиены", image: "https://magnum.kz:1337/uploads/Sredstva_gigieny_75f280ceb3.png" },
-  { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
-  { name: "Детские товары", image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
-  { name: "Другие товары", image: "https://magnum.kz:1337/uploads/Drugie_tovary_d07556ae4d.png" },
+  { name: "Фрукты, овощи", ids: [29, 30, 31, 32] , image: "https://magnum.kz:1337/uploads/Frutky_i_ovoshhi_35bebc3cdc.png" },
+  { name: "Мясо",ids: [27, 28] , image: "https://magnum.kz:1337/uploads/myaso_24f87a2b63.png" },
+  { name: "Гастрономия", ids: [34, 58, 59, 81, 92], image: "https://magnum.kz:1337/uploads/Gastronomiya_785ab8a5c8.png" },
+  { name: "Безалкогольные напитки",ids: [36, 37, 38, 39, 41, 65, 72, 79] , image: "https://magnum.kz:1337/uploads/Bezalkogolnye_napitki_804131c63d.png" },
+  { name: "Кондитерские изделия",ids: [46, 47, 48, 49, 50, 62, 69, 70, 73, 76, 80, 82, 84, 85, 86, 87, 89, 90, 97, 98, 99] , image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
+  { name: "Бакалея",ids: [45, 61, 64, 67, 91, 94, 95], image: "https://magnum.kz:1337/uploads/bakaleya_3110e86aae.png" },
+  { name: "Молочные продукты", ids: [33, 35, 40, 57, 60, 68, 71, 74] ,image: "https://magnum.kz:1337/uploads/Molochnye_produkty_0fc46bfbd0.png" },
+  { name: "Собственное производство",ids: [44], image: "https://magnum.kz:1337/uploads/Sobstvennoe_proizvodstvo_432b6600ca.png" },
+  { name: "Чай, Кофе, Какао",ids: [51, 52, 63, 66], image: "https://magnum.kz:1337/uploads/Chaj_kofe_kakao_6013945351.png" },
+  { name: "Консервы", ids: [64, 77, 92],image: "https://magnum.kz:1337/uploads/konservy_fe0bd212c3.png" },
+  { name: "Замороженные продукты",ids: [58], image: "https://magnum.kz:1337/uploads/Zamorozhennye_produkty_ca04644ef7.png" },
+  { name: "Бытовая химия",ids: [42, 43, 83, 88, 96], image: "https://magnum.kz:1337/uploads/Bytovaya_himiya_4e6942dd39.png" },
+  { name: "Средства гигиены",ids: [54, 55, 56, 75, 78, 93, 100], image: "https://magnum.kz:1337/uploads/Sredstva_gigieny_75f280ceb3.png" },
+  { name: "Товары для дома",ids: Array.from({length: 17}, (_, i) => i + 1), image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
+  { name: "Детские товары", ids: Array.from({length: 9}, (_, i) => i + 18) ,image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
 ];
 
 
+
+// fetch products
 const { data: products } = await useFetch(
   'https://67cbeea23395520e6af6ab52.mockapi.io/categorysale',
-  {
-    default: () => []
-  }
-);
+  { default: () => [] }
+)
 
+// функция: категория бойынша фильтр
+const productsByCategory = (category) => {
+  const catProducts = products.value.filter(p => category.ids.includes(p.id))
+  const otherProducts = products.value.filter(p => !categories.flatMap(c => c.ids).includes(p.id))
+  if(category.name === "Другие товары") return otherProducts
+  return catProducts
+}
 
+// қосымша функциялар
 const discountPercent = (product) => {
-  if (!product.start_price || !product.final_price) return null;
-  return Math.round(
-    ((product.start_price - product.final_price) / product.start_price) * 100
-  );
-};
-
+  if (!product.start_price || !product.final_price) return null
+  return Math.round(((product.start_price - product.final_price) / product.start_price) * 100)
+}
 
 const formatDate = (date) => {
-  const d = new Date(date);
-  return `${String(d.getDate()).padStart(2, '0')}.${String(
-    d.getMonth() + 1
-  ).padStart(2, '0')}`;
-};
+  const d = new Date(date)
+  return `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}`
+}
+
+
+
+
+
 
 </script>
