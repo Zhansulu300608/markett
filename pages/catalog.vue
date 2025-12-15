@@ -45,7 +45,7 @@
         <NuxtLink to="/catalog" class="text-[#003049] hover:text-[#C1121F]">
           Каталог
         </NuxtLink>
-        <a class="text-[#003049] hover:text-[#C1121F]">Доставка</a>
+        
         <NuxtLink to="/profile" class="text-[#003049] hover:text-[#C1121F]">
           Профиль
         </NuxtLink>

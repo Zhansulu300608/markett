@@ -48,7 +48,7 @@
           <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
          Каталог
         </NuxtLink>
-        <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>
+       
          <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
          Профиль
         </NuxtLink>
@@ -73,25 +73,21 @@
         <div class="space-y-6">
           <!-- Contact info -->
           <div class="border rounded-lg p-6 bg-[#FDF0D5]">
-            <h2 class="text-lg font-semibold mb-4 text-[#003049]">Связаться с нами</h2>
+            <h2 class="text-lg font-semibold mb-4 text-[#003049]">Доставка</h2>
             <ul class="space-y-2 text-sm">
               <li class="flex items-center space-x-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-500 text-white text-xs">
-                  ☎
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#003049]  text-white text-xs">
+                 
                 </span>
-                <span class="text-[#003049]">+1 (234) 567-890</span>
+                <span class="text-[#003049]">Мы стремимся обеспечить быструю и надежную доставку всех ваших заказов. Обработка заказов производится ежедневно с 9:00 до 20:00.</span>
               </li>
               <li class="flex items-center space-x-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs">
-                  ✉
-                </span>
-                <span class="text-[#003049]">support@foodmarket.com</span>
+                
+                <span class="text-[#003049]">Время доставки может варьироваться в зависимости от загруженности дорог и объема заказа.</span>
               </li>
               <li class="flex items-center space-x-2">
-                <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-xs">
-                  📍
-                </span>
-                <span class="text-[#003049]">г. фуд-Сити, ул. Рыночная, 123</span>
+              
+                <span class="text-[#003049]">Доставка через Яндекс еда</span>
               </li>
             </ul>
           </div>
@@ -186,6 +182,7 @@
             ></iframe>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
