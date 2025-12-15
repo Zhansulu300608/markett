@@ -40,16 +40,18 @@
     </div>
 
     <!-- Bottom Nav -->
-    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
+     <nav class=" text-gray-800 py-4 mt-5 shadow-md">
       <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
            <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
          Главная
         </NuxtLink>
-          <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
+          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
          Каталог
         </NuxtLink>
         <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>
-        <a href="#" class="hover:text-[#C1121F] text-[#003049]">Профиль</a>
+         <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
+         Профиль
+        </NuxtLink>
          <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
         <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
          Контакты

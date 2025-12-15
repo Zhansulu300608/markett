@@ -238,6 +238,7 @@
 </template>
 
 <script setup>
+    definePageMeta({ name: "catalog" })
 const categories = [
   { name: "Фрукты, овощи", ids: [29, 30, 31, 32] , image: "https://magnum.kz:1337/uploads/Frutky_i_ovoshhi_35bebc3cdc.png" },
   { name: "Мясо",ids: [27, 28] , image: "https://magnum.kz:1337/uploads/myaso_24f87a2b63.png" },

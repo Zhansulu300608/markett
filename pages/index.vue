@@ -307,7 +307,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import { computed } from "vue";
 import Carousel from '~/components/Carousel.vue'
 definePageMeta({ name: "glav" })
-import { navigateTo } from 'nuxt/app'
+import { navigateTo } from 'nuxt/app' 
 
 const cardWidth = 390; // px
 const gap = 24; // px

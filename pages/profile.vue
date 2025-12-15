@@ -40,14 +40,22 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="text-gray-800 py-4 mt-5 shadow-md">
+    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
       <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
-        <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">Главная</NuxtLink>
-        <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">Каталог</NuxtLink>
+           <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
+         Главная
+        </NuxtLink>
+          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
+         Каталог
+        </NuxtLink>
         <a href="#" class="hover:text-[#C1121F] text-[#003049]">Доставка</a>
-        <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">Профиль</NuxtLink>
-        <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
-        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">Контакты</NuxtLink>
+         <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
+         Профиль
+        </NuxtLink>
+         <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
+        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
+         Контакты
+        </NuxtLink>
       </div>
     </nav>
   </header>
@@ -133,7 +141,7 @@
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
-
+ definePageMeta({ name: "profile" })
 const router = useRouter();
 const saving = ref(false);
 
