@@ -131,10 +131,12 @@ const logout = () => {
   router.push("/login")
 }
 
-// Профиль мәліметін жүктеу
 const loadProfile = async () => {
   const token = localStorage.getItem("token")
-  if (!token) return router.push("/profile")
+  if (!token) return router.push("/login")
+
+  const savedUser = localStorage.getItem("user")
+  if (savedUser) Object.assign(user, JSON.parse(savedUser))
 
   try {
     const { data } = await axios.get(`${API_URL}/me`, {
@@ -142,6 +144,7 @@ const loadProfile = async () => {
     })
     Object.assign(user, data)
     Object.assign(form, data)
+    localStorage.setItem("user", JSON.stringify(data))
   } catch (error) {
     console.error(error)
     logout()
