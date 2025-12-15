@@ -1,62 +1,77 @@
 <template>
   <div class="bg-gray-100 text-gray-900 min-h-screen flex items-center justify-center p-6">
-
-    <div class="w-full max-w-md p-10 rounded-xl shadow-lg relative bg-white border border-purple-200">
+    <div class="w-full max-w-md p-10 rounded-xl shadow-lg bg-white border border-purple-200">
 
       <!-- Logo -->
-      <div class="flex items-center justify-center gap-3 mb-6">
-      <img src="../public/images/logoo.png" alt="Logo" class="h-10" />
+      <div class="flex items-center justify-center mb-6">
+        <img src="/images/logoo.png" alt="Logo" class="h-10" />
       </div>
 
       <!-- Title -->
-      <h1 class="text-3xl font-bold leading-tight mb-2 text-center">
+      <h1 class="text-3xl font-bold text-center mb-2">
         Добро пожаловать<br />обратно!
       </h1>
-
       <p class="text-gray-500 text-center mb-6">
         Войдите в свой аккаунт, чтобы продолжить.
       </p>
 
-      <!-- Errors -->
-      <p
+      <!-- Error -->
+      <div
         v-if="error"
-        class="text-red-500 text-center mb-2 font-semibold"
-      >{{ error }}</p>
+        class="mb-4 p-3 rounded-lg bg-red-100 border border-red-300"
+      >
+        <p class="text-red-600 text-sm text-center font-semibold">
+          {{ error }}
+        </p>
+      </div>
 
-      <p
+      <!-- Success -->
+      <div
         v-if="success"
-        class="text-green-500 text-center mb-2 font-semibold"
-      >{{ success }}</p>
+        class="mb-4 p-3 rounded-lg bg-green-100 border border-green-300"
+      >
+        <p class="text-green-600 text-sm text-center font-semibold">
+          {{ success }}
+        </p>
+      </div>
 
       <!-- Form -->
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-3">
         <label class="font-semibold">Электронная почта</label>
         <input
-          type="email"
           v-model="form.email"
-          placeholder="ваша@почта.рф"
-          class="p-3 rounded-lg border border-gray-300 bg-transparent focus:border-[#C1121F] outline-none"
+          type="email"
+          required
+          placeholder="example@mail.com"
+          class="p-3 rounded-lg border border-gray-300 focus:border-[#C1121F] outline-none"
+          :disabled="loading"
         />
 
         <label class="font-semibold">Пароль</label>
         <input
-          type="password"
           v-model="form.password"
+          type="password"
+          required
           placeholder="********"
-          class="p-3 rounded-lg border border-gray-300 bg-transparent focus:border-[#C1121F] outline-none"
+          class="p-3 rounded-lg border border-gray-300 focus:border-[#C1121F] outline-none"
+          :disabled="loading"
         />
 
         <button
           type="submit"
-          class="mt-3 bg-[#C1121F] hover:bg-[#780000] text-white py-3 rounded-lg font-semibold transition"
+          :disabled="loading"
+          class="mt-4 bg-[#C1121F] hover:bg-[#780000] text-white py-3 rounded-lg font-semibold transition disabled:opacity-50"
         >
-          Войти
+          {{ loading ? "Вход..." : "Войти" }}
         </button>
       </form>
 
       <p class="mt-5 text-center text-sm">
         Еще нет аккаунта?
-        <NuxtLink to="/register" class="text-[#C1121F] hover:underline font-semibold">
+        <NuxtLink
+          to="/register"
+          class="text-[#C1121F] hover:underline font-semibold"
+        >
           Зарегистрироваться
         </NuxtLink>
       </p>
@@ -68,8 +83,11 @@
 import { reactive, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-definePageMeta({ name: "login" })
+
+definePageMeta({ name: "login" });
+
 const router = useRouter();
+const loading = ref(false);
 
 const form = reactive({
   email: "",
@@ -79,10 +97,10 @@ const form = reactive({
 const error = ref("");
 const success = ref("");
 
-// LOGIN
 const handleSubmit = async () => {
   error.value = "";
   success.value = "";
+  loading.value = true;
 
   try {
     const res = await axios.post(
@@ -90,21 +108,43 @@ const handleSubmit = async () => {
       form
     );
 
-    success.value = "Got it! You are logged in.";
+    /**
+     * backend форматы:
+     * 1) res.data.token
+     * 2) res.data.data.token + user
+     */
 
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
+    const token =
+      res.data.token || res.data?.data?.token;
+
+    const user =
+      res.data.user || res.data?.data?.user;
+
+    if (!token) {
+      throw new Error("Токен не найден");
     }
+
+    localStorage.setItem("token", token);
+
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+
+    success.value = "Вход выполнен успешно!";
 
     form.email = "";
     form.password = "";
 
     setTimeout(() => {
-      router.push('/')
-    }, 1500);
+      router.push("/");
+    }, 1000);
 
-  } catch (e) {
-    error.value = e?.response?.data?.message || "Login failed";
+  } catch (err) {
+    error.value =
+      err.response?.data?.message ||
+      "Ошибка входа. Проверьте данные.";
+  } finally {
+    loading.value = false;
   }
 };
 </script>
