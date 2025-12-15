@@ -110,31 +110,49 @@
   </div>
 
   <!-- Егер заказ бар -->
-  <div
-    v-else
-    class="grid grid-cols-2 md:grid-cols-4 gap-6"
-  >
-    <div
-      v-for="item in orders"
-      :key="item.id"
-      class="border rounded-xl p-4"
-    >
-      <!-- Фото -->
-      <img
-        :src="item.image || '/images/no-image.png'"
-        alt="product"
-        class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
-      />
-
-      <!-- Аты -->
-      <p class="text-sm font-semibold line-clamp-2">
-        {{ item.name || 'Без названия' }}
+  <div v-else>
+    <!-- TOTAL -->
+    <div class="mb-6 flex justify-between items-center">
+      <p class="text-lg font-semibold">
+        Общая сумма:
+        <span class="text-orange-600">
+          {{ totalPrice }} тг
+        </span>
       </p>
+    </div>
 
-      <!-- Бағасы -->
-      <p class="font-bold mt-2">
-        {{ item.final_price ?? '—' }} тг
-      </p>
+    <!-- GRID -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div
+        v-for="item in orders"
+        :key="item.id"
+        class="border rounded-xl p-4 relative"
+      >
+        <!-- DELETE -->
+        <button
+          @click="removeOrder(item.id)"
+          class="absolute top-2 right-2 text-gray-400 hover:text-red-600"
+        >
+          ✕
+        </button>
+
+        <!-- Фото -->
+        <img
+          :src="item.image || '/images/no-image.png'"
+          alt="product"
+          class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
+        />
+
+        <!-- Аты -->
+        <p class="text-sm font-semibold line-clamp-2">
+          {{ item.name || 'Без названия' }}
+        </p>
+
+        <!-- Бағасы -->
+        <p class="font-bold mt-2">
+          {{ item.final_price ?? 0 }} тг
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -326,14 +344,24 @@ const logout = () => {
 const orders = ref<any[]>([])
 
 onMounted(() => {
-  try {
-    const saved = localStorage.getItem('orders')
-    orders.value = saved ? JSON.parse(saved) : []
-  } catch (e) {
-    console.error('Ошибка чтения orders:', e)
-    orders.value = []
-  }
+  const saved = localStorage.getItem('orders')
+  orders.value = saved ? JSON.parse(saved) : []
 })
+
+// DELETE
+const removeOrder = (id: string | number) => {
+  orders.value = orders.value.filter(item => item.id !== id)
+  localStorage.setItem('orders', JSON.stringify(orders.value))
+}
+
+// TOTAL PRICE
+const totalPrice = computed(() => {
+  return orders.value.reduce(
+    (sum, item) => sum + Number(item.final_price || 0),
+    0
+  )
+})
+
 
 </script>
 
