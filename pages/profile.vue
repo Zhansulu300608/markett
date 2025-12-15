@@ -112,82 +112,130 @@
     </main>
   </div>
 </template>
-
 <script setup lang="ts">
-import { reactive, ref, onMounted } from "vue"
-import { useRouter } from "vue-router"
-import axios from "axios"
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
-const router = useRouter()
-const saving = ref(false)
-const user = reactive({
+const router = useRouter();
+
+const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
+
+// UI states
+const loading = ref(true);
+const saving = ref(false);
+const saveMessage = ref("");
+const saveSuccess = ref(false);
+const errorMessage = ref("");
+
+// User data
+const user = ref({
+  id: null,
   name: "",
   email: "",
   role: "user",
+  phone: "",
+  address: "",
+  created_at: "",
 });
 
-const form = reactive({
+// Editable form
+const form = ref({
   name: "",
   email: "",
   phone: "",
   address: "",
 });
-const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
 
-const loadProfile = async () => {
+// 🔹 Загрузка профиля (2-код стилі)
+const fetchUserData = async () => {
   const token = localStorage.getItem("token");
-  if (!token) return router.push("/login");
 
-  // 1. Алдымен localStorage-тен деректерді аламыз
-  const savedUser = localStorage.getItem("user");
-  if (savedUser) Object.assign(user, JSON.parse(savedUser));
+  if (!token) {
+    router.push("/login");
+    return;
+  }
 
   try {
-    // 2. Серверден жаңартып аламыз
-    const { data } = await axios.get(`${API_URL}/me`, {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await fetch(`${API_URL}/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
 
-    // Жаңартылған деректерді user және form-ға саламыз
-    Object.assign(user, data);
-    Object.assign(form, data);
+    if (response.status === 401) {
+      logout();
+      return;
+    }
 
-    // Жаңа деректерді localStorage-қа сақтаймыз
-    localStorage.setItem("user", JSON.stringify(data));
+    const result = await response.json();
+
+    user.value = result;
+    form.value = {
+      name: result.name || "",
+      email: result.email || "",
+      phone: result.phone || "",
+      address: result.address || "",
+    };
+
+    localStorage.setItem("user", JSON.stringify(result));
+    errorMessage.value = "";
   } catch (err) {
+    errorMessage.value = "Ошибка загрузки профиля";
     console.error(err);
-    logout();
+  } finally {
+    loading.value = false;
   }
 };
 
-// Сақтау функциясы
+// 🔹 Сохранение профиля (2-код стилі)
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return;
 
   saving.value = true;
+  saveMessage.value = "";
+
   try {
-    const { data } = await axios.put(`${API_URL}/update`, form, {
-      headers: { Authorization: `Bearer ${token}` },
+    const response = await fetch(`${API_URL}/update`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form.value),
     });
 
-    // Обновлениелерді localStorage-қа жазамыз
-    Object.assign(user, data);
-    localStorage.setItem("user", JSON.stringify(data));
+    const result = await response.json();
 
-    alert("Данные сохранены");
+    if (response.ok) {
+      user.value = result;
+      localStorage.setItem("user", JSON.stringify(result));
+
+      saveMessage.value = "Данные успешно сохранены";
+      saveSuccess.value = true;
+
+      setTimeout(() => (saveMessage.value = ""), 3000);
+    } else {
+      saveMessage.value = result.message || "Ошибка сохранения";
+      saveSuccess.value = false;
+    }
   } catch (err) {
+    saveMessage.value = "Ошибка соединения с сервером";
+    saveSuccess.value = false;
     console.error(err);
-    alert("Ошибка при сохранении");
   } finally {
     saving.value = false;
   }
 };
 
-onMounted(loadProfile);
+// 🔹 Logout
 const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   router.push("/login");
 };
+
+onMounted(fetchUserData);
 </script>
