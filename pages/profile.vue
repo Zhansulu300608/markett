@@ -133,32 +133,28 @@ const form = reactive({
   address: "",
 });
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
-
 const loadProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return router.push("/login");
 
-  // 1. Алдымен localStorage-тен деректерді аламыз
-  const savedUser = localStorage.getItem("user");
-  if (savedUser) Object.assign(user, JSON.parse(savedUser));
-
   try {
-    // 2. Серверден жаңартып аламыз
-    const { data } = await axios.get(`${API_URL}/me`, {
+    const res = await axios.get(`${API_URL}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // Жаңартылған деректерді user және form-ға саламыз
-    Object.assign(user, data);
-    Object.assign(form, data);
+    // 👇 нақты user объектіні аламыз
+    const profile = res.data.data || res.data.data?.user;
 
-    // Жаңа деректерді localStorage-қа сақтаймыз
-    localStorage.setItem("user", JSON.stringify(data));
+    Object.assign(user, profile);
+    Object.assign(form, profile);
+
+    localStorage.setItem("user", JSON.stringify(profile));
   } catch (err) {
     console.error(err);
     logout();
   }
 };
+
 
 // Сақтау функциясы
 const saveProfile = async () => {

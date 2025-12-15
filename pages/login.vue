@@ -82,39 +82,39 @@ const form = reactive({
 });
 
 const error = ref("");
-const success = ref("");
-const handleSubmit = async () => {
+const success = ref("");const handleSubmit = async () => {
   error.value = "";
   success.value = "";
   loading.value = true;
 
   try {
-    const res = await axios.post(
+    const { data } = await axios.post(
       "https://medical-backend-54hp.onrender.com/api/auth/login",
       form
     );
 
-    const token = res.data.token || res.data?.data?.token;
-    const user = res.data.user || res.data?.data?.user;
+    if (!data?.data?.token) {
+      throw new Error("Токен не найден");
+    }
 
-    if (!token) throw new Error("Токен не найден");
-
-    // Сохраняем token и user в localStorage
-    localStorage.setItem("token", token);
-    if (user) localStorage.setItem("user", JSON.stringify(user));
+    // ✅ Сен сұраған формат
+    localStorage.setItem("token", data.data.token);
+    localStorage.setItem("user", JSON.stringify(data.data.user));
 
     success.value = "Вход выполнен успешно!";
     form.email = "";
     form.password = "";
 
     setTimeout(() => {
-      router.push("/profile"); // Профильге жібереміз
+      router.push("/profile");
     }, 500);
   } catch (err: any) {
-    error.value = err.response?.data?.message || "Ошибка входа. Проверьте данные.";
+    error.value =
+      err.response?.data?.message || "Ошибка входа. Проверьте данные.";
   } finally {
     loading.value = false;
   }
 };
+
 
 </script>
