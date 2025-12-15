@@ -75,7 +75,7 @@
 
    
     <NuxtLink
-      to="/discounts"
+      to="/catalog"
       class="flex items-center gap-1 text-[#C1121F] hover:text-pink-700 font-medium transition-colors"
     >
       Смотреть все

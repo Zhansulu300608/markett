@@ -52,7 +52,9 @@
          <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
          Профиль
         </NuxtLink>
-         <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
+          <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
+         Дашборд
+        </NuxtLink>
         <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
          Контакты
         </NuxtLink>

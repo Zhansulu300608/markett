@@ -163,7 +163,7 @@ const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
 // Профильді жүктеу
 const loadProfile = async () => {
   const token = localStorage.getItem("token");
-  if (!token) return router.push("/login");
+  if (!token) return router.push("/profile");
 
   try {
     const res = await axios.get(`${API_URL}/me`, {
@@ -185,7 +185,7 @@ const loadProfile = async () => {
 
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
-  if (!token) return router.push("/login");
+  if (!token) return router.push("/profile");
 
   saving.value = true;
   try {

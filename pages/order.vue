@@ -104,7 +104,42 @@
         <h1 class="text-2xl font-semibold mb-6">
           История заказов
         </h1>
+ <div class="max-w-6xl mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
 
+    <div v-if="orders.length === 0" class="text-gray-500">
+      Заказов пока нет
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div
+  v-if="orders && orders.length"
+  class="grid grid-cols-2 md:grid-cols-4 gap-6"
+>
+  <div
+    v-for="item in orders"
+    :key="item.id"
+    class="border rounded-xl p-4"
+  >
+    <img
+      :src="item.image || '/images/no-image.png'"
+      class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
+    />
+    <p class="text-sm font-semibold line-clamp-2">
+      {{ item.name }}
+    </p>
+    <p class="font-bold mt-2">
+      {{ item.final_price }} тг
+    </p>
+  </div>
+</div>
+
+<div v-else class="text-gray-500">
+  Заказов пока нет
+</div>
+
+    </div>
+  </div>
         <div class="space-y-4">
           <OrderCard
             date="15 января 2024 г."
@@ -240,6 +275,9 @@ import { reactive, ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
 definePageMeta({ name: "profile-orders" })
+
+
+
 const router = useRouter()
 const saving = ref(false)
 const user = reactive({
@@ -257,7 +295,7 @@ const form = reactive({
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth";
 const loadProfile = async () => {
   const token = localStorage.getItem("token");
-  if (!token) return router.push("/login");
+  if (!token) return router.push("/profile");
 
   try {
     const res = await axios.get(`${API_URL}/me`, {
@@ -308,5 +346,22 @@ const logout = () => {
   localStorage.removeItem("user");
   router.push("/login");
 };
+
+
+
+
+
+const orders = ref<any[]>([])
+
+onMounted(() => {
+  try {
+    const saved = localStorage.getItem('orders')
+    orders.value = saved ? JSON.parse(saved) : []
+  } catch (e) {
+    console.error('Ошибка чтения orders:', e)
+    orders.value = []
+  }
+})
+
 </script>
 
