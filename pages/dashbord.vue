@@ -42,14 +42,10 @@
       </div>
 
       <!-- ORDERS TABLE -->
-     <!-- PRODUCTS -->
-<!-- PRODUCTS -->
-<div class="bg-white p-6 rounded shadow">
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-   <div class="bg-white p-6 rounded shadow">
+  <!-- PRODUCTS -->
+<div class="bg-white p-6 rounded shadow mb-8">
   <div class="flex justify-between mb-6">
-    <h2 class="text-xl font-bold">Create Product</h2>
+    <h2 class="text-xl font-bold">Products</h2>
     <button
       @click="addProduct"
       class="bg-blue-600 text-white px-4 py-2 rounded"
@@ -62,7 +58,7 @@
     <div
       v-for="product in products"
       :key="product.id"
-      class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer shadow-sm w-full"
+      class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer shadow-sm"
     >
       <!-- Discount label -->
       <span
@@ -115,9 +111,8 @@
         </button>
       </div>
     </div>
-  </div>
-</div>
 
+    <!-- No products message -->
     <p
       v-if="products.length === 0"
       class="text-gray-500 col-span-full text-center"
@@ -126,6 +121,7 @@
     </p>
   </div>
 </div>
+
 
 
     </main>
