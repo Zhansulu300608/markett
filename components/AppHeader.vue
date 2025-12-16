@@ -68,17 +68,14 @@
     </nav>
   </header>
 </template>
-
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-
-
 const searchText = ref("");
 const user = ref<any>({});
 const isAuth = ref(false);
-
+const router = useRouter();
 
 onMounted(() => {
   const token = localStorage.getItem("token");
@@ -89,15 +86,12 @@ onMounted(() => {
     isAuth.value = true;
   }
 });
-const search = ref('')
-const router = useRouter()
 
 const doSearch = () => {
-  if (!search.value.trim()) return
+  if (!searchText.value.trim()) return;
   router.push({
     path: '/catalog',
-    query: { search: search.value }
-  })
-}
-
+    query: { search: searchText.value }
+  });
+};
 </script>
