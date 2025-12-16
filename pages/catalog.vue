@@ -34,48 +34,41 @@
 
       <!-- Products -->
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
-    <!-- PRODUCTS GRID -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  <div
-    v-for="product in products"
-    :key="product.id"
-    @click="openModal(product)"
-    class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer hover:shadow-lg transition-shadow duration-300"
+    <div
+  v-for="product in filteredProducts"
+  :key="product.id"
+  @click="openModal(product)"
+  class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer"
+>
+
+  <span
+    v-if="discountPercent(product)"
+    class="absolute top-3 left-3 bg-[#C1121F] text-white text-sm px-3 py-1 rounded-full"
   >
-    <!-- Discount Badge -->
-    <span
-      v-if="discountPercent(product)"
-      class="absolute top-3 left-3 bg-[#C1121F] text-white text-sm px-3 py-1 rounded-full"
-    >
-      -{{ discountPercent(product) }}%
-    </span>
+    -{{ discountPercent(product) }}%
+  </span>
 
-    <!-- Action End Date -->
-    <p class="absolute top-3 right-3 text-xs text-gray-400">
-      до {{ formatDate(product.action_end) }}
+  <p class="absolute top-3 right-3 text-xs text-gray-400">
+    до {{ formatDate(product.action_end) }}
+  </p>
+
+  <img
+    :src="product.image"
+    :alt="product.name"
+    class="h-36 w-full object-contain bg-gray-100 rounded-xl mb-3"
+  />
+
+  <h3 class="text-sm font-semibold line-clamp-2 min-h-[40px]">
+    {{ product.name }}
+  </h3>
+
+  <div class="mt-auto pt-3">
+    <p class="text-xs line-through text-gray-400">
+      {{ product.start_price }} тг
     </p>
-
-    <!-- Product Image -->
-    <img
-      :src="product.image"
-      :alt="product.name"
-      class="h-36 w-full object-contain bg-gray-100 rounded-xl mb-3"
-    />
-
-    <!-- Product Name -->
-    <h3 class="text-sm font-semibold line-clamp-2 min-h-[40px]">
-      {{ product.name }}
-    </h3>
-
-    <!-- Prices -->
-    <div class="mt-auto pt-3">
-      <p class="text-xs line-through text-gray-400">
-        {{ product.start_price }} тг
-      </p>
-      <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
-        {{ product.final_price }} тг
-      </p>
-    </div>
+    <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
+      {{ product.final_price }} тг
+    </p>
   </div>
 </div>
 
