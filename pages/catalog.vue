@@ -228,7 +228,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 
-import { useFetch } from '#app' 
+import { useFetch } from '#app' // Nuxt 3 үшін
 
 import { useRoute, useRouter } from 'vue-router'
 
@@ -236,7 +236,7 @@ const route = useRoute()
 const router = useRouter()
 const search = ref(route.query.search || '')
 
-
+// Егер route өзгерсе, search жаңарсын
 watch(() => route.query.search, (val) => {
   search.value = val || ''
 })
