@@ -1,64 +1,9 @@
 <template>
-  <header class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat
-  bg-center h-40 text-white shadow-md relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Left Section -->
-      <div class="flex items-center space-x-6">
-        <!-- Burger Menu -->
-        <!-- <button class="text-2xl">
-          <span class="material-icons">menu</span>
-        </button> -->
+ <template>
+  <AppHeader />
+  <slot />
+</template>
 
-        <!-- Logo -->
-        <div class="flex items-center space-x-2 text-[#003049]">
-          <img src="../public/images/logo.png" alt="Logo" class="h-10" />
-         
-        </div>
-      </div>
-
-      <!-- Search Bar -->
-      <div class="flex-1 mx-10 mt-5">
-        <div class="flex rounded-full overflow-hidden shadow-sm">
-          <input
-            type="text"
-            placeholder="Поиск"
-            class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
-          />
-           <button class="px-4 text-white bg-[#003049] border-l">по скидкам</button>
-        </div>
-      </div>
-
-      <!-- Location / Lang -->
-      <div class="flex items-center space-x-4">
-        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
-        <NuxtLink to="/login" class="login-btn text-[#003049]">Login</NuxtLink>
-        </button>
-        <button class="bg-white text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 shadow">
-          <span>RU</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Bottom Nav -->
-    <nav class=" text-gray-800 py-4 mt-5 shadow-md">
-      <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
-           <NuxtLink :to="{ name: 'glav' }" class="hover:text-[#C1121F] text-[#003049]">
-         Главная
-        </NuxtLink>
-          <NuxtLink :to="{ name: 'catalog' }" class="hover:text-[#C1121F] text-[#003049]">
-         Каталог
-        </NuxtLink>
-       
-         <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
-         Профиль
-        </NuxtLink>
-         <a href="#" class="hover:text-[#C1121F] text-[#003049]">О компании</a>
-        <NuxtLink :to="{ name: 'contact' }" class="hover:text-[#C1121F] text-[#003049]">
-         Контакты
-        </NuxtLink>
-      </div>
-    </nav>
-  </header>
       <div class="min-h-screen">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
@@ -336,7 +281,7 @@ onMounted(() => {
 onUnmounted(() => {
   clearInterval(interval);
 });
-
+import AppHeader from "~/components/AppHeader.vue";
 const items = ref([
   {
     label: "Кондитерская",

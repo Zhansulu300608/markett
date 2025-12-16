@@ -318,13 +318,13 @@ const loadProfile = async () => {
 const sendToWhatsApp = () => {
   if (!orders.value.length) return
 
-  let message = '🛒 *Мой заказ:*%0A%0A'
+  let message = '🛒 Мой заказ:%0A%0A'
 
   orders.value.forEach((item, index) => {
     message += `${index + 1}. ${item.name || 'Без названия'} — ${item.final_price ?? 0} тг%0A`
   })
 
-  message += `%0A💰 *Итого:* ${totalPrice.value} тг`
+  message += `%0A💰 Итого: ${totalPrice.value} тг`
 
   const phone = '77766248255'
   const url = `https://wa.me/${phone}?text=${message}`
