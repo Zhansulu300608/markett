@@ -42,73 +42,153 @@
       </div>
 
       <!-- ORDERS TABLE -->
-      <div class="bg-white p-6 rounded shadow">
-        <div class="flex justify-between mb-4">
-          <h2 class="text-xl font-bold">Мои заказы</h2>
-          <button @click="addOrder" class="bg-blue-600 text-white px-4 py-2 rounded">Add Order</button>
-        </div>
+     <!-- PRODUCTS -->
+<!-- PRODUCTS -->
+<div class="bg-white p-6 rounded shadow">
+  <div class="flex justify-between mb-6">
+    <h2 class="text-xl font-bold">Create Product</h2>
+    <button
+      @click="addProduct"
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+    >
+      + Add Product
+    </button>
+  </div>
 
-        <table class="w-full border">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="p-2 border">ID</th>
-              <th class="p-2 border">Item</th>
-              <th class="p-2 border">Status</th>
-              <th class="p-2 border">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="order in orders" :key="order.id">
-              <td class="p-2 border">{{ order.id }}</td>
-              <td class="p-2 border">{{ order.title }}</td>
-              <td class="p-2 border">{{ order.status }}</td>
-              <td class="p-2 border space-x-2">
-                <button @click="editOrder(order)" class="bg-yellow-400 px-3 py-1 rounded">Edit</button>
-                <button @click="deleteOrder(order.id)" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-              </td>
-            </tr>
-            <tr v-if="orders.length === 0">
-              <td colspan="4" class="text-center p-4 text-gray-500">No orders yet</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div
+      v-for="product in products"
+      :key="product.id"
+      class="border rounded-lg overflow-hidden shadow-sm"
+    >
+      <img
+        :src="product.image"
+        class="w-full h-40 object-cover"
+      />
 
-    </main>
+      <div class="p-4">
+        <h3 class="text-lg font-bold mb-2">{{ product.name }}</h3>
 
-    <!-- MODAL FOR ADD/EDIT -->
-    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white p-6 rounded w-96">
-        <h2 class="text-xl font-bold mb-4">{{ editingOrder ? 'Edit Order' : 'Add Order' }}</h2>
-        <input v-model="orderForm.title" placeholder="Item title" class="w-full p-2 border rounded mb-2" />
-        <select v-model="orderForm.status" class="w-full p-2 border rounded mb-4">
-          <option value="Pending">Pending</option>
-          <option value="Completed">Completed</option>
-        </select>
-        <div class="flex justify-end space-x-2">
-          <button @click="showModal = false" class="px-4 py-2 rounded border">Cancel</button>
-          <button @click="saveOrder" class="px-4 py-2 rounded bg-blue-600 text-white">{{ editingOrder ? 'Update' : 'Add' }}</button>
+        <p class="text-sm text-gray-500">
+          Start price: {{ product.start_price }} ₸
+        </p>
+
+        <p class="text-sm text-gray-500">
+          Final price:
+          <span class="text-green-600 font-bold">
+            {{ product.final_price }} ₸
+          </span>
+        </p>
+
+        <p class="text-xs text-gray-400 mb-3">
+          {{ product.action_start }} – {{ product.action_end }}
+        </p>
+
+        <div class="flex justify-between mt-4">
+          <button
+            @click="editProduct(product)"
+            class="bg-yellow-400 px-3 py-1 rounded"
+          >
+            Edit
+          </button>
+
+          <button
+            @click="deleteProduct(product.id)"
+            class="bg-red-500 text-white px-3 py-1 rounded"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
 
+    <p
+      v-if="products.length === 0"
+      class="text-gray-500 col-span-full text-center"
+    >
+      No products yet
+    </p>
   </div>
-</template>
-<script setup lang="ts">
+</div>
+
+
+    </main>
+
+ <!-- MODAL -->
+<div
+  v-if="showModal"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+>
+  <div class="bg-white p-6 rounded w-96">
+    <h2 class="text-xl font-bold mb-4">
+      {{ editingProduct ? 'Edit Product' : 'Add Product' }}
+    </h2>
+
+    <input v-model="productForm.name" placeholder="Name"
+      class="w-full p-2 border rounded mb-2" />
+
+    <input v-model.number="productForm.start_price" type="number"
+      placeholder="Start price"
+      class="w-full p-2 border rounded mb-2" />
+
+    <input v-model.number="productForm.final_price" type="number"
+      placeholder="Final price"
+      class="w-full p-2 border rounded mb-2" />
+
+    <input v-model="productForm.image" placeholder="Image URL"
+      class="w-full p-2 border rounded mb-2" />
+
+    <input v-model="productForm.action_start" placeholder="Action start"
+      class="w-full p-2 border rounded mb-2" />
+
+    <input v-model.number="productForm.action_end" type="number"
+      placeholder="Action end"
+      class="w-full p-2 border rounded mb-4" />
+
+    <div class="flex justify-end gap-2">
+      <button @click="showModal=false" class="border px-4 py-2 rounded">
+        Cancel
+      </button>
+      <button @click="saveProduct"
+        class="bg-blue-600 text-white px-4 py-2 rounded">
+        {{ editingProduct ? 'Update' : 'Create' }}
+      </button>
+    </div>
+  </div>
+</div>
+
+  </div>
+</template><script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const API = "https://YOUR_MOCKAPI/orders"; // Өз API
+const API = "https://67cbeea23395520e6af6ab52.mockapi.io/create";
 
 const user = ref<any>(null);
-const orders = ref<any[]>([]);
-const favorites = ref<any[]>([]); // Favorites автоматты көрсетіледі
 
-const showModal = ref(false);
-const editingOrder = ref<any>(null);
+// Orders
+const orders = ref<any[]>([]);
 const orderForm = ref({ title: "", status: "Pending" });
+const editingOrder = ref<any>(null);
+
+// Products
+const products = ref<any[]>([]);
+const productForm = ref({
+  name: "",
+  start_price: 0,
+  final_price: 0,
+  image: "",
+  action_start: "",
+  action_end: ""
+});
+const editingProduct = ref<any>(null);
+
+const showModal = ref(false); // Shared modal for simplicity
+
+// Favorites (автоматты)
+const favorites = ref<any[]>([]);
 
 onMounted(async () => {
   const savedUser = localStorage.getItem("user");
@@ -116,10 +196,11 @@ onMounted(async () => {
 
   user.value = JSON.parse(savedUser);
 
-  // Orders тек осы user-ға арналған
+  // Orders & Products fetch
   fetchOrders();
+  fetchProducts();
 
-  // Favorites автоматты (мысал үшін 3 элемент)
+  // Favorites автоматты (мысал)
   favorites.value = [
     { id: 1, title: "Product A" },
     { id: 2, title: "Product B" },
@@ -127,9 +208,10 @@ onMounted(async () => {
   ];
 });
 
+// --- Orders CRUD ---
 const fetchOrders = async () => {
   try {
-    const res = await axios.get(`${API}?userId=${user.value.id}`);
+    const res = await axios.get(`${API}?userId=${user.value.id}&type=order`);
     orders.value = res.data;
   } catch (err) {
     console.error("Orders fetch error", err);
@@ -151,16 +233,15 @@ const editOrder = (order: any) => {
 const saveOrder = async () => {
   try {
     if (editingOrder.value) {
-      // Update
       const res = await axios.put(`${API}/${editingOrder.value.id}`, {
         ...orderForm.value,
-        userId: user.value.id
+        userId: user.value.id,
+        type: "order"
       });
       const idx = orders.value.findIndex(o => o.id === editingOrder.value.id);
       orders.value[idx] = res.data;
     } else {
-      // Create
-      const res = await axios.post(API, { ...orderForm.value, userId: user.value.id });
+      const res = await axios.post(API, { ...orderForm.value, userId: user.value.id, type: "order" });
       orders.value.push(res.data);
     }
     showModal.value = false;
@@ -172,12 +253,70 @@ const saveOrder = async () => {
 const deleteOrder = async (id: number) => {
   try {
     await axios.delete(`${API}/${id}`);
-    orders.value = orders.value.filter((o) => o.id !== id);
+    orders.value = orders.value.filter(o => o.id !== id);
   } catch (err) {
     console.error("Delete order error", err);
   }
 };
 
+// --- Products CRUD ---
+const fetchProducts = async () => {
+  try {
+    const res = await axios.get(`${API}?type=product`);
+    products.value = res.data;
+  } catch (err) {
+    console.error("Products fetch error", err);
+  }
+};
+
+const addProduct = () => {
+  editingProduct.value = null;
+  productForm.value = {
+    name: "",
+    start_price: 0,
+    final_price: 0,
+    image: "",
+    action_start: "",
+    action_end: ""
+  };
+  showModal.value = true;
+};
+
+const editProduct = (product: any) => {
+  editingProduct.value = product;
+  productForm.value = { ...product };
+  showModal.value = true;
+};
+
+const saveProduct = async () => {
+  try {
+    if (editingProduct.value) {
+      const res = await axios.put(`${API}/${editingProduct.value.id}`, {
+        ...productForm.value,
+        type: "product"
+      });
+      const idx = products.value.findIndex(p => p.id === editingProduct.value.id);
+      products.value[idx] = res.data;
+    } else {
+      const res = await axios.post(API, { ...productForm.value, type: "product" });
+      products.value.push(res.data);
+    }
+    showModal.value = false;
+  } catch (err) {
+    console.error("Save product error", err);
+  }
+};
+
+const deleteProduct = async (id: number) => {
+  try {
+    await axios.delete(`${API}/${id}`);
+    products.value = products.value.filter(p => p.id !== id);
+  } catch (err) {
+    console.error("Delete product error", err);
+  }
+};
+
+// --- Logout ---
 const logout = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("token");
