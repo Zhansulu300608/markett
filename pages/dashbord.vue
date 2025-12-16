@@ -56,51 +56,76 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+   <div class="bg-white p-6 rounded shadow">
+  <div class="flex justify-between mb-6">
+    <h2 class="text-xl font-bold">Create Product</h2>
+    <button
+      @click="addProduct"
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+    >
+      + Add Product
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div
       v-for="product in products"
       :key="product.id"
-      class="border rounded-lg overflow-hidden shadow-sm"
+      class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer shadow-sm"
     >
+      <!-- Discount label -->
+      <span
+        v-if="product.discount"
+        class="absolute top-3 left-3 bg-[#C1121F] text-white text-sm px-3 py-1 rounded-full"
+      >
+        -{{ product.discount }}%
+      </span>
+
+      <!-- Action end date -->
+      <p class="absolute top-3 right-3 text-xs text-gray-400">
+        до {{ product.action_end }}
+      </p>
+
+      <!-- Product image -->
       <img
         :src="product.image"
-        class="w-full h-40 object-cover"
+        :alt="product.name"
+        class="h-36 w-full object-contain bg-gray-100 rounded-xl mb-3"
       />
 
-      <div class="p-4">
-        <h3 class="text-lg font-bold mb-2">{{ product.name }}</h3>
+      <!-- Product name -->
+      <h3 class="text-sm font-semibold line-clamp-2 min-h-[40px]">
+        {{ product.name }}
+      </h3>
 
-        <p class="text-sm text-gray-500">
-          Start price: {{ product.start_price }} ₸
+      <!-- Prices -->
+      <div class="mt-auto pt-3">
+        <p class="text-xs line-through text-gray-400">
+          {{ product.start_price }} ₸
         </p>
-
-        <p class="text-sm text-gray-500">
-          Final price:
-          <span class="text-green-600 font-bold">
-            {{ product.final_price }} ₸
-          </span>
+        <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
+          {{ product.final_price }} ₸
         </p>
+      </div>
 
-        <p class="text-xs text-gray-400 mb-3">
-          {{ product.action_start }} – {{ product.action_end }}
-        </p>
-
-        <div class="flex justify-between mt-4">
-          <button
-            @click="editProduct(product)"
-            class="bg-yellow-400 px-3 py-1 rounded"
-          >
-            Edit
-          </button>
-
-          <button
-            @click="deleteProduct(product.id)"
-            class="bg-red-500 text-white px-3 py-1 rounded"
-          >
-            Delete
-          </button>
-        </div>
+      <!-- Edit / Delete buttons -->
+      <div class="flex justify-between mt-3">
+        <button
+          @click.stop="editProduct(product)"
+          class="bg-yellow-400 px-3 py-1 rounded"
+        >
+          Edit
+        </button>
+        <button
+          @click.stop="deleteProduct(product.id)"
+          class="bg-red-500 text-white px-3 py-1 rounded"
+        >
+          Delete
+        </button>
       </div>
     </div>
+  </div>
+</div>
 
     <p
       v-if="products.length === 0"
