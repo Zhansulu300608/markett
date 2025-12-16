@@ -152,7 +152,6 @@ const route = useRoute()
 const activeCategory = ref('Барлығы')
 
 const categories = [
-  { name: "Барлығы", image: "" },
 
   { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
   { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
