@@ -123,6 +123,15 @@
             {{ selectedProduct.final_price }} тг
           </p>
         </div>
+<!-- FAVORITE BUTTON -->
+<button
+  @click="toggleFavorite(selectedProduct)"
+  class="mb-3 border py-2 rounded-xl flex items-center justify-center gap-2"
+  :class="isFavorite(selectedProduct) ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'"
+>
+  <span v-if="isFavorite(selectedProduct)">В избранном</span>
+  <span v-else>В избранное</span>
+</button>
 
         <!-- BUTTON -->
         <button
@@ -293,6 +302,26 @@ const addToOrders = (product) => {
 
   closeModal()
   navigateTo('/order')
+}
+
+
+const favorites = ref(JSON.parse(localStorage.getItem('favorites') || '[]'))
+const isFavorite = (product) => {
+  if (!product) return false
+  return favorites.value.some(item => item.id === product.id)
+}
+const toggleFavorite = (product) => {
+  if (!product) return
+
+  const index = favorites.value.findIndex(item => item.id === product.id)
+
+  if (index === -1) {
+    favorites.value.push(product)
+  } else {
+    favorites.value.splice(index, 1)
+  }
+
+  localStorage.setItem('favorites', JSON.stringify(favorites.value))
 }
 
 
