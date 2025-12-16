@@ -6,7 +6,7 @@
       <nav class="space-y-4">
         <NuxtLink to="/dashbord" class="block hover:bg-slate-700 px-4 py-2 rounded">Dashboard</NuxtLink>
         <NuxtLink to="/order" class="block hover:bg-slate-700 px-4 py-2 rounded">Мои заказы</NuxtLink>
-        <NuxtLink to="/favourties" class="block hover:bg-slate-700 px-4 py-2 rounded">Избранное</NuxtLink>
+        <NuxtLink to="/favorites" class="block hover:bg-slate-700 px-4 py-2 rounded">Избранное</NuxtLink>
       </nav>
 
       <button @click="logout" class="mt-10 w-full bg-red-500 py-2 rounded">Logout</button>
@@ -30,73 +30,85 @@
 
         <div class="bg-white p-6 rounded shadow">
           <h3 class="text-gray-500">Favorites</h3>
-          <p class="text-3xl font-bold">3</p>
+          <p class="text-3xl font-bold">{{ favorites.length }}</p>
         </div>
 
-        <div class="bg-white p-6 rounded shadow">
-          <h3 class="text-gray-500">My Posts</h3>
-          <p class="text-3xl font-bold">8</p>
-        </div>
-      </div>
-
-      <!-- PROFILE + ORDERS TABLE -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- PROFILE -->
         <div class="bg-white p-6 rounded shadow">
           <h2 class="text-xl font-bold mb-4">My Profile</h2>
           <p><b>Name:</b> {{ user?.name }}</p>
           <p><b>Email:</b> {{ user?.email }}</p>
           <p><b>Role:</b> {{ user?.role }}</p>
         </div>
+      </div>
 
-        <!-- ORDERS TABLE -->
-        <div class="lg:col-span-2 bg-white p-6 rounded shadow">
-          <div class="flex justify-between mb-4">
-            <h2 class="text-xl font-bold">Мои заказы</h2>
-            <button class="bg-blue-600 text-white px-4 py-2 rounded">Add Order</button>
-          </div>
-
-          <table class="w-full border">
-            <thead class="bg-gray-100">
-              <tr>
-                <th class="p-2 border">ID</th>
-                <th class="p-2 border">Item</th>
-                <th class="p-2 border">Status</th>
-                <th class="p-2 border">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="order in orders" :key="order.id">
-                <td class="p-2 border">{{ order.id }}</td>
-                <td class="p-2 border">{{ order.title }}</td>
-                <td class="p-2 border">{{ order.status }}</td>
-                <td class="p-2 border space-x-2">
-                  <button class="bg-yellow-400 px-3 py-1 rounded">Edit</button>
-                  <button @click="deleteOrder(order.id)" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-                </td>
-              </tr>
-              <tr v-if="orders.length === 0">
-                <td colspan="4" class="text-center p-4 text-gray-500">No orders yet</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- ORDERS TABLE -->
+      <div class="bg-white p-6 rounded shadow">
+        <div class="flex justify-between mb-4">
+          <h2 class="text-xl font-bold">Мои заказы</h2>
+          <button @click="addOrder" class="bg-blue-600 text-white px-4 py-2 rounded">Add Order</button>
         </div>
+
+        <table class="w-full border">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="p-2 border">ID</th>
+              <th class="p-2 border">Item</th>
+              <th class="p-2 border">Status</th>
+              <th class="p-2 border">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="order in orders" :key="order.id">
+              <td class="p-2 border">{{ order.id }}</td>
+              <td class="p-2 border">{{ order.title }}</td>
+              <td class="p-2 border">{{ order.status }}</td>
+              <td class="p-2 border space-x-2">
+                <button @click="editOrder(order)" class="bg-yellow-400 px-3 py-1 rounded">Edit</button>
+                <button @click="deleteOrder(order.id)" class="bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+              </td>
+            </tr>
+            <tr v-if="orders.length === 0">
+              <td colspan="4" class="text-center p-4 text-gray-500">No orders yet</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </main>
+
+    <!-- MODAL FOR ADD/EDIT -->
+    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded w-96">
+        <h2 class="text-xl font-bold mb-4">{{ editingOrder ? 'Edit Order' : 'Add Order' }}</h2>
+        <input v-model="orderForm.title" placeholder="Item title" class="w-full p-2 border rounded mb-2" />
+        <select v-model="orderForm.status" class="w-full p-2 border rounded mb-4">
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <div class="flex justify-end space-x-2">
+          <button @click="showModal = false" class="px-4 py-2 rounded border">Cancel</button>
+          <button @click="saveOrder" class="px-4 py-2 rounded bg-blue-600 text-white">{{ editingOrder ? 'Update' : 'Add' }}</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
-
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const API = "https://YOUR_MOCKAPI/orders"; // Өз API сілтемеңді қой
+const API = "https://YOUR_MOCKAPI/orders"; // Өз API
 
 const user = ref<any>(null);
 const orders = ref<any[]>([]);
+const favorites = ref<any[]>([]); // Favorites автоматты көрсетіледі
+
+const showModal = ref(false);
+const editingOrder = ref<any>(null);
+const orderForm = ref({ title: "", status: "Pending" });
 
 onMounted(async () => {
   const savedUser = localStorage.getItem("user");
@@ -105,13 +117,57 @@ onMounted(async () => {
   user.value = JSON.parse(savedUser);
 
   // Orders тек осы user-ға арналған
+  fetchOrders();
+
+  // Favorites автоматты (мысал үшін 3 элемент)
+  favorites.value = [
+    { id: 1, title: "Product A" },
+    { id: 2, title: "Product B" },
+    { id: 3, title: "Product C" }
+  ];
+});
+
+const fetchOrders = async () => {
   try {
     const res = await axios.get(`${API}?userId=${user.value.id}`);
     orders.value = res.data;
   } catch (err) {
     console.error("Orders fetch error", err);
   }
-});
+};
+
+const addOrder = () => {
+  editingOrder.value = null;
+  orderForm.value = { title: "", status: "Pending" };
+  showModal.value = true;
+};
+
+const editOrder = (order: any) => {
+  editingOrder.value = order;
+  orderForm.value = { ...order };
+  showModal.value = true;
+};
+
+const saveOrder = async () => {
+  try {
+    if (editingOrder.value) {
+      // Update
+      const res = await axios.put(`${API}/${editingOrder.value.id}`, {
+        ...orderForm.value,
+        userId: user.value.id
+      });
+      const idx = orders.value.findIndex(o => o.id === editingOrder.value.id);
+      orders.value[idx] = res.data;
+    } else {
+      // Create
+      const res = await axios.post(API, { ...orderForm.value, userId: user.value.id });
+      orders.value.push(res.data);
+    }
+    showModal.value = false;
+  } catch (err) {
+    console.error("Save order error", err);
+  }
+};
 
 const deleteOrder = async (id: number) => {
   try {
