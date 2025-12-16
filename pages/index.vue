@@ -1,9 +1,8 @@
 <template>
- <template>
+
   <AppHeader />
   <slot />
-</template>
-
+  
       <div class="min-h-screen">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
