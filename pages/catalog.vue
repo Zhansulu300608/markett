@@ -1,63 +1,6 @@
 <template>
-  <!-- HEADER -->
-  <header
-    class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain bg-no-repeat bg-center h-40 text-white shadow-md relative overflow-hidden"
-  >
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-      <!-- Left -->
-      <div class="flex items-center space-x-6">
-        <div class="flex items-center space-x-2 text-[#003049]">
-          <img src="/images/logo.png" alt="Logo" class="h-10" />
-        </div>
-      </div>
-
-      <!-- Search -->
-      <div class="flex-1 mx-10 mt-5">
-        <div class="flex rounded-full overflow-hidden shadow-sm">
-          <input
-            type="text"
-            placeholder="Поиск"
-            class="flex-1 px-4 py-2 text-gray-700 focus:outline-none"
-          />
-          <button class="px-4 text-white bg-[#003049] border-l">
-            по скидкам
-          </button>
-        </div>
-      </div>
-
-      <!-- Actions -->
-      <div class="flex items-center space-x-4">
-        <button class="bg-white px-4 py-2 rounded-full shadow">
-          <NuxtLink to="/login" class="text-[#003049]">Login</NuxtLink>
-        </button>
-        <button class="bg-white px-4 py-2 rounded-full shadow text-gray-800">
-          RU
-        </button>
-      </div>
-    </div>
-
-    <!-- NAV -->
-    <nav class="text-gray-800 py-4 mt-5 shadow-md">
-      <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
-        <NuxtLink to="/" class="text-[#003049] hover:text-[#C1121F]">
-          Главная
-        </NuxtLink>
-        <NuxtLink to="/catalog" class="text-[#003049] hover:text-[#C1121F]">
-          Каталог
-        </NuxtLink>
-        
-        <NuxtLink to="/profile" class="text-[#003049] hover:text-[#C1121F]">
-          Профиль
-        </NuxtLink>
-        <NuxtLink :to="{ name: 'profile' }" class="hover:text-[#C1121F] text-[#003049]">
-         Дашборд
-        </NuxtLink>
-        <NuxtLink to="/contact" class="text-[#003049] hover:text-[#C1121F]">
-          Контакты
-        </NuxtLink>
-      </div>
-    </nav>
-  </header>
+ <AppHeader />
+  <slot />
 
   <!-- CONTENT -->
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
