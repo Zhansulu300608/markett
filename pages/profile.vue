@@ -11,7 +11,7 @@
     <main class="max-w-7xl mx-auto px-4 flex gap-8 pb-10">
       <!-- Sidebar -->
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
-        <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-3xl font-bold text-orange-600 mx-auto mb-4">
+        <div class="w-28 h-28 rounded-full bg-[#FDF0D5] flex items-center justify-center text-3xl font-bold text-#003049 mx-auto mb-4">
           {{ user.name?.charAt(0) || "?" }}
         </div>
 
@@ -21,7 +21,7 @@
         </div>
 
         <!-- Показываем роль пользователя -->
-        <span class="block text-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6">
+        <span class="block text-center px-4 py-1 text-xs font-semibold text-[#003049]  bg-[#FDF0D5] rounded-full mb-6">
           {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
 
@@ -31,8 +31,8 @@
         </div>
 
         <nav class="space-y-2">
-          <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium">Профиль</NuxtLink>
-          <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">Мои заказы</NuxtLink>
+          <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl  bg-[#003049] text-[#ffffff] hover:bg-[#FDF0D5] hover:text-[#003049] font-medium">Профиль</NuxtLink>
+          <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-[#ffffff] bg-[#003049] hover:bg-[#FDF0D5] hover:text-[#003049]">Мои заказы</NuxtLink>
 
           <!-- Только для админа -->
           <NuxtLink
@@ -71,7 +71,7 @@
           </div>
 
           <div class="md:col-span-2">
-            <button type="submit" :disabled="saving" class="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-50">
+            <button type="submit" :disabled="saving" class="px-6 py-3 bg-[#003049] text-white rounded-lg hover:bg-[#FDF0D5] hover:text-[#003049] disabled:opacity-50">
               {{ saving ? "Сохранение..." : "Сохранить изменения" }}
             </button>
           </div>
