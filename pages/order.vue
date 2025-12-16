@@ -113,14 +113,23 @@
   <!-- Егер заказ бар -->
   <div v-else>
     <!-- TOTAL -->
-    <div class="mb-6 flex justify-between items-center">
-      <p class="text-lg font-semibold">
-        Общая сумма:
-        <span class="text-orange-600">
-          {{ totalPrice }} тг
-        </span>
-      </p>
-    </div>
+  <!-- TOTAL + BUTTON -->
+<div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+  <p class="text-lg font-semibold">
+    Общая сумма:
+    <span class="text-orange-600">
+      {{ totalPrice }} тг
+    </span>
+  </p>
+
+  <button
+    @click="sendToWhatsApp"
+    class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+  >
+    Оформить заказ
+  </button>
+</div>
+
 
     <!-- GRID -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -305,6 +314,23 @@ const loadProfile = async () => {
     logout();
   }
 };
+
+const sendToWhatsApp = () => {
+  if (!orders.value.length) return
+
+  let message = '🛒 *Мой заказ:*%0A%0A'
+
+  orders.value.forEach((item, index) => {
+    message += `${index + 1}. ${item.name || 'Без названия'} — ${item.final_price ?? 0} тг%0A`
+  })
+
+  message += `%0A💰 *Итого:* ${totalPrice.value} тг`
+
+  const phone = '77766248255'
+  const url = `https://wa.me/${phone}?text=${message}`
+
+  window.open(url, '_blank')
+}
 
 
 // Сақтау функциясы
