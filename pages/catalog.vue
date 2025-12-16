@@ -1,18 +1,26 @@
 <template>
- <AppHeader />
-  <slot />
+  <AppHeader />
 
-  <!-- CONTENT -->
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
+
+    <!-- TITLE -->
     <div class="mb-6">
       <h1 class="text-3xl font-bold">Каталог скидок</h1>
       <p class="text-sm text-gray-600 mt-2">
         Все скидки Magnum в одном месте!
       </p>
+
+      <p
+        v-if="$route.query.search"
+        class="text-sm text-gray-500 mt-1"
+      >
+        Поиск: "<span class="font-medium">{{ $route.query.search }}</span>"
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
-      <!-- Categories -->
+
+      <!-- CATEGORIES -->
       <aside class="space-y-3">
         <div
           v-for="(category, i) in categories"
@@ -20,215 +28,136 @@
           @click="activeCategory = category.name"
           :class="[
             'flex items-center gap-3 rounded-xl p-4 cursor-pointer',
-            activeCategory === category.name ? 'bg-gray-300' : 'bg-gray-100 hover:bg-gray-200' 
-          ] " 
+            activeCategory === category.name
+              ? 'bg-gray-300'
+              : 'bg-gray-100 hover:bg-gray-200'
+          ]"
         >
           <span class="text-sm font-medium">{{ category.name }}</span>
           <img
             :src="category.image"
-            :alt="category.name"
             class="w-16 h-16 object-contain"
           />
         </div>
       </aside>
 
-      <!-- Products -->
+      <!-- PRODUCTS -->
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
-    <div
-  v-for="product in filteredProducts"
-  :key="product.id"
-  @click="openModal(product)"
-  class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer"
->
+        <div
+          v-for="product in filteredProducts"
+          :key="product.id"
+          @click="openModal(product)"
+          class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer"
+        >
+          <span
+            v-if="discountPercent(product)"
+            class="absolute top-3 left-3 bg-[#C1121F] text-white text-sm px-3 py-1 rounded-full"
+          >
+            -{{ discountPercent(product) }}%
+          </span>
 
-  <span
-    v-if="discountPercent(product)"
-    class="absolute top-3 left-3 bg-[#C1121F] text-white text-sm px-3 py-1 rounded-full"
-  >
-    -{{ discountPercent(product) }}%
-  </span>
+          <p class="absolute top-3 right-3 text-xs text-gray-400">
+            до {{ formatDate(product.action_end) }}
+          </p>
 
-  <p class="absolute top-3 right-3 text-xs text-gray-400">
-    до {{ formatDate(product.action_end) }}
-  </p>
+          <img
+            :src="product.image"
+            class="h-36 w-full object-contain bg-gray-100 rounded-xl mb-3"
+          />
 
-  <img
-    :src="product.image"
-    :alt="product.name"
-    class="h-36 w-full object-contain bg-gray-100 rounded-xl mb-3"
-  />
+          <h3 class="text-sm font-semibold line-clamp-2 min-h-[40px]">
+            {{ product.name }}
+          </h3>
 
-  <h3 class="text-sm font-semibold line-clamp-2 min-h-[40px]">
-    {{ product.name }}
-  </h3>
-
-  <div class="mt-auto pt-3">
-    <p class="text-xs line-through text-gray-400">
-      {{ product.start_price }} тг
-    </p>
-    <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
-      {{ product.final_price }} тг
-    </p>
-  </div>
-</div>
-
+          <div class="mt-auto pt-3">
+            <p class="text-xs line-through text-gray-400">
+              {{ product.start_price }} тг
+            </p>
+            <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
+              {{ product.final_price }} тг
+            </p>
+          </div>
+        </div>
       </section>
     </div>
+
     <!-- MODAL -->
-<div
-  v-if="showModal"
-  class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
->
-  <div class="bg-white rounded-3xl w-full max-w-3xl p-6 relative">
-
-    <!-- Close -->
-    <button
-      @click="closeModal"
-      class="absolute top-4 right-4 text-xl text-gray-400 hover:text-black"
+    <div
+      v-if="showModal"
+      class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
     >
-      ✕
-    </button>
+      <div class="bg-white rounded-3xl w-full max-w-3xl p-6 relative">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-      <!-- Image -->
-      <img
-        :src="selectedProduct.image"
-        class="w-full h-64 object-contain bg-gray-100 rounded-xl"
-      />
-
-      <!-- Info -->
-      <div class="flex flex-col">
-        <span class="bg-pink-600 text-white text-sm px-3 py-1 rounded-full w-fit mb-2">
-          -{{ discountPercent(selectedProduct) }}%
-        </span>
-
-        <p class="text-xs text-gray-500 mb-2">
-          действует до {{ formatDate(selectedProduct.action_end) }}
-        </p>
-
-        <h2 class="text-xl font-bold mb-4">
-          {{ selectedProduct.name }}
-        </h2>
-
-        <p class="text-sm text-gray-600 mb-4">
-          Акция действует при наличии товара на полке.
-        </p>
-
-        <div class="mb-6">
-          <p class="text-sm line-through text-gray-400">
-            {{ selectedProduct.start_price }} тг
-          </p>
-          <p class="text-2xl font-bold bg-yellow-400 inline-block px-4 py-2 rounded-xl">
-            {{ selectedProduct.final_price }} тг
-          </p>
-        </div>
-<!-- FAVORITE BUTTON -->
-<button
-  @click="toggleFavorite(selectedProduct)"
-  class="mb-3 border py-2 rounded-xl flex items-center justify-center gap-2"
-  :class="isFavorite(selectedProduct) ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600'"
->
-  <span v-if="isFavorite(selectedProduct)">В избранном</span>
-  <span v-else>В избранное</span>
-</button>
-
-        <!-- BUTTON -->
         <button
-          @click="addToOrders(selectedProduct)"
-          class="mt-auto bg-[#003049] text-white py-3 rounded-xl hover:bg-[#00263a]"
+          @click="closeModal"
+          class="absolute top-4 right-4 text-xl text-gray-400"
         >
-          Мои заказы
+          ✕
         </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <img
+            :src="selectedProduct.image"
+            class="w-full h-64 object-contain bg-gray-100 rounded-xl"
+          />
+
+          <div class="flex flex-col">
+            <span class="bg-pink-600 text-white text-sm px-3 py-1 rounded-full w-fit mb-2">
+              -{{ discountPercent(selectedProduct) }}%
+            </span>
+
+            <p class="text-xs text-gray-500 mb-2">
+              действует до {{ formatDate(selectedProduct.action_end) }}
+            </p>
+
+            <h2 class="text-xl font-bold mb-4">
+              {{ selectedProduct.name }}
+            </h2>
+
+            <div class="mb-6">
+              <p class="text-sm line-through text-gray-400">
+                {{ selectedProduct.start_price }} тг
+              </p>
+              <p class="text-2xl font-bold bg-yellow-400 inline-block px-4 py-2 rounded-xl">
+                {{ selectedProduct.final_price }} тг
+              </p>
+            </div>
+
+            <button
+              @click="toggleFavorite(selectedProduct)"
+              class="mb-3 border py-2 rounded-xl"
+            >
+              {{ isFavorite(selectedProduct) ? 'В избранном' : 'В избранное' }}
+            </button>
+
+            <button
+              @click="addToOrders(selectedProduct)"
+              class="mt-auto bg-[#003049] text-white py-3 rounded-xl"
+            >
+              Мои заказы
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
   </main>
-
-  <!-- FOOTER -->
-  <footer class="bg-[#C1121F] py-16">
-    <div class="max-w-7xl mx-auto px-6 text-white grid grid-cols-1 md:grid-cols-4 gap-12">
-      <div>
-        <img src="/images/logo.png" class="h-10 mb-4" />
-        <p class="font-bold">НАПОЛНЯЕМ ЖИЗНЬ</p>
-      </div>
-     <div>
-  <h3 class="font-bold mb-4">Быстрые ссылки</h3>
-  <ul class="space-y-2">
-    <li>
-      <NuxtLink to="/" class="hover:text-[#003049]">Главная</NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/catalog" class="hover:text-[#003049]">Каталог</NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/dashbord" class="hover:text-[#003049]">Дашборд</NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/contacts" class="hover:text-[#003049]">Контакты</NuxtLink>
-    </li>
-  </ul>
-</div>
-
-      <div>
-        <h3 class="font-bold mb-4">Контакты</h3>
-        <p>+7 776 624 82 55</p>
-        <p>+7 776 777 77 09</p>
-      </div>
-       <div>
-          <h3 class="text-white font-semibold mb-4">Служба поддержки</h3>
-          <p class="text-lg mb-6 hover:text-[#003049] text-white">
-            <span class="font-semibold hover:text-[#003049] text-white">7766</span> | звонок бесплатный
-          </p>
-
-          <h3 class="text-white font-semibold mb-4">
-            Мы в социальных сетях
-          </h3>
-
-       <div class="flex flex-wrap gap-3 mb-8">
-  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
-    <img src="/images/icons8-phone-50.png" alt="Twitter" class="w-full h-full object-contain" />
-  </a>
-  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
-    <img src="/images/icons8-whatsapp-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
-  </a>
-<a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
-    <img src="/images/icons8-email-50.png" alt="Twitter" class="w-full h-full object-contain" />
-  </a>
-  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
-    <img src="/images/icons8-tiktok-50.png" alt="Twitter" class="w-full h-full object-contain" />
-  </a>
-    <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
-    <img src="/images/icons8-instagram-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
-  </a>
-
-  <a href="https://instagram.com" target="_blank" rel="noopener" class="w-6 h-6">
-   
-  </a>
-</div>
-
-
-          <h3 class="text-white font-semibold mb-2 hover:text-[#003049] text-white">
-            Служба доставки 
-          </h3>
-          <p class="text-lg hover:text-[#003049] text-white">
-            <span class="font-semibold">7772</span> | звонок бесплатный
-          </p>
-        </div>
-    </div>
-  </footer>
 </template>
-<script setup>import { ref, computed } from 'vue'
-import { useFetch } from '#app' // Nuxt 3 үшін
 
+<script setup>
+import { ref, computed } from 'vue'
+import { useFetch, useRoute, navigateTo } from '#app'
+
+const route = useRoute()
 const activeCategory = ref('Барлығы')
+
 const categories = [
-   { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
-    { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
-    { name: "Детские товары", image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
-     { name: "Бакалея", image: "https://magnum.kz:1337/uploads/bakaleya_3110e86aae.png" },
+  { name: "Барлығы", image: "" },
+
+  { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
+  { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
+  { name: "Детские товары", image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
+  { name: "Бакалея", image: "https://magnum.kz:1337/uploads/bakaleya_3110e86aae.png" },
   { name: "Молочные продукты", image: "https://magnum.kz:1337/uploads/Molochnye_produkty_0fc46bfbd0.png" },
   { name: "Фрукты, овощи", image: "https://magnum.kz:1337/uploads/Frutky_i_ovoshhi_35bebc3cdc.png" },
   { name: "Мясо", image: "https://magnum.kz:1337/uploads/myaso_24f87a2b63.png" },
@@ -236,23 +165,39 @@ const categories = [
   { name: "Безалкогольные напитки", image: "https://magnum.kz:1337/uploads/Bezalkogolnye_napitki_804131c63d.png" },
   { name: "Чай, Кофе, Какао", image: "https://magnum.kz:1337/uploads/Chaj_kofe_kakao_6013945351.png" },
   { name: "Консервы", image: "https://magnum.kz:1337/uploads/konservy_fe0bd212c3.png" },
-    { name: "Средства гигиены", image: "https://magnum.kz:1337/uploads/Sredstva_gigieny_75f280ceb3.png" },
+  { name: "Средства гигиены", image: "https://magnum.kz:1337/uploads/Sredstva_gigieny_75f280ceb3.png" },
   { name: "Бытовая химия", image: "https://magnum.kz:1337/uploads/Bytovaya_himiya_4e6942dd39.png" },
-  { name: "Другие товары", image: "https://magnum.kz:1337/uploads/Drugie_tovary_d07556ae4d.png" },
+  { name: "Другие товары", image: "https://magnum.kz:1337/uploads/Drugie_tovary_d07556ae4d.png" }
 ]
-// Екі API-дан мәліметтерді жүктейміз
-const { data: data1, pending: pending1, error: error1 } = await useFetch('https://67cbeea23395520e6af6ab52.mockapi.io/categorysale')
-const { data: data2, pending: pending2, error: error2 } = await useFetch('https://6940519c993d68afba6bb782.mockapi.io/market')
 
-// Барлық өнімдер
-const products = computed(() => {
-  if (!data1.value && !data2.value) return []
-  return [...(data1.value || []), ...(data2.value || [])]
+
+// API
+const { data: d1 } = await useFetch('https://67cbeea23395520e6af6ab52.mockapi.io/categorysale')
+const { data: d2 } = await useFetch('https://6940519c993d68afba6bb782.mockapi.io/market')
+
+const products = computed(() => [...(d1.value || []), ...(d2.value || [])])
+const filteredProducts = computed(() => {
+  let result = products.value || []
+
+  const search = route.query.search?.toLowerCase().trim()
+  if (search) {
+    result = result.filter(p =>
+      p.name?.toLowerCase().includes(search)
+    )
+  }
+
+  // CATEGORY фильтр (ID бойынша)
+  if (activeCategory.value && activeCategory.value !== 'Барлығы') {
+    const idsFromCategoryMap = categoryMap[activeCategory.value] || []
+    const idsFromProductsByCategory = productsByCategory[activeCategory.value] || []
+
+    const allowedIdsSet = new Set([...idsFromCategoryMap, ...idsFromProductsByCategory])
+    result = result.filter(p => allowedIdsSet.has(Number(p.id)))
+  }
+
+  // Егер ешбір категория таңдалмаған немесе "Барлығы" болса, барлық өнімді көрсетеміз
+  return result
 })
-
-// pending және error біріктіру
-const pending = computed(() => pending1.value || pending2.value)
-const error = computed(() => error1.value || error2.value)
 
 // Ескі categoryMap және productsByCategory, егер фильтрация керек болса
 const categoryMap = {
@@ -292,85 +237,41 @@ const productsByCategory = {
   'Другие товары': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
 }
 
-// Фильтрация қосылған filteredProducts
-const filteredProducts = computed(() => {
-  if (!products.value) return []
 
-  // Егер 'Барлығы' болса — барлық өнімді қайтару (фильтрсіз)
-  if (activeCategory.value === 'Барлығы') {
-    return products.value
-  }
 
-  // Әйтпесе, екі картадан да ID-ларды аламыз
-  const idsFromCategoryMap = categoryMap[activeCategory.value] || []
-  const idsFromProductsByCategory = productsByCategory[activeCategory.value] || []
+// HELPERS
+const discountPercent = p =>
+  Math.round(((p.start_price - p.final_price) / p.start_price) * 100)
 
-  // Біріккен, қайталанбайтын ID жиыны
-  const allowedIdsSet = new Set([...idsFromCategoryMap, ...idsFromProductsByCategory])
+const formatDate = d =>
+  new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
 
-  // Тауарларды сүзу
-  return products.value.filter(product =>
-    allowedIdsSet.has(Number(product.id))
-  )
-})
-
-const discountPercent = (product) => {
-  if (!product.start_price || !product.final_price) return 0
-  return Math.round(((product.start_price - product.final_price) / product.start_price) * 100)
-}
-
-const formatDate = (dateStr) => {
-  if (!dateStr) return ''
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
-}
+// MODAL
 const showModal = ref(false)
 const selectedProduct = ref(null)
 
-const openModal = (product) => {
-  selectedProduct.value = product
+const openModal = p => {
+  selectedProduct.value = p
   showModal.value = true
 }
+const closeModal = () => showModal.value = false
 
-const closeModal = () => {
-  showModal.value = false
-  selectedProduct.value = null
-}
-
-const addToOrders = (product) => {
+// ORDERS
+const addToOrders = p => {
   const orders = JSON.parse(localStorage.getItem('orders') || '[]')
-
-  // duplicate болмас үшін
-  const exists = orders.find(item => item.id === product.id)
-  if (!exists) {
-    orders.push(product)
+  if (!orders.find(o => o.id === p.id)) {
+    orders.push(p)
     localStorage.setItem('orders', JSON.stringify(orders))
   }
-
-  closeModal()
   navigateTo('/order')
 }
 
-
+// FAVORITES
 const favorites = ref(JSON.parse(localStorage.getItem('favorites') || '[]'))
-const isFavorite = (product) => {
-  if (!product) return false
-  return favorites.value.some(item => item.id === product.id)
-}
-const toggleFavorite = (product) => {
-  if (!product) return
-
-  const index = favorites.value.findIndex(item => item.id === product.id)
-
-  if (index === -1) {
-    favorites.value.push(product)
-  } else {
-    favorites.value.splice(index, 1)
-  }
-
+const isFavorite = p => favorites.value.some(f => f.id === p.id)
+const toggleFavorite = p => {
+  const i = favorites.value.findIndex(f => f.id === p.id)
+  i === -1 ? favorites.value.push(p) : favorites.value.splice(i, 1)
   localStorage.setItem('favorites', JSON.stringify(favorites.value))
 }
-
-
-
 </script>
