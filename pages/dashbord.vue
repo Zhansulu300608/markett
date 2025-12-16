@@ -71,7 +71,7 @@
     <div
       v-for="product in products"
       :key="product.id"
-      class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer shadow-sm"
+      class="border rounded-2xl p-4 relative flex flex-col h-[340px] cursor-pointer shadow-sm w-full"
     >
       <!-- Discount label -->
       <span
