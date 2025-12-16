@@ -34,7 +34,7 @@
         >
           <!-- User Icon -->
           <div
-            class="w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold"
+            class="w-8 h-8 rounded-full bg-[#C1121F] text-white flex items-center justify-center font-bold"
           >
             {{ user.name?.charAt(0).toUpperCase() }}
           </div>

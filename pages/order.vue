@@ -7,7 +7,7 @@
 
       <!-- SIDEBAR -->
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
-        <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-3xl font-bold text-orange-600 mx-auto mb-4">
+        <div class="w-28 h-28 rounded-full bg-[#FDF0D5] flex items-center justify-center text-3xl font-bold text-#003049 mx-auto mb-4">
           {{ user.name?.charAt(0) || "?" }}
         </div>
 
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Показываем роль пользователя -->
-        <span class="block text-center px-4 py-1 text-xs font-semibold text-orange-600 bg-orange-100 rounded-full mb-6">
+        <span class="block text-center px-4 py-1 text-xs font-semibold text-[#003049]  bg-[#FDF0D5] rounded-full mb-6">
           {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
 
@@ -27,8 +27,8 @@
         </div>
 
         <nav class="space-y-2">
-          <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl bg-orange-50 text-orange-600 font-medium">Профиль</NuxtLink>
-          <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">Мои заказы</NuxtLink>
+          <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl  bg-[#003049] text-[#ffffff] hover:bg-[#FDF0D5] hover:text-[#003049] font-medium">Профиль</NuxtLink>
+          <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-[#ffffff] bg-[#003049] hover:bg-[#FDF0D5] hover:text-[#003049]">Мои заказы</NuxtLink>
 
           <!-- Только для админа -->
           <NuxtLink
@@ -40,7 +40,6 @@
           </NuxtLink>
         </nav>
       </aside>
-
 
       <!-- CONTENT -->
       <main class="flex-1 bg-white rounded-2xl shadow-sm p-8">
@@ -59,7 +58,7 @@
 <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
   <p class="text-lg font-semibold">
     Общая сумма:
-    <span class="text-orange-600">
+    <span class="text-[#003049]">
       {{ totalPrice }} тг
     </span>
   </p>
