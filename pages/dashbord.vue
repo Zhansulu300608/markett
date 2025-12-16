@@ -45,15 +45,6 @@
      <!-- PRODUCTS -->
 <!-- PRODUCTS -->
 <div class="bg-white p-6 rounded shadow">
-  <div class="flex justify-between mb-6">
-    <h2 class="text-xl font-bold">Create Product</h2>
-    <button
-      @click="addProduct"
-      class="bg-blue-600 text-white px-4 py-2 rounded"
-    >
-      + Add Product
-    </button>
-  </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
    <div class="bg-white p-6 rounded shadow">
