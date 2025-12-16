@@ -177,7 +177,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const API = "https://67cbeea23395520e6af6ab52.mockapi.io/create";
+const API = "https://6940519c993d68afba6bb782.mockapi.io/market";
 
 const user = ref<any>(null);
 
@@ -301,24 +301,6 @@ const editProduct = (product: any) => {
   showModal.value = true;
 };
 
-const saveProduct = async () => {
-  try {
-    if (editingProduct.value) {
-      const res = await axios.put(`${API}/${editingProduct.value.id}`, {
-        ...productForm.value,
-        type: "product"
-      });
-      const idx = products.value.findIndex(p => p.id === editingProduct.value.id);
-      products.value[idx] = res.data;
-    } else {
-      const res = await axios.post(API, { ...productForm.value, type: "product" });
-      products.value.push(res.data);
-    }
-    showModal.value = false;
-  } catch (err) {
-    console.error("Save product error", err);
-  }
-};
 
 const deleteProduct = async (id: number) => {
   try {
@@ -335,4 +317,30 @@ const logout = () => {
   localStorage.removeItem("token");
   router.push("/login");
 };
+
+
+const saveProduct = async () => {
+  try {
+    if (editingProduct.value) {
+      const res = await axios.put(`${API}/${editingProduct.value.id}`, {
+        ...productForm.value,
+        type: "product"
+      });
+      const idx = products.value.findIndex(p => p.id === editingProduct.value.id);
+      products.value[idx] = res.data;
+    } else {
+      const res = await axios.post(API, { ...productForm.value, type: "product" });
+      products.value.push(res.data);
+    }
+
+    showModal.value = false;
+
+    // 🔹 Автоматты түрде Catalog page-ке өту
+    router.push("/catalog");
+
+  } catch (err) {
+    console.error("Save product error", err);
+  }
+};
+
 </script>

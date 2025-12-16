@@ -324,5 +324,8 @@ const toggleFavorite = (product) => {
   localStorage.setItem('favorites', JSON.stringify(favorites.value))
 }
 
+onMounted(() => {
+  fetchProducts(); 
+});
 
 </script>
