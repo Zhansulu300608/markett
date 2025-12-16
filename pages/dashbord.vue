@@ -4,9 +4,9 @@
     <!-- SIDEBAR -->
     <aside class="w-64 bg-slate-800 text-white p-6">
       <nav class="space-y-4">
-        <NuxtLink to="/dashboard" class="block hover:bg-slate-700 px-4 py-2 rounded">Dashboard</NuxtLink>
-        <NuxtLink to="/orders" class="block hover:bg-slate-700 px-4 py-2 rounded">Мои заказы</NuxtLink>
-        <NuxtLink to="/favorites" class="block hover:bg-slate-700 px-4 py-2 rounded">Избранное</NuxtLink>
+        <NuxtLink to="/dashbord" class="block hover:bg-slate-700 px-4 py-2 rounded">Dashboard</NuxtLink>
+        <NuxtLink to="/order" class="block hover:bg-slate-700 px-4 py-2 rounded">Мои заказы</NuxtLink>
+        <NuxtLink to="/favourties" class="block hover:bg-slate-700 px-4 py-2 rounded">Избранное</NuxtLink>
       </nav>
 
       <button @click="logout" class="mt-10 w-full bg-red-500 py-2 rounded">Logout</button>
