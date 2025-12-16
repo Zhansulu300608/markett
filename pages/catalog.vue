@@ -154,22 +154,69 @@
         <img src="/images/logo.png" class="h-10 mb-4" />
         <p class="font-bold">НАПОЛНЯЕМ ЖИЗНЬ</p>
       </div>
-      <div>
-        <h3 class="font-bold mb-4">Быстрые ссылки</h3>
-        <ul class="space-y-2">
-          <li>Каталог скидок</li>
-          <li>Доставка</li>
-          <li>Контакты</li>
-        </ul>
-      </div>
+     <div>
+  <h3 class="font-bold mb-4">Быстрые ссылки</h3>
+  <ul class="space-y-2">
+    <li>
+      <NuxtLink to="/" class="hover:text-[#003049]">Главная</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/catalog" class="hover:text-[#003049]">Каталог</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/dashbord" class="hover:text-[#003049]">Дашборд</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/contacts" class="hover:text-[#003049]">Контакты</NuxtLink>
+    </li>
+  </ul>
+</div>
+
       <div>
         <h3 class="font-bold mb-4">Контакты</h3>
         <p>+7 776 624 82 55</p>
+        <p>+7 776 777 77 09</p>
       </div>
-      <div>
-        <h3 class="font-bold mb-4">Поддержка</h3>
-        <p>7766 | бесплатно</p>
-      </div>
+       <div>
+          <h3 class="text-white font-semibold mb-4">Служба поддержки</h3>
+          <p class="text-lg mb-6 hover:text-[#003049] text-white">
+            <span class="font-semibold hover:text-[#003049] text-white">7766</span> | звонок бесплатный
+          </p>
+
+          <h3 class="text-white font-semibold mb-4">
+            Мы в социальных сетях
+          </h3>
+
+       <div class="flex flex-wrap gap-3 mb-8">
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-phone-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-whatsapp-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+<a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-email-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-tiktok-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-instagram-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+
+  <a href="https://instagram.com" target="_blank" rel="noopener" class="w-6 h-6">
+   
+  </a>
+</div>
+
+
+          <h3 class="text-white font-semibold mb-2 hover:text-[#003049] text-white">
+            Служба доставки 
+          </h3>
+          <p class="text-lg hover:text-[#003049] text-white">
+            <span class="font-semibold">7772</span> | звонок бесплатный
+          </p>
+        </div>
     </div>
   </footer>
 </template>
