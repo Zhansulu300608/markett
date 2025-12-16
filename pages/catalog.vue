@@ -13,29 +13,24 @@
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
       <!-- Categories -->
-    <aside class="space-y-3">
-  <div
-    v-for="(category, i) in categories"
-    :key="i"
-    @click="
-      activeCategory = category.name;
-      search.value = '';
-      router.push({ path: '/catalog' })
-    "
-    :class="[
-      'flex items-center gap-3 rounded-xl p-4 cursor-pointer',
-      activeCategory === category.name ? 'bg-gray-300' : 'bg-gray-100 hover:bg-gray-200' 
-    ] " 
-  >
-    <span class="text-sm font-medium">{{ category.name }}</span>
-    <img
-      :src="category.image"
-      :alt="category.name"
-      class="w-16 h-16 object-contain"
-    />
-  </div>
-</aside>
-
+      <aside class="space-y-3">
+        <div
+          v-for="(category, i) in categories"
+          :key="i"
+          @click="activeCategory = category.name"
+          :class="[
+            'flex items-center gap-3 rounded-xl p-4 cursor-pointer',
+            activeCategory === category.name ? 'bg-gray-300' : 'bg-gray-100 hover:bg-gray-200' 
+          ] " 
+        >
+          <span class="text-sm font-medium">{{ category.name }}</span>
+          <img
+            :src="category.image"
+            :alt="category.name"
+            class="w-16 h-16 object-contain"
+          />
+        </div>
+      </aside>
 
       <!-- Products -->
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -225,22 +220,8 @@
     </div>
   </footer>
 </template>
-<script setup>
-import { ref, computed, watch } from 'vue'
-
+<script setup>import { ref, computed } from 'vue'
 import { useFetch } from '#app' // Nuxt 3 үшін
-
-import { useRoute, useRouter } from 'vue-router'
-
-const route = useRoute()
-const router = useRouter()
-const search = ref(route.query.search || '')
-
-// Егер route өзгерсе, search жаңарсын
-watch(() => route.query.search, (val) => {
-  search.value = val || ''
-})
-
 
 const activeCategory = ref('Барлығы')
 const categories = [
@@ -311,28 +292,27 @@ const productsByCategory = {
   'Другие товары': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
 }
 
+// Фильтрация қосылған filteredProducts
 const filteredProducts = computed(() => {
   if (!products.value) return []
 
-  let result = products.value
-
-  // 🔹 CATEGORY фильтр
-  if (activeCategory.value !== 'Барлығы') {
-    const idsFromCategoryMap = categoryMap[activeCategory.value] || []
-    const idsFromProductsByCategory = productsByCategory[activeCategory.value] || []
-    const allowedIdsSet = new Set([...idsFromCategoryMap, ...idsFromProductsByCategory])
-    result = result.filter(product => allowedIdsSet.has(Number(product.id)))
+  // Егер 'Барлығы' болса — барлық өнімді қайтару (фильтрсіз)
+  if (activeCategory.value === 'Барлығы') {
+    return products.value
   }
 
-  // 🔹 SEARCH фильтр
-  if (search.value.trim()) {
-    const q = search.value.toLowerCase()
-    result = result.filter(product => product.name?.toLowerCase().includes(q))
-  }
+  // Әйтпесе, екі картадан да ID-ларды аламыз
+  const idsFromCategoryMap = categoryMap[activeCategory.value] || []
+  const idsFromProductsByCategory = productsByCategory[activeCategory.value] || []
 
-  return result
+  // Біріккен, қайталанбайтын ID жиыны
+  const allowedIdsSet = new Set([...idsFromCategoryMap, ...idsFromProductsByCategory])
+
+  // Тауарларды сүзу
+  return products.value.filter(product =>
+    allowedIdsSet.has(Number(product.id))
+  )
 })
-
 
 const discountPercent = (product) => {
   if (!product.start_price || !product.final_price) return 0
@@ -390,6 +370,7 @@ const toggleFavorite = (product) => {
 
   localStorage.setItem('favorites', JSON.stringify(favorites.value))
 }
+
 
 
 </script>
