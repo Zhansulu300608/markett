@@ -10,7 +10,8 @@
       </NuxtLink>
 
       <!-- Search -->
-      <form @submit.prevent="doSearch"
+      <form
+        @submit.prevent="search"
         class="flex-1 mx-10 mt-5"
       >
         <div class="flex rounded-full overflow-hidden shadow-sm bg-white">
@@ -68,14 +69,25 @@
     </nav>
   </header>
 </template>
+
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
+const router = useRouter();
+
 const searchText = ref("");
 const user = ref<any>({});
 const isAuth = ref(false);
-const router = useRouter();
+
+const search = () => {
+  if (!searchText.value.trim()) return;
+
+  router.push({
+    path: "/catalog",
+    query: { search: searchText.value }
+  });
+};
 
 onMounted(() => {
   const token = localStorage.getItem("token");
@@ -86,12 +98,4 @@ onMounted(() => {
     isAuth.value = true;
   }
 });
-
-const doSearch = () => {
-  if (!searchText.value.trim()) return;
-  router.push({
-    path: '/catalog',
-    query: { search: searchText.value }
-  });
-};
 </script>
