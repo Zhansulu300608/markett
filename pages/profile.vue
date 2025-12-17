@@ -45,28 +45,30 @@
           <span class="text-2xl font-semibold">7</span>
         </div>
 
-        <nav class="space-y-2 w-full">
-          <NuxtLink
-            to="/profile"
-            class="block px-4 py-3 rounded-xl bg-[#003049] text-white hover:bg-[#FDF0D5] hover:text-[#003049] font-medium text-center"
-          >
-            Профиль
-          </NuxtLink>
-          <NuxtLink
-            to="/order"
-            class="block px-4 py-3 rounded-xl bg-[#003049] text-white hover:bg-[#FDF0D5] hover:text-[#003049] text-center"
-          >
-            Мои заказы
-          </NuxtLink>
+       <nav class="space-y-2 w-full">
+  <NuxtLink
+    to="/profile"
+    class="block px-4 py-3 rounded-xl bg-[#003049] text-white hover:bg-[#FDF0D5] hover:text-[#003049] font-medium text-center"
+  >
+    Профиль
+  </NuxtLink>
+  <NuxtLink
+    v-if="user.role !== 'admin'"
+    to="/order"
+    class="block px-4 py-3 rounded-xl bg-[#003049] text-white hover:bg-[#FDF0D5] hover:text-[#003049] text-center"
+  >
+    Мои заказы
+  </NuxtLink>
 
-          <NuxtLink
-            v-if="user.role === 'admin'"
-            to="/admin/dashboard"
-            class="block px-4 py-3 rounded-xl text-red-600 hover:bg-gray-100 font-semibold text-center"
-          >
-            Админ панель
-          </NuxtLink>
-        </nav>
+  <NuxtLink
+    v-if="user.role === 'admin'"
+    to="/admin/dashboard"
+    class="block px-4 py-3 rounded-xl text-red-600 hover:bg-gray-100 font-semibold text-center"
+  >
+    Админ панель
+  </NuxtLink>
+</nav>
+
       </aside>
 
     
