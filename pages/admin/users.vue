@@ -92,7 +92,7 @@
         <table class="min-w-full">
           <thead class="bg-gray-50 text-sm text-gray-600">
             <tr>
-              <th class="p-2">Аватар</th>
+       
               <th class="p-2 text-left">Имя</th>
               <th class="hidden md:table-cell p-2">Email</th>
               <th class="p-2">Роль</th>
@@ -108,12 +108,7 @@
               :key="user.id"
               class="border-t hover:bg-gray-50"
             >
-              <td class="p-2">
-                <img
-                  :src="user.avatar || `https://i.pravatar.cc/100?u=${user.email}`"
-                  class="w-10 h-10 rounded-full"
-                />
-              </td>
+           
 
               <td class="p-2 font-medium">{{ user.name }}</td>
               <td class="hidden md:table-cell p-2 text-gray-600">{{ user.email }}</td>
