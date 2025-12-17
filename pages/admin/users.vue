@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen bg-gray-50">
 
-    <!-- SIDEBAR -->
+    
     <aside
       class="fixed inset-y-0 left-0 z-50 w-64 bg-gray-100 border-r border-gray-300
       transform transition-transform duration-300
@@ -10,12 +10,12 @@
     >
       <Sidebar />
 
-      <!-- CLOSE SIDEBAR -->
+      
       <button
         @click="sidebarOpen = false"
         class="absolute top-4 right-4 md:hidden text-gray-600"
       >
-        <!-- X SVG -->
+        
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
           viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -24,23 +24,23 @@
       </button>
     </aside>
 
-    <!-- OVERLAY -->
+   
     <div
       v-if="sidebarOpen"
       @click="sidebarOpen = false"
       class="fixed inset-0 bg-black/30 z-40 md:hidden"
     ></div>
 
-    <!-- MAIN -->
+    
     <main class="flex-1 p-4 md:p-6 overflow-auto">
 
-      <!-- HEADER -->
+     
       <div class="flex items-center gap-3 mb-6">
         <button
           @click="sidebarOpen = true"
           class="md:hidden p-2 rounded hover:bg-gray-200"
         >
-          <!-- MENU SVG -->
+         
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -51,7 +51,7 @@
         <h1 class="text-2xl font-semibold">Управление пользователями</h1>
       </div>
 
-      <!-- FILTERS -->
+   
       <div class="flex flex-wrap gap-2 mb-6">
         <input
           v-model="search"
@@ -72,12 +72,12 @@
           <option value="Заблокирован">Заблокирован</option>
         </select>
 
-        <!-- CREATE -->
+       
         <button
           @click="openCreate"
           class="ml-auto flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
         >
-          <!-- PLUS SVG -->
+        
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -87,7 +87,7 @@
         </button>
       </div>
 
-      <!-- TABLE -->
+    
       <div class="bg-white rounded-xl shadow overflow-auto">
         <table class="min-w-full">
           <thead class="bg-gray-50 text-sm text-gray-600">
@@ -133,7 +133,7 @@
               </td>
 
               <td class="p-2 flex gap-3">
-                <!-- EDIT -->
+              
                 <button @click="openEdit(user)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -142,7 +142,7 @@
                   </svg>
                 </button>
 
-                <!-- DELETE -->
+             
                 <button @click="deleteUser(user.id)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-500 hover:text-red-700"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -158,7 +158,7 @@
       </div>
     </main>
 
-    <!-- MODAL -->
+   
     <div
       v-if="showModal"
       class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
@@ -198,10 +198,13 @@
 
   </div>
 </template>
-
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
+
+
+const API_URL = 'https://medical-backend-54hp.onrender.com/api/auth'
+
 
 const sidebarOpen = ref(false)
 const users = ref([])
@@ -221,9 +224,46 @@ const form = ref({
   status: 'Активный',
 })
 
+
+const fetchUsers = async () => {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) return
+
+    const res = await fetch(`${API_URL}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    const json = await res.json()
+
+    if (json.success) {
+      users.value = [
+        {
+          ...json.data,
+          status: 'Активный',
+          created_at: json.data.created_at || new Date(),
+        },
+      ]
+    }
+  } catch (e) {
+    console.error('Fetch users error:', e)
+  }
+}
+
+onMounted(fetchUsers)
+
+
 const openCreate = () => {
   isEdit.value = false
-  form.value = { id: null, name: '', email: '', role: 'user', status: 'Активный' }
+  form.value = {
+    id: null,
+    name: '',
+    email: '',
+    role: 'user',
+    status: 'Активный',
+  }
   showModal.value = true
 }
 
@@ -243,8 +283,10 @@ const openEdit = (user) => {
 }
 
 const updateUser = () => {
-  const i = users.value.findIndex(u => u.id === form.value.id)
-  if (i !== -1) users.value[i] = { ...form.value }
+  const index = users.value.findIndex(u => u.id === form.value.id)
+  if (index !== -1) {
+    users.value[index] = { ...form.value }
+  }
   showModal.value = false
 }
 
@@ -254,9 +296,10 @@ const deleteUser = (id) => {
   }
 }
 
+
 const filteredUsers = computed(() =>
   users.value.filter(u =>
-    (!search.value || u.name.toLowerCase().includes(search.value.toLowerCase())) &&
+    (!search.value || u.name?.toLowerCase().includes(search.value.toLowerCase())) &&
     (!filterRole.value || u.role === filterRole.value) &&
     (!filterStatus.value || u.status === filterStatus.value)
   )
@@ -268,8 +311,10 @@ const statusClass = (s) => ({
   'bg-red-100 text-red-700': s === 'Заблокирован',
 })
 
-const formatDate = d => new Date(d).toLocaleDateString('ru-RU')
+const formatDate = d =>
+  d ? new Date(d).toLocaleDateString('ru-RU') : '-'
 </script>
+
 
 <style scoped>
 .input {
