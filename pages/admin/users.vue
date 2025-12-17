@@ -148,7 +148,7 @@ const fetchUsers = async () => {
       return
     }
 
-    const res = await fetch(`${API_URL}/me`, {
+    const res = await fetch(`${API_URL}/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
