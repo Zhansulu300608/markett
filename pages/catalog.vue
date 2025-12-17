@@ -4,7 +4,7 @@
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
     <div class="mb-6">
       <h1 class="text-3xl font-bold">Каталог скидок</h1>
-      <p class="text-sm text-gray-600 mt-2">Все скидки Magnum в одном месте!</p>
+      <p class="text-sm text-gray-600 mt-2">Все скидки в одном месте!</p>
 
       <p v-if="$route.query.search" class="text-sm text-gray-500 mt-1">
         Поиск: "<span class="font-medium">{{ $route.query.search }}</span>"
