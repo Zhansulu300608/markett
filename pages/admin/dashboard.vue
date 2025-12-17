@@ -8,7 +8,7 @@
     />
 
   
-    <aside class="fixed md:static z-50 md:z-auto inset-y-0 left-0 w-48 md:w-64 bg-gray-100 border-r border-gray-300
+    <aside class="fixed md:static z-50 md:z-auto inset-y-0 left-0 w-48 md:w-64  
   transform transition-transform duration-300
   md:translate-x-0"
   :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'">
