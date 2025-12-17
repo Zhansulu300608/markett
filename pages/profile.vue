@@ -27,7 +27,7 @@
           {{ user.name?.charAt(0) || "?" }}
         </div>
 
-        <div class="text-center md:text-left mb-4 w-full">
+        <div class="text-center md:text-center mb-4 w-full">
           <p class="font-semibold text-lg break-words">{{ user.name }}</p>
           <p class="text-sm text-gray-500 break-words">{{ user.email }}</p>
         </div>
