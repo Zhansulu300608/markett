@@ -108,6 +108,12 @@
               :key="user.id"
               class="border-t hover:bg-gray-50"
             >
+              <td class="p-2">
+                <img
+                  :src="user.avatar"
+                  class="w-10 h-10 rounded-full"
+                />
+              </td>
 
               <td class="p-2 font-medium">{{ user.name }}</td>
               <td class="hidden md:table-cell p-2 text-gray-600">{{ user.email }}</td>
