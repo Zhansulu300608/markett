@@ -3,7 +3,7 @@
 
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
 
-    <!-- TITLE -->
+    
     <div class="mb-6">
       <h1 class="text-3xl font-bold">Каталог скидок</h1>
       <p class="text-sm text-gray-600 mt-2">
@@ -20,7 +20,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
 
-      <!-- CATEGORIES -->
+    
       <aside class="space-y-3">
         <div
           v-for="(category, i) in categories"
@@ -41,7 +41,7 @@
         </div>
       </aside>
 
-      <!-- PRODUCTS -->
+    
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div
           v-for="product in filteredProducts"
@@ -81,7 +81,7 @@
       </section>
     </div>
 
-    <!-- MODAL -->
+   
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
@@ -170,7 +170,7 @@ const categories = [
 ]
 
 
-// API
+
 const { data: d1 } = await useFetch('https://67cbeea23395520e6af6ab52.mockapi.io/categorysale')
 const { data: d2 } = await useFetch('https://6940519c993d68afba6bb782.mockapi.io/market')
 
@@ -185,7 +185,7 @@ const filteredProducts = computed(() => {
     )
   }
 
-  // CATEGORY фильтр (ID бойынша)
+
   if (activeCategory.value && activeCategory.value !== 'Барлығы') {
     const idsFromCategoryMap = categoryMap[activeCategory.value] || []
     const idsFromProductsByCategory = productsByCategory[activeCategory.value] || []
@@ -194,11 +194,9 @@ const filteredProducts = computed(() => {
     result = result.filter(p => allowedIdsSet.has(Number(p.id)))
   }
 
-  // Егер ешбір категория таңдалмаған немесе "Барлығы" болса, барлық өнімді көрсетеміз
   return result
 })
 
-// Ескі categoryMap және productsByCategory, егер фильтрация керек болса
 const categoryMap = {
   'Фрукты, овощи': [29, 30, 31, 32],
   'Мясо': [27, 28],
@@ -238,14 +236,14 @@ const productsByCategory = {
 
 
 
-// HELPERS
+
 const discountPercent = p =>
   Math.round(((p.start_price - p.final_price) / p.start_price) * 100)
 
 const formatDate = d =>
   new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
 
-// MODAL
+
 const showModal = ref(false)
 const selectedProduct = ref(null)
 
@@ -255,7 +253,7 @@ const openModal = p => {
 }
 const closeModal = () => showModal.value = false
 
-// ORDERS
+
 const addToOrders = p => {
   const orders = JSON.parse(localStorage.getItem('orders') || '[]')
   if (!orders.find(o => o.id === p.id)) {
@@ -265,7 +263,7 @@ const addToOrders = p => {
   navigateTo('/order')
 }
 
-// FAVORITES
+
 const favorites = ref(JSON.parse(localStorage.getItem('favorites') || '[]'))
 const isFavorite = p => favorites.value.some(f => f.id === p.id)
 const toggleFavorite = p => {

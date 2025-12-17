@@ -3,11 +3,11 @@
     <div
       class="grid md:grid-cols-2 bg-white shadow-xl rounded-2xl overflow-hidden max-w-5xl w-full"
     >
-      <!-- LEFT -->
+    
       <div class="p-10">
         <h1 class="text-3xl font-bold text-center mb-6">Зарегистрировать аккаунт</h1>
 
-        <!-- Success -->
+        
         <p
           v-if="success"
           class="bg-green-100 text-green-700 text-center py-3 rounded-lg mb-4"
@@ -15,7 +15,7 @@
           {{ success }}
         </p>
 
-        <!-- Error -->
+ 
         <p
           v-if="error"
           class="bg-red-100 text-red-700 text-center py-3 rounded-lg mb-4"
@@ -24,7 +24,7 @@
         </p>
 
         <form @submit.prevent="handleSubmit" class="space-y-5">
-          <!-- Name -->
+          
           <div>
             <label class="block text-sm font-semibold mb-1">Имя</label>
             <input
@@ -35,7 +35,7 @@
             />
           </div>
 
-          <!-- Email -->
+     
           <div>
             <label class="block text-sm font-semibold mb-1">Email</label>
             <input
@@ -46,7 +46,7 @@
             />
           </div>
 
-          <!-- Password -->
+        
           <div>
             <label class="block text-sm font-semibold mb-1">Пароль</label>
             <input
@@ -57,7 +57,7 @@
             />
           </div>
 
-          <!-- Confirm Password -->
+        
           <div>
             <label class="block text-sm font-semibold mb-1">Подтвердите пароль</label>
             <input
@@ -68,7 +68,7 @@
             />
           </div>
 
-          <!-- Submit -->
+      
           <button
             type="submit"
             class="w-full bg-[#C1121F] hover:bg-[#780000] text-white py-3 rounded-lg text-lg transition"
@@ -86,7 +86,7 @@
         </p>
       </div>
 
-      <!-- RIGHT SIDE -->
+      
       <div class="hidden md:flex bg-gray-200 items-center justify-center p-10 text-center">
         <p class="text-gray-700 text-lg leading-relaxed">
           Ваш личный помощник в мире финансов.<br />

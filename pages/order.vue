@@ -5,7 +5,7 @@
   <div class="min-h-screen bg-gray-50 py-10">
     <div class="max-w-7xl mx-auto px-4 flex gap-8">
 
-      <!-- SIDEBAR -->
+     
       <aside class="w-72 bg-white rounded-2xl shadow-sm p-6">
         <div class="w-28 h-28 rounded-full bg-[#FDF0D5] flex items-center justify-center text-3xl font-bold text-#003049 mx-auto mb-4">
           {{ user.name?.charAt(0) || "?" }}
@@ -16,7 +16,7 @@
           <p class="text-sm text-gray-500">{{ user.email }}</p>
         </div>
 
-        <!-- Показываем роль пользователя -->
+      
         <span class="block text-center px-4 py-1 text-xs font-semibold text-[#003049]  bg-[#FDF0D5] rounded-full mb-6">
           {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
@@ -30,7 +30,6 @@
           <NuxtLink to="/profile" class="block px-4 py-3 rounded-xl  bg-[#003049] text-[#ffffff] hover:bg-[#FDF0D5] hover:text-[#003049] font-medium">Профиль</NuxtLink>
           <NuxtLink to="/order" class="block px-4 py-3 rounded-xl text-[#ffffff] bg-[#003049] hover:bg-[#FDF0D5] hover:text-[#003049]">Мои заказы</NuxtLink>
 
-          <!-- Только для админа -->
           <NuxtLink
             v-if="user.role === 'admin'"
             to="/admin"
@@ -41,20 +40,19 @@
         </nav>
       </aside>
 
-      <!-- CONTENT -->
+     
       <main class="flex-1 bg-white rounded-2xl shadow-sm p-8">
  <div class="max-w-6xl mx-auto p-6">
   <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
 
-  <!-- Егер заказ жоқ -->
+ 
   <div v-if="orders.length === 0" class="text-gray-500">
     Заказов пока нет
   </div>
 
-  <!-- Егер заказ бар -->
+
   <div v-else>
-    <!-- TOTAL -->
-  <!-- TOTAL + BUTTON -->
+  
 <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
   <p class="text-lg font-semibold">
     Общая сумма:
@@ -72,14 +70,13 @@
 </div>
 
 
-    <!-- GRID -->
+   
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <div
         v-for="item in orders"
         :key="item.id"
         class="border rounded-xl p-4 relative"
       >
-        <!-- DELETE -->
         <button
           @click="removeOrder(item.id)"
           class="absolute top-2 right-2 text-gray-400 hover:text-red-600"
@@ -87,19 +84,19 @@
           ✕
         </button>
 
-        <!-- Фото -->
+        
         <img
           :src="item.image || '/images/no-image.png'"
           alt="product"
           class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
         />
 
-        <!-- Аты -->
+       
         <p class="text-sm font-semibold line-clamp-2">
           {{ item.name || 'Без названия' }}
         </p>
 
-        <!-- Бағасы -->
+       
         <p class="font-bold mt-2">
           {{ item.final_price ?? 0 }} тг
         </p>
@@ -113,7 +110,7 @@
     </div>
   </div>
   
-  <!-- FOOTER -->
+
   <footer class="bg-[#C1121F] py-16">
     <div class="max-w-7xl mx-auto px-6 text-white grid grid-cols-1 md:grid-cols-4 gap-12">
       <div>
@@ -222,7 +219,7 @@ const loadProfile = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // 👇 нақты user объектіні аламыз
+   
     const profile = res.data.data || res.data.data?.user;
 
     Object.assign(user, profile);
@@ -253,7 +250,7 @@ const sendToWhatsApp = () => {
 }
 
 
-// Сақтау функциясы
+
 const saveProfile = async () => {
   const token = localStorage.getItem("token");
   if (!token) return;
@@ -264,7 +261,6 @@ const saveProfile = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    // Обновлениелерді localStorage-қа жазамыз
     Object.assign(user, data);
     localStorage.setItem("user", JSON.stringify(data));
 
@@ -295,13 +291,13 @@ onMounted(() => {
   orders.value = saved ? JSON.parse(saved) : []
 })
 
-// DELETE
+
 const removeOrder = (id: string | number) => {
   orders.value = orders.value.filter(item => item.id !== id)
   localStorage.setItem('orders', JSON.stringify(orders.value))
 }
 
-// TOTAL PRICE
+
 const totalPrice = computed(() => {
   return orders.value.reduce(
     (sum, item) => sum + Number(item.final_price || 0),

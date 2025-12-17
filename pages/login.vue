@@ -2,12 +2,12 @@
   <div class="bg-gray-100 text-gray-900 min-h-screen flex items-center justify-center p-6">
     <div class="w-full max-w-md p-10 rounded-xl shadow-lg bg-white border border-purple-200">
 
-      <!-- Logo -->
+    
       <div class="flex items-center justify-center mb-6">
         <img src="/images/logoo.png" alt="Logo" class="h-10" />
       </div>
 
-      <!-- Title -->
+     
       <h1 class="text-3xl font-bold text-center mb-2">
         Добро пожаловать<br />обратно!
       </h1>
@@ -15,17 +15,17 @@
         Войдите в свой аккаунт, чтобы продолжить.
       </p>
 
-      <!-- Error -->
+   
       <div v-if="error" class="mb-4 p-3 rounded-lg bg-red-100 border border-red-300">
         <p class="text-red-600 text-sm text-center font-semibold">{{ error }}</p>
       </div>
 
-      <!-- Success -->
+     
       <div v-if="success" class="mb-4 p-3 rounded-lg bg-green-100 border border-green-300">
         <p class="text-green-600 text-sm text-center font-semibold">{{ success }}</p>
       </div>
 
-      <!-- Form -->
+     
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-3">
         <label class="font-semibold">Электронная почта</label>
         <input
@@ -97,7 +97,7 @@ const success = ref("");const handleSubmit = async () => {
       throw new Error("Токен не найден");
     }
 
-    // ✅ Сен сұраған формат
+    
     localStorage.setItem("token", data.data.token);
     localStorage.setItem("user", JSON.stringify(data.data.user));
 

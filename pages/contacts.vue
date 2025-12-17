@@ -10,9 +10,9 @@
 
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
-        <!-- Left column -->
+       
         <div class="space-y-6">
-          <!-- Contact info -->
+        
           <div class="border rounded-lg p-6 bg-[#FDF0D5]">
             <h2 class="text-lg font-semibold mb-4 text-[#003049]">Доставка</h2>
             <ul class="space-y-2 text-sm">
@@ -33,7 +33,7 @@
             </ul>
           </div>
 
-          <!-- Working hours -->
+         
           <div class="border rounded-lg p-6 bg-[#FDF0D5]">
             <h2 class="text-lg font-semibold mb-4">Часы работы</h2>
             <div class="space-y-2 text-sm">
@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <!-- Contact form -->
+         
           <div class="border rounded-lg p-6 bg-[#FDF0D5]">
   <h2 class="text-lg font-semibold mb-4">Форма обратной связи</h2>
   <form id="form" class="space-y-4">
@@ -111,11 +111,11 @@
 </div>
         </div>
 
-        <!-- Right column: map -->
+        
         <div class="border rounded-lg p-6">
           <h2 class="text-lg font-semibold mb-4">Наши магазины на карте</h2>
           <div class="h-[360px] w-full overflow-hidden rounded-md bg-gray-100">
-            <!-- Replace this with your real map component or iframe -->
+          
             <iframe
               class="w-full h-full border-0"
               src="https://www.openstreetmap.org/export/embed.html"
@@ -129,7 +129,7 @@
   </div>
 
  
-  <!-- FOOTER -->
+
   <footer class="bg-[#C1121F] py-16">
     <div class="max-w-7xl mx-auto px-6 text-white grid grid-cols-1 md:grid-cols-4 gap-12">
       <div>

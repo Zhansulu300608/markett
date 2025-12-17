@@ -3,7 +3,7 @@
   <AppHeader />
   <slot />
   
-      <div class="min-h-screen">
+      <div class="min-h-[550px] md:min-h-[800px] ">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
     </div>
@@ -84,7 +84,7 @@
     <h2 class="text-4xl font-extrabold mb-12  text-[#003049]">FOODI Chef</h2>
 
     <div class="relative overflow-hidden">
-      <!-- Карточкалар контейнері -->
+  
       <div
         class="flex transition-transform duration-700 ease-in-out gap-6"
         :style="{ transform: `translateX(-${currentIndex * (cardWidth + gap)}px)` }"
@@ -97,7 +97,7 @@
           :class="item.bgColor"
           :style="{ width: cardWidth + 'px', minHeight: '320px' }"
         >
-          <!-- Жоғарғы белгі -->
+       
           <span
             class="absolute top-4 left-4 px-5 py-1 text-white font-semibold rounded -rotate-6 shadow-lg"
             :class="item.labelBgColor"
@@ -105,7 +105,7 @@
             {{ item.label }}
           </span>
 
-          <!-- Мәтін -->
+        
           <p
             class="mt-24 text-xl font-semibold leading-relaxed transition-opacity transition-transform duration-500"
             :class="currentIndex === index ? 'opacity-100 translate-y-0' : ''"
@@ -113,7 +113,7 @@
             {{ item.text }}
           </p>
 
-          <!-- Сурет -->
+        
           <img
             :src="item.image"
             :alt="item.label"
@@ -122,7 +122,7 @@
             loading="lazy"
           />
 
-          <!-- Ішкі батырма -->
+        
           <button
             aria-label="Next"
             class="absolute bottom-6 left-6 w-14 h-14 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-current transition"
@@ -133,7 +133,7 @@
         </div>
       </div>
 
-      <!-- Навигация стрелкалары -->
+     
       <button
         class="absolute top-1/2 left-2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 text-gray-800 shadow-lg transition"
         @click="prev"
@@ -151,7 +151,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+ 
   <footer class="bg-[#C1121F] py-16">
     <div class="max-w-7xl mx-auto px-6 text-white grid grid-cols-1 md:grid-cols-4 gap-12">
       <div>
@@ -233,28 +233,28 @@ import Carousel from '~/components/Carousel.vue'
 definePageMeta({ name: "glav" })
 import { navigateTo } from 'nuxt/app' 
 
-const cardWidth = 390; // px
-const gap = 24; // px
+const cardWidth = 390; 
+const gap = 24; 
 const currentIndex = ref(0);
 
-// Келесі карточкаға өту
+
 const next = () => {
   currentIndex.value =
     currentIndex.value < items.value.length - 1 ? currentIndex.value + 1 : 0;
 };
 
-// Алдыңғы карточкаға өту
+
 const prev = () => {
   currentIndex.value =
     currentIndex.value > 0 ? currentIndex.value - 1 : items.value.length - 1;
 };
 
-// Автоматты айналдыру (3 секунд сайын)
+
 let interval = null;
 onMounted(() => {
   interval = setInterval(() => {
     next();
-  }, 3000); // 3000ms = 3 секунд
+  }, 3000); 
 });
 
 onUnmounted(() => {
