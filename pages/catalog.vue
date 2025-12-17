@@ -2,46 +2,39 @@
   <AppHeader />
 
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
-
-    
     <div class="mb-6">
       <h1 class="text-3xl font-bold">Каталог скидок</h1>
-      <p class="text-sm text-gray-600 mt-2">
-        Все скидки Magnum в одном месте!
-      </p>
+      <p class="text-sm text-gray-600 mt-2">Все скидки Magnum в одном месте!</p>
 
-      <p
-        v-if="$route.query.search"
-        class="text-sm text-gray-500 mt-1"
-      >
+      <p v-if="$route.query.search" class="text-sm text-gray-500 mt-1">
         Поиск: "<span class="font-medium">{{ $route.query.search }}</span>"
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
 
-    
-      <aside class="space-y-3">
+      <!-- Категориялар, мобилдіде көлденең скролл -->
+      <nav
+        class="flex md:flex-col overflow-x-auto md:overflow-visible space-x-3 md:space-x-0 md:space-y-3 scrollbar-hide"
+      >
         <div
           v-for="(category, i) in categories"
           :key="i"
           @click="activeCategory = category.name"
           :class="[
-            'flex items-center gap-3 rounded-xl p-4 cursor-pointer',
+            'flex-shrink-0 flex items-center gap-2 cursor-pointer rounded-xl px-4 py-3',
             activeCategory === category.name
               ? 'bg-gray-300'
               : 'bg-gray-100 hover:bg-gray-200'
           ]"
+          style="min-width: 140px"
         >
-          <span class="text-sm font-medium">{{ category.name }}</span>
-          <img
-            :src="category.image"
-            class="w-16 h-16 object-contain"
-          />
+          <img :src="category.image" alt="" class="w-10 h-10 object-contain" />
+          <span class="text-sm font-medium whitespace-nowrap">{{ category.name }}</span>
         </div>
-      </aside>
+      </nav>
 
-    
+      <!-- Өнімдер -->
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div
           v-for="product in filteredProducts"
@@ -70,9 +63,7 @@
           </h3>
 
           <div class="mt-auto pt-3">
-            <p class="text-xs line-through text-gray-400">
-              {{ product.start_price }} тг
-            </p>
+            <p class="text-xs line-through text-gray-400">{{ product.start_price }} тг</p>
             <p class="bg-yellow-400 px-4 py-2 rounded-xl font-bold text-lg inline-block">
               {{ product.final_price }} тг
             </p>
@@ -81,19 +72,13 @@
       </section>
     </div>
 
-   
+    <!-- Модалка -->
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
     >
       <div class="bg-white rounded-3xl w-full max-w-3xl p-6 relative">
-
-        <button
-          @click="closeModal"
-          class="absolute top-4 right-4 text-xl text-gray-400"
-        >
-          ✕
-        </button>
+        <button @click="closeModal" class="absolute top-4 right-4 text-xl text-gray-400">✕</button>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <img
@@ -110,37 +95,26 @@
               действует до {{ formatDate(selectedProduct.action_end) }}
             </p>
 
-            <h2 class="text-xl font-bold mb-4">
-              {{ selectedProduct.name }}
-            </h2>
+            <h2 class="text-xl font-bold mb-4">{{ selectedProduct.name }}</h2>
 
             <div class="mb-6">
-              <p class="text-sm line-through text-gray-400">
-                {{ selectedProduct.start_price }} тг
-              </p>
+              <p class="text-sm line-through text-gray-400">{{ selectedProduct.start_price }} тг</p>
               <p class="text-2xl font-bold bg-yellow-400 inline-block px-4 py-2 rounded-xl">
                 {{ selectedProduct.final_price }} тг
               </p>
             </div>
 
-            <button
-              @click="toggleFavorite(selectedProduct)"
-              class="mb-3 border py-2 rounded-xl"
-            >
+            <button @click="toggleFavorite(selectedProduct)" class="mb-3 border py-2 rounded-xl">
               {{ isFavorite(selectedProduct) ? 'В избранном' : 'В избранное' }}
             </button>
 
-            <button
-              @click="addToOrders(selectedProduct)"
-              class="mt-auto bg-[#003049] text-white py-3 rounded-xl"
-            >
+            <button @click="addToOrders(selectedProduct)" class="mt-auto bg-[#003049] text-white py-3 rounded-xl">
               Мои заказы
             </button>
           </div>
         </div>
       </div>
     </div>
-
   </main>
 </template>
 
@@ -152,7 +126,6 @@ const route = useRoute()
 const activeCategory = ref('Барлығы')
 
 const categories = [
-
   { name: "Кондитерские изделия", image: "https://magnum.kz:1337/uploads/konditerskie_izdeliya_590a0ea83b.png" },
   { name: "Товары для дома", image: "https://magnum.kz:1337/uploads/Tovary_dlya_doma_c55163f947.png" },
   { name: "Детские товары", image: "https://magnum.kz:1337/uploads/Detskie_tovary_5ada265732.png" },
@@ -169,8 +142,6 @@ const categories = [
   { name: "Другие товары", image: "https://magnum.kz:1337/uploads/Drugie_tovary_d07556ae4d.png" }
 ]
 
-
-
 const { data: d1 } = await useFetch('https://67cbeea23395520e6af6ab52.mockapi.io/categorysale')
 const { data: d2 } = await useFetch('https://6940519c993d68afba6bb782.mockapi.io/market')
 
@@ -184,7 +155,6 @@ const filteredProducts = computed(() => {
       p.name?.toLowerCase().includes(search)
     )
   }
-
 
   if (activeCategory.value && activeCategory.value !== 'Барлығы') {
     const idsFromCategoryMap = categoryMap[activeCategory.value] || []
@@ -234,15 +204,11 @@ const productsByCategory = {
   'Другие товары': [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
 }
 
-
-
-
 const discountPercent = p =>
   Math.round(((p.start_price - p.final_price) / p.start_price) * 100)
 
 const formatDate = d =>
   new Date(d).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })
-
 
 const showModal = ref(false)
 const selectedProduct = ref(null)
@@ -251,8 +217,7 @@ const openModal = p => {
   selectedProduct.value = p
   showModal.value = true
 }
-const closeModal = () => showModal.value = false
-
+const closeModal = () => (showModal.value = false)
 
 const addToOrders = p => {
   const orders = JSON.parse(localStorage.getItem('orders') || '[]')
@@ -263,7 +228,6 @@ const addToOrders = p => {
   navigateTo('/order')
 }
 
-
 const favorites = ref(JSON.parse(localStorage.getItem('favorites') || '[]'))
 const isFavorite = p => favorites.value.some(f => f.id === p.id)
 const toggleFavorite = p => {
@@ -272,3 +236,14 @@ const toggleFavorite = p => {
   localStorage.setItem('favorites', JSON.stringify(favorites.value))
 }
 </script>
+
+<style>
+/* Scrollbar жасыру - егер керек болса */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+</style>
