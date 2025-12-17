@@ -404,7 +404,7 @@ import axios from "axios"
 
 const sidebarOpen = ref(false)
 
-// Типы
+
 interface Product {
   id?: number
   name: string

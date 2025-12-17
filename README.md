@@ -104,4 +104,14 @@ public/
 json/
 └── banner.json
 
+This structure ensures separation of concerns, reusability, and maintainable code organization.
 
+---
+
+## Technologies Used
+
+- Framework: Nuxt 3 (Vue 3)
+- Styling: Tailwind CSS
+- Language: JavaScript / Vue Single File Components
+- Package Manager: npm
+- Deployment: Vercel
