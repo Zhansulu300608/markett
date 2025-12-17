@@ -1,75 +1,107 @@
-# Nuxt Minimal Starter
+# MarketT-Self
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Live Demo: https://markett-self.vercel.app/  
+Repository: https://github.com/Zhansulu300608/markett
 
-## Setup
+MarketT-Self is a frontend-based marketplace web application built with Nuxt 3 and Tailwind CSS.  
+The project represents a structured online market interface with user-facing pages and an admin dashboard section.
 
-Make sure to install dependencies:
+This application is designed as a portfolio and educational project demonstrating modern frontend architecture, component-based development, and responsive UI design.
 
-```bash
-# npm
-npm install
+---
 
-# pnpm
-pnpm install
+## Project Overview
 
-# yarn
-yarn install
+MarketT-Self simulates an online marketplace where users can browse products, view catalogs, manage favorites, and access profile and order pages.  
+In addition, the project includes an admin section intended for managing products and categories.
 
-# bun
-bun install
-```
+The project focuses exclusively on frontend functionality and layout. Backend logic, authentication, and payment systems are not implemented.
 
-## Development Server
+---
 
-Start the development server on `http://localhost:3000`:
+## Application Pages
 
-```bash
-# npm
-npm run dev
+### Public Pages
 
-# pnpm
-pnpm dev
+- **Home (`/`)**  
+  Landing page with general marketplace content.
 
-# yarn
-yarn dev
+- **Catalog (`/catalog`)**  
+  Displays a list of products available in the marketplace.
 
-# bun
-bun run dev
-```
+- **Product Order (`/order`)**  
+  Represents a product ordering interface.
 
-## Production
+- **Favourites (`/favourites`)**  
+  Displays user-selected favorite products.
 
-Build the application for production:
+- **Profile (`/profile`)**  
+  User profile page intended for personal data and settings.
 
-```bash
-# npm
-npm run build
+- **Contacts (`/contacts`)**  
+  Displays contact and support information.
 
-# pnpm
-pnpm build
+---
 
-# yarn
-yarn build
+### Admin Pages
 
-# bun
-bun run build
-```
+Admin pages are located inside the `pages/admin` directory.
 
-Locally preview production build:
+- **Admin Dashboard (`/admin/dashboard`)**  
+  Main admin dashboard layout.
 
-```bash
-# npm
-npm run preview
+- **Products Management (`/admin/products`)**  
+  Interface for managing product data.
 
-# pnpm
-pnpm preview
+- **Categories Management (`/admin/category`)**  
+  Interface for managing product categories.
 
-# yarn
-yarn preview
+The admin section is UI-only and does not include authentication or data persistence.
 
-# bun
-bun run preview
-```
+---
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Core Features
+
+- Modular component-based architecture  
+- Separate public and admin sections  
+- Product cards and catalog layout  
+- Sidebar navigation for admin dashboard  
+- Responsive layout for desktop and mobile devices  
+- Clean and minimal UI design using Tailwind CSS  
+
+---
+
+## Project Structure
+
+The project follows a clear and scalable Nuxt 3 structure:
+
+components/
+├── AppHeader.vue
+├── Sidebar.vue
+├── Carousel.vue
+├── ProductCard.vue
+
+pages/
+├── index.vue
+├── catalog.vue
+├── dashboard.vue
+├── favourites.vue
+├── order.vue
+├── profile.vue
+├── contacts.vue
+└── admin/
+├── dashboard.vue
+├── products.vue
+├── category.vue
+
+public/
+├── images/
+│ ├── icons8-phone-50.png
+│ ├── icons8-whatsapp-logo-50.png
+│ ├── icons8-email-50.png
+│ └── icons8-tiktok-50.png
+
+json/
+└── banner.json
+
+

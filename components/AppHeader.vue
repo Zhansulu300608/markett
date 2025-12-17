@@ -2,16 +2,16 @@
   <header
     class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain h-40 bg-no-repeat bg-center shadow-md relative"
   >
-    <!-- ===== DESKTOP HEADER ===== -->
+
     <div
       class="hidden md:flex max-w-7xl mx-auto px-4 py-4 items-center justify-between"
     >
-      <!-- Logo -->
+   
       <NuxtLink to="/" class="flex items-center space-x-2">
         <img src="/images/logo.png" alt="Logo" class="h-10" />
       </NuxtLink>
 
-      <!-- Search -->
+    
       <form @submit.prevent="search" class="flex-1 mx-10 mt-5">
         <div class="flex rounded-full overflow-hidden shadow-sm bg-white">
           <input
@@ -26,7 +26,7 @@
         </div>
       </form>
 
-      <!-- Auth -->
+     
       <div class="flex items-center gap-4">
         <NuxtLink
           v-if="isAuth"
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <!-- ===== DESKTOP NAV ===== -->
+   
     <nav
       class="hidden md:block text-gray-800 py-4 mt-5 shadow-md bg-white/80 backdrop-blur"
     >
@@ -68,7 +68,7 @@
       </div>
     </nav>
 
-    <!-- ===== MOBILE HEADER ===== -->
+
     <div class="flex md:hidden items-center justify-between h-10 px-4">
       <NuxtLink to="/">
         <img src="/images/logoo.png" alt="Logo" class="h-10" />
@@ -112,7 +112,7 @@
       </button>
     </div>
 
-    <!-- ===== OVERLAY ===== -->
+
     <transition name="fade">
       <div
         v-if="sidebarOpen"
@@ -121,7 +121,7 @@
       ></div>
     </transition>
 
-    <!-- ===== MOBILE MENU ===== -->
+    
     <transition name="slide">
       <nav
         v-if="sidebarOpen"
@@ -134,7 +134,7 @@
           ✕
         </button>
 
-        <!-- Search -->
+        
         <form
           @submit.prevent="search"
           class="flex rounded-full overflow-hidden bg-gray-100"
@@ -148,7 +148,7 @@
           <button class="px-4 bg-[#003049] text-white">Поиск</button>
         </form>
 
-        <!-- Links -->
+  
         <NuxtLink
           v-for="link in filteredNavLinks"
           :key="link.path"
@@ -159,7 +159,7 @@
           {{ link.name }}
         </NuxtLink>
 
-        <!-- Auth -->
+  
         <NuxtLink
           v-if="isAuth"
           to="/profile"
