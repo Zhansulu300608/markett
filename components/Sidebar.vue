@@ -33,9 +33,6 @@
         <NuxtLink to="/admin/category" class="menu-link">
           <span>Управление категориями</span>
         </NuxtLink>
-      <NuxtLink to="/admin/users" class="menu-link">
-  <span>Управление пользователями</span>
-</NuxtLink>
 
         <NuxtLink to="/profile" class="menu-link">
           <span>Профиль</span>
