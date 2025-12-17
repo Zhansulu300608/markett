@@ -13,7 +13,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-6">
 
-      <!-- Категориялар, мобилдіде көлденең скролл -->
+     
       <nav
         class="flex md:flex-col overflow-x-auto md:overflow-visible space-x-3 md:space-x-0 md:space-y-3 scrollbar-hide"
       >
@@ -34,7 +34,7 @@
         </div>
       </nav>
 
-      <!-- Өнімдер -->
+   
       <section class="grid grid-cols-2 md:grid-cols-4 gap-3">
         <div
           v-for="product in filteredProducts"
@@ -72,7 +72,7 @@
       </section>
     </div>
 
-    <!-- Модалка -->
+   
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
@@ -238,7 +238,7 @@ const toggleFavorite = p => {
 </script>
 
 <style>
-/* Scrollbar жасыру - егер керек болса */
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
