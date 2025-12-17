@@ -61,7 +61,7 @@
 
           <NuxtLink
             v-if="user.role === 'admin'"
-            to="/admin"
+            to="/admin/dashboard"
             class="block px-4 py-3 rounded-xl text-red-600 hover:bg-gray-100 font-semibold text-center"
           >
             Админ панель
