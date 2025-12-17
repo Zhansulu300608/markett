@@ -110,7 +110,7 @@
             >
               <td class="p-2">
                 <img
-                  :src="user.avatar"
+                  :src="user.avatar || `https://i.pravatar.cc/100?u=${user.email}`"
                   class="w-10 h-10 rounded-full"
                 />
               </td>
