@@ -2,9 +2,9 @@
   <header
     class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain h-40 bg-no-repeat bg-center shadow-md relative"
   >
-    <!-- Десктоп хэдер - өзгеріссіз -->
+    <!-- ===== DESKTOP HEADER ===== -->
     <div
-      class="hidden md:flex max-w-7xl mx-auto px-4 py-4 flex items-center justify-between "
+      class="hidden md:flex max-w-7xl mx-auto px-4 py-4 items-center justify-between"
     >
       <!-- Logo -->
       <NuxtLink to="/" class="flex items-center space-x-2">
@@ -53,33 +53,30 @@
       </div>
     </div>
 
-    <!-- Десктоп навигация - өзгеріссіз -->
+    <!-- ===== DESKTOP NAV ===== -->
     <nav
       class="hidden md:block text-gray-800 py-4 mt-5 shadow-md bg-white/80 backdrop-blur"
     >
       <div class="max-w-7xl mx-auto px-4 flex space-x-8 text-sm font-medium">
-        <NuxtLink to="/">Главная</NuxtLink>
-        <NuxtLink to="/catalog">Каталог</NuxtLink>
-        <NuxtLink to="/dashbord">Дашборд</NuxtLink>
-        <NuxtLink to="/profile">Профиль</NuxtLink>
-        <NuxtLink to="/contacts">Контакты</NuxtLink>
+        <NuxtLink
+          v-for="link in filteredNavLinks"
+          :key="link.path"
+          :to="link.path"
+        >
+          {{ link.name }}
+        </NuxtLink>
       </div>
     </nav>
 
-    <!-- Мобильдік хэдер -->
-    <div
-      class="flex md:hidden items-center justify-between h-10 px-4"
-    >
-      <!-- Logo -->
-      <NuxtLink to="/" class="flex items-center space-x-2">
+    <!-- ===== MOBILE HEADER ===== -->
+    <div class="flex md:hidden items-center justify-between h-10 px-4">
+      <NuxtLink to="/">
         <img src="/images/logoo.png" alt="Logo" class="h-10" />
       </NuxtLink>
 
-      <!-- Burger button -->
       <button
         @click="sidebarOpen = !sidebarOpen"
-        class="text-gray-800 focus:outline-none"
-        aria-label="Toggle menu"
+        class="text-gray-800"
       >
         <svg
           v-if="!sidebarOpen"
@@ -96,6 +93,7 @@
             d="M4 6h16M4 12h16M4 18h16"
           />
         </svg>
+
         <svg
           v-else
           xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +112,7 @@
       </button>
     </div>
 
-    <!-- Мобильдік меню (Sidebar) -->
+    <!-- ===== OVERLAY ===== -->
     <transition name="fade">
       <div
         v-if="sidebarOpen"
@@ -123,92 +121,67 @@
       ></div>
     </transition>
 
+    <!-- ===== MOBILE MENU ===== -->
     <transition name="slide">
       <nav
         v-if="sidebarOpen"
         class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 p-6 flex flex-col space-y-6"
       >
-        <!-- Close button -->
         <button
           @click="sidebarOpen = false"
-          class="self-end text-gray-800 focus:outline-none mb-6"
-          aria-label="Close menu"
+          class="self-end text-gray-800"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          ✕
         </button>
 
         <!-- Search -->
         <form
           @submit.prevent="search"
-          class="flex rounded-full overflow-hidden shadow-sm bg-gray-100"
+          class="flex rounded-full overflow-hidden bg-gray-100"
         >
           <input
             v-model="searchText"
             type="text"
             placeholder="Поиск товара..."
-            class="flex-1 px-4 py-2 text-gray-700 focus:outline-none bg-transparent"
+            class="flex-1 px-4 py-2 bg-transparent"
           />
-          <button type="submit" class="px-4 text-white bg-[#003049]">
-            Поиск
-          </button>
+          <button class="px-4 bg-[#003049] text-white">Поиск</button>
         </form>
 
-        <!-- Navigation links -->
+        <!-- Links -->
         <NuxtLink
-          v-for="link in navLinks"
+          v-for="link in filteredNavLinks"
           :key="link.path"
           :to="link.path"
-          class="text-gray-800 text-lg font-medium"
+          class="text-lg font-medium"
           @click="sidebarOpen = false"
         >
           {{ link.name }}
         </NuxtLink>
 
         <!-- Auth -->
-        <div>
-          <NuxtLink
-            v-if="isAuth"
-            to="/profile"
-            class="flex items-center gap-2 bg-[#C1121F] text-white px-4 py-2 rounded-full shadow"
-            @click="sidebarOpen = false"
-          >
-            <div
-              class="w-8 h-8 rounded-full flex items-center justify-center font-bold"
-            >
-              {{ user.name?.charAt(0).toUpperCase() }}
-            </div>
-            <span>{{ user.name }}</span>
-          </NuxtLink>
+        <NuxtLink
+          v-if="isAuth"
+          to="/profile"
+          class="bg-[#C1121F] text-white px-4 py-2 rounded-full text-center"
+        >
+          {{ user.name }}
+        </NuxtLink>
 
-          <NuxtLink
-            v-else
-            to="/login"
-            class="bg-[#003049] text-white px-4 py-2 rounded-full shadow"
-            @click="sidebarOpen = false"
-          >
-            Login
-          </NuxtLink>
-        </div>
+        <NuxtLink
+          v-else
+          to="/login"
+          class="bg-[#003049] text-white px-4 py-2 rounded-full text-center"
+        >
+          Login
+        </NuxtLink>
       </nav>
     </transition>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -226,6 +199,15 @@ const navLinks = [
   { path: "/contacts", name: "Контакты" },
 ];
 
+const filteredNavLinks = computed(() => {
+  return navLinks.filter(link => {
+    if (link.path === "/dashbord" && user.value?.role === "admin") {
+      return false;
+    }
+    return true;
+  });
+});
+
 const search = () => {
   if (!searchText.value.trim()) return;
 
@@ -233,6 +215,7 @@ const search = () => {
     path: "/catalog",
     query: { search: searchText.value },
   });
+
   sidebarOpen.value = false;
 };
 
@@ -250,21 +233,18 @@ onMounted(() => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
-.slide-enter-active {
-  transition: transform 0.3s ease;
-}
-.slide-enter-from {
-  transform: translateX(-100%);
-}
+
+.slide-enter-active,
 .slide-leave-active {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
 }
+.slide-enter-from,
 .slide-leave-to {
   transform: translateX(-100%);
 }
