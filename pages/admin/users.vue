@@ -92,7 +92,7 @@
         <table class="min-w-full">
           <thead class="bg-gray-50 text-sm text-gray-600">
             <tr>
-              <th class="p-2">Аватар</th>
+             
               <th class="p-2 text-left">Имя</th>
               <th class="hidden md:table-cell p-2">Email</th>
               <th class="p-2">Роль</th>
