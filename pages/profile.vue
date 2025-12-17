@@ -38,12 +38,7 @@
           {{ user.role === "admin" ? "Админ" : "Покупатель" }}
         </span>
 
-        <div
-          class="rounded-xl border bg-gray-50 px-4 py-3 flex justify-between items-center mb-6 w-full"
-        >
-          <span class="text-xs text-gray-500">Всего заказов</span>
-          <span class="text-2xl font-semibold">7</span>
-        </div>
+       
 
        <nav class="space-y-2 w-full">
   <NuxtLink
