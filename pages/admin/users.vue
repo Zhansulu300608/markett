@@ -225,7 +225,7 @@ const fetchUsers = async () => {
     const token = localStorage.getItem('token')
     if (!token) return
 
-    const res = await fetch(`${API_URL}/user`, {
+    const res = await fetch(`${API_URL}/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
