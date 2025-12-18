@@ -1,16 +1,15 @@
 <template>
   <div class="carousel-container max-w-7xl mx-auto px-4 py-4">
-    <!-- Main Carousel Image Area -->
+
     <div class="relative overflow-hidden rounded-xl shadow-lg mb-4">
       <div class="w-full h-[100] bg-gray-200 flex items-center justify-center">
-        <!-- Placeholder for the main image -->
-        <img 
-          :src="currentSlide.image" 
-          :alt="currentSlide.title" 
-          class="w-full h-full object-cover"
-        />
+      <img 
+  :key="currentSlideIndex"
+  :src="currentSlide.image" 
+  class="w-full h-full object-cover slide-animate"
+/>
+
         
-        <!-- Overlay text content -->
         <div class="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center">
           <div class="text-white text-center p-6">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">{{ currentSlide.title }}</h2>
@@ -19,7 +18,7 @@
         </div>
       </div>
       
-      <!-- Navigation arrows -->
+    
       <button 
         @click="prevSlide" 
         class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-70 hover:bg-opacity-100 rounded-full p-3 transition-all duration-300 shadow-md"
@@ -39,36 +38,28 @@
       </button>
     </div>
     
-    <!-- Bottom controls -->
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <!-- More details button -->
-      <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-300">
-        Подробнее
-      </button>
-      
-      <!-- Slide counter -->
-      <div class="text-gray-600 font-medium">
-        {{ currentSlideIndex + 1 }}/{{ slides.length }}
-      </div>
-      
-      <!-- Hashtag buttons -->
-      <div class="flex flex-wrap gap-2">
-        <button 
-          v-for="(tag, index) in hashtags" 
-          :key="index"
-          class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium py-2 px-4 rounded-full transition-colors duration-300"
-        >
-          {{ tag }}
-        </button>
-      </div>
-    </div>
+<div class="relative overflow-hidden w-full mt-4">
+  <div
+    class="flex gap-3 whitespace-nowrap animate-marquee hover:[animation-play-state:paused]"
+  >
+    <button
+      v-for="(tag, index) in animatedHashtags"
+      :key="index"
+      class="bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium py-2 px-4 rounded-full transition"
+    >
+      {{ tag }}
+    </button>
+  </div>
+</div>
+
+
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
-// Define your slides data
+
 const slides = ref([
   {
     image: 'https://magnum.kz:1337/uploads/SNK_web_2360x1016_rus_e19f9cb3c7.png',
@@ -99,12 +90,22 @@ const slides = ref([
   }
 ])
 
-// Define hashtags
+
 const hashtags = ref([
   '#Выиграй автомобиль с Milka',
   '#Подарок от Barni',
-  '#+21 Бонусы от Reyka'
+  '#+21 Бонусы от Reyka',
+  '#Скидки каждый день',
+  '#Жуй в моменте',
+  '#Покупай сникерс и собирай звезд',
+  '#Подарки для всей семьи',
 ])
+
+
+const animatedHashtags = computed(() => {
+  return [...hashtags.value, ...hashtags.value]
+})
+
 
 const currentSlideIndex = ref(0)
 let autoplayInterval = null
@@ -121,11 +122,11 @@ const prevSlide = () => {
   currentSlideIndex.value = (currentSlideIndex.value - 1 + slides.value.length) % slides.value.length
 }
 
-// Автоплей функциясы
+
 const startAutoplay = () => {
   autoplayInterval = setInterval(() => {
     nextSlide()
-  }, 4000) // 4 секунд сайын
+  }, 4000) 
 }
 
 const stopAutoplay = () => {
@@ -135,7 +136,7 @@ const stopAutoplay = () => {
   }
 }
 
-// Lifecycle hooks
+
 onMounted(() => {
   startAutoplay()
 })
@@ -144,20 +145,46 @@ onUnmounted(() => {
   stopAutoplay()
 })
 
-// Опционал: тышқан немесе түрткен кезде автоплей тоқтатылып, қайта іске қосылуы мүмкін
-// Пайдаланушы өзі басқарғанда автоплей тоқтату үшін:
+
 const handleUserInteraction = () => {
   stopAutoplay()
-  // Қажет болса, белгілі бір уақыттан кейін қайта іске қосуға болады:
-  // setTimeout(startAutoplay, 5000)
+
 }
 
-// Егер қалаған болсаңыз, prev/next батырмаларына handleUserInteraction қосыңыз:
-// @click="() => { prevSlide(); handleUserInteraction() }"
+
 </script>
 
 <style scoped>
 .carousel-container {
   position: relative;
 }
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+
+@keyframes slideFadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.slide-animate {
+  animation: slideFadeZoom 0.8s ease-in-out;
+}
+
+
 </style>

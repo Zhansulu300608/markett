@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain h-40 bg-no-repeat bg-center shadow-md relative"
+    class="w-full bg-[url('/images/newYear.3940986.png')] bg-contain  h-[153px] bg-no-repeat bg-center shadow-md relative "
   >
 
     <div

@@ -3,7 +3,7 @@
   <AppHeader />
   <slot />
   
-      <div class="min-h-[550px] md:min-h-[800px] ">
+      <div class="min-h-[400px] md:min-h-[800px] ">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
     </div>
@@ -78,8 +78,9 @@
   />
 </div>
 
-
   </div>
+
+  
      <section class="max-w-7xl mx-auto px-6 py-14 relative min-h-[600px]">
     <h2 class="text-4xl font-extrabold mb-12  text-[#003049]">FOODI Chef</h2>
 
@@ -471,7 +472,7 @@ const { data: products, pending, error } = await useFetch(
 const filteredProducts = computed(() => {
   if (!products.value) return []
 
-  // Барлығы → тек 8 товар
+ 
   if (activeCategory.value === 'Барлығы') {
     return products.value.slice(0, 10)
   }
