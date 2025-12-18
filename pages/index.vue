@@ -6,7 +6,7 @@
 
   <slot />
   
-      <div class="min-h-[4қ0px] md:min-h-[800px] ">
+      <div class="min-h-[400px] md:min-h-[800px] ">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
     </div>
