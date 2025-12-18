@@ -236,7 +236,6 @@ const form = reactive({
 })
 
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth"
-
 const loadProfile = async () => {
   const token = localStorage.getItem("token")
   if (!token) return router.push("/profile")
@@ -252,11 +251,19 @@ const loadProfile = async () => {
     Object.assign(form, profile)
 
     localStorage.setItem("user", JSON.stringify(profile))
+
+  
+    if (profile.role === "admin") {
+      await loadAdminOrders()
+    }
+
   } catch (err) {
     console.error(err)
     logout()
   }
 }
+
+
 
 const sendToWhatsApp = () => {
   if (!orders.value.length) return
@@ -375,12 +382,19 @@ const loadAdminOrders = async () => {
     console.error("Admin orders error", e)
   }
 }
-onMounted(() => {
-  loadProfile()
 
-  if (user.role === "admin") {
-    loadAdminOrders()
+onMounted(loadProfile)
+
+import { watch } from "vue"
+
+watch(
+  () => user.role,
+  (role) => {
+    if (role === "admin") {
+      loadAdminOrders()
+    }
   }
-})
+)
+
 
 </script>
