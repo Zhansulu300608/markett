@@ -48,60 +48,100 @@
         </nav>
       </aside>
 
-      <main class="flex-1 bg-white rounded-2xl shadow-sm p-6 md:p-8">
-        <div class="max-w-6xl mx-auto">
-          <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
+     <main class="flex-1 bg-white rounded-2xl shadow-sm p-6 md:p-8">
+  <div class="max-w-6xl mx-auto">
 
-          <div v-if="orders.length === 0" class="text-gray-500">
-            Заказов пока нет
-          </div>
+    <!-- ADMIN VIEW -->
+    <template v-if="user.role === 'admin'">
+      <h1 class="text-2xl font-bold mb-6">Все заказы</h1>
 
-          <div v-else>
-            <div
-              class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+      <div v-if="adminOrders.length === 0" class="text-gray-500">
+        Заказов пока нет
+      </div>
+
+      <div v-else class="space-y-4">
+        <div
+          v-for="order in adminOrders"
+          :key="order._id"
+          class="border p-4 rounded-xl"
+        >
+          <p class="font-semibold">{{ order.user.name }}</p>
+          <p class="text-sm text-gray-500">{{ order.user.email }}</p>
+
+          <ul class="mt-2 text-sm">
+            <li
+              v-for="item in order.items"
+              :key="item.name"
             >
-              <p class="text-lg font-semibold">
-                Общая сумма:
-                <span class="text-[#003049]">{{ totalPrice }} тг</span>
-              </p>
+              {{ item.name }} — {{ item.price }} тг
+            </li>
+          </ul>
 
-              <button
-                @click="sendToWhatsApp"
-                class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-semibold transition"
-              >
-                Оформить заказ
-              </button>
-            </div>
+          <p class="mt-2 font-bold">
+            Итого: {{ order.total }} тг
+          </p>
+        </div>
+      </div>
+    </template>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              <div
-                v-for="item in orders"
-                :key="item.id"
-                class="border rounded-xl p-4 relative"
-              >
-                <button
-                  @click="removeOrder(item.id)"
-                  class="absolute top-2 right-2 text-gray-400 hover:text-red-600"
-                >
-                  ✕
-                </button>
+    <!-- USER VIEW -->
+    <template v-else>
+      <h1 class="text-2xl font-bold mb-6">Мои заказы</h1>
 
-                <img
-                  :src="item.image || '/images/no-image.png'"
-                  alt="product"
-                  class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
-                />
+      <div v-if="orders.length === 0" class="text-gray-500">
+        Заказов пока нет
+      </div>
 
-                <p class="text-sm font-semibold line-clamp-2">
-                  {{ item.name || "Без названия" }}
-                </p>
+      <div v-else>
+        <div
+          class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
+          <p class="text-lg font-semibold">
+            Общая сумма:
+            <span class="text-[#003049]">{{ totalPrice }} тг</span>
+          </p>
 
-                <p class="font-bold mt-2">{{ item.final_price ?? 0 }} тг</p>
-              </div>
-            </div>
+          <button
+            @click="submitOrder"
+            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold"
+          >
+            Оформить заказ
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div
+            v-for="item in orders"
+            :key="item.id"
+            class="border rounded-xl p-4 relative"
+          >
+            <button
+              @click="removeOrder(item.id)"
+              class="absolute top-2 right-2 text-gray-400 hover:text-red-600"
+            >
+              ✕
+            </button>
+
+            <img
+              :src="item.image || '/images/no-image.png'"
+              class="h-32 w-full object-contain mb-3 bg-gray-100 rounded"
+            />
+
+            <p class="text-sm font-semibold line-clamp-2">
+              {{ item.name || "Без названия" }}
+            </p>
+
+            <p class="font-bold mt-2">
+              {{ item.final_price ?? 0 }} тг
+            </p>
           </div>
         </div>
-      </main>
+      </div>
+    </template>
+
+  </div>
+</main>
+
     </div>
   </div>
 
@@ -280,4 +320,67 @@ const removeOrder = (id: string | number) => {
 const totalPrice = computed(() => {
   return orders.value.reduce((sum, item) => sum + Number(item.final_price || 0), 0)
 })
+const submitOrder = async () => {
+  if (!orders.value.length) return alert("Корзина пустая")
+
+  const token = localStorage.getItem("token")
+  if (!token) return router.push("/login")
+
+  try {
+    await axios.post(
+      "https://medical-backend-54hp.onrender.com/api/orders",
+      {
+        items: orders.value.map(item => ({
+          name: item.name,
+          price: item.final_price,
+          image: item.image
+        })),
+        total: totalPrice.value
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+
+    orders.value = []
+    localStorage.removeItem("orders")
+
+    alert("Заказ успешно оформлен 🎉")
+    router.push("/profile")
+  } catch (e) {
+    alert("Ошибка при оформлении заказа")
+  }
+}
+const adminOrders = ref<any[]>([])
+
+const loadAdminOrders = async () => {
+  const token = localStorage.getItem("token")
+  if (!token) return
+
+  try {
+    const { data } = await axios.get(
+      "https://medical-backend-54hp.onrender.com/api/orders",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+
+    adminOrders.value = data.data || data
+  } catch (e) {
+    console.error("Admin orders error", e)
+  }
+}
+onMounted(() => {
+  loadProfile()
+
+  if (user.role === "admin") {
+    loadAdminOrders()
+  }
+})
+
 </script>
