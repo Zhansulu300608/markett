@@ -198,7 +198,7 @@ import { ref, computed, onMounted } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
 
 
-const API_URL = 'https://medical-backend-54hp.onrender.com/api'
+const API_URL = 'https://medical-backend-54hp.onrender.com/api/auth'
 
 
 const sidebarOpen = ref(false)
@@ -225,7 +225,7 @@ const fetchUsers = async () => {
     const token = localStorage.getItem('token')
     if (!token) return
 
-    const res = await fetch(`${API_URL}/users`, {
+    const res = await fetch(`${API_URL}/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
