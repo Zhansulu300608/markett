@@ -1,6 +1,8 @@
 <template>
   <AppHeader />
+ <SnowEffect />
 
+  <slot />
   <main class="min-h-screen bg-white px-4 md:px-8 py-6">
     <div class="mb-6">
       <h1 class="text-3xl font-bold">Каталог скидок</h1>
@@ -121,7 +123,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useFetch, useRoute, navigateTo } from '#app'
-
+import SnowEffect from '~/components/SnowEffect.vue'
 const route = useRoute()
 const activeCategory = ref('Барлығы')
 

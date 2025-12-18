@@ -1,6 +1,8 @@
 <template>
   <AppHeader />
+ <SnowEffect />
 
+  <slot />
   <div class="flex flex-col md:flex-row min-h-screen bg-gray-100">
 
     <div class="md:hidden p-4 bg-slate-800 text-white flex justify-between items-center">
@@ -246,7 +248,7 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
-
+import SnowEffect from '~/components/SnowEffect.vue'
 const router = useRouter();
 const API = "https://6940519c993d68afba6bb782.mockapi.io/market";
 

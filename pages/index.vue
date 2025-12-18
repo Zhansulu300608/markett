@@ -2,8 +2,11 @@
 
   <AppHeader />
   <slot />
+  <SnowEffect />
+
+  <slot />
   
-      <div class="min-h-[400px] md:min-h-[800px] ">
+      <div class="min-h-[4қ0px] md:min-h-[800px] ">
     <div class="container mx-auto px-4 py-8">
       <Carousel />
     </div>
@@ -71,11 +74,14 @@
   v-else
   class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
 >
-  <ProductCard
-    v-for="item in filteredProducts"
-    :key="item.id"
-    :product="item"
-  />
+   <ProductCard
+      v-for="item in filteredProducts"
+      :key="item.id"
+      :product="item"
+      @click="openModal(item)"
+      class="cursor-pointer product-card"
+    />
+
 </div>
 
   </div>
@@ -224,7 +230,48 @@
         </div>
     </div>
   </footer>
-  
+    <div
+      v-if="showModal"
+      class="fixed inset-0 bg-black/40 z-50 flex items-center justify-center"
+    >
+      <div class="bg-white rounded-3xl w-full max-w-3xl p-6 relative">
+        <button @click="closeModal" class="absolute top-4 right-4 text-xl text-gray-400">✕</button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <img
+            :src="selectedProduct.image"
+            class="w-full h-64 object-contain bg-gray-100 rounded-xl"
+          />
+
+          <div class="flex flex-col">
+            <span class="bg-pink-600 text-white text-sm px-3 py-1 rounded-full w-fit mb-2">
+              -{{ discountPercent(selectedProduct) }}%
+            </span>
+
+            <p class="text-xs text-gray-500 mb-2">
+              действует до {{ formatDate(selectedProduct.action_end) }}
+            </p>
+
+            <h2 class="text-xl font-bold mb-4">{{ selectedProduct.name }}</h2>
+
+            <div class="mb-6">
+              <p class="text-sm line-through text-gray-400">{{ selectedProduct.start_price }} тг</p>
+              <p class="text-2xl font-bold bg-yellow-400 inline-block px-4 py-2 rounded-xl">
+                {{ selectedProduct.final_price }} тг
+              </p>
+            </div>
+
+            <button @click="toggleFavorite(selectedProduct)" class="mb-3 border py-2 rounded-xl">
+              {{ isFavorite(selectedProduct) ? 'В избранном' : 'В избранное' }}
+            </button>
+
+            <button @click="addToOrders(selectedProduct)" class="mt-auto bg-[#003049] text-white py-3 rounded-xl">
+              Мои заказы
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   
 </template>
 <script setup>
@@ -233,7 +280,7 @@ import { computed } from "vue";
 import Carousel from '~/components/Carousel.vue'
 definePageMeta({ name: "glav" })
 import { navigateTo } from 'nuxt/app' 
-
+import SnowEffect from '~/components/SnowEffect.vue'
 const cardWidth = 390; 
 const gap = 24; 
 const currentIndex = ref(0);
@@ -504,6 +551,53 @@ const categories = [
   'Детские товары'
 ]
 
+
+const showModal = ref(false)
+const selectedProduct = ref(null)
+
+const openModal = (product) => {
+  selectedProduct.value = product
+  showModal.value = true
+}
+
+const closeModal = () => {
+  selectedProduct.value = null
+  showModal.value = false
+}
+
+
+const discountPercent = (product) => {
+  return Math.round(((product.start_price - product.final_price) / product.start_price) * 100)
+}
+
+
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+const favorites = ref([])
+
+const toggleFavorite = (product) => {
+  if (favorites.value.includes(product.id)) {
+    favorites.value = favorites.value.filter(id => id !== product.id)
+  } else {
+    favorites.value.push(product.id)
+  }
+}
+
+const isFavorite = (product) => favorites.value.includes(product.id)
+
+
+const orders = ref([])
+
+const addToOrders = p => {
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]')
+  if (!orders.find(o => o.id === p.id)) {
+    orders.push(p)
+    localStorage.setItem('orders', JSON.stringify(orders))
+  }
+  navigateTo('/order')
+}
 </script>
 
 
@@ -511,5 +605,12 @@ const categories = [
 @keyframes float-0 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 @keyframes float-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes float-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
 
 </style>

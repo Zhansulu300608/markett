@@ -1,6 +1,8 @@
 <template>
   <AppHeader />
+ <SnowEffect />
 
+  <slot />
   <div class="flex flex-col md:flex-row min-h-screen bg-gray-100">
 
   
@@ -143,7 +145,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import SnowEffect from '~/components/SnowEffect.vue'
 const favorites = ref([])
 
 onMounted(() => {

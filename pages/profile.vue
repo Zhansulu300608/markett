@@ -1,7 +1,9 @@
 <template>
   <AppHeader />
   <slot />
+ <SnowEffect />
 
+  <slot />
   <div class="min-h-screen bg-gray-50">
     
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-end">
@@ -257,6 +259,7 @@
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import SnowEffect from '~/components/SnowEffect.vue'
 definePageMeta({ name: "profile" });
 const router = useRouter();
 const saving = ref(false);

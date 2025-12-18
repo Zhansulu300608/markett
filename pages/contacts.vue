@@ -1,7 +1,9 @@
 <template>
      <AppHeader />
   <slot />
+ <SnowEffect />
 
+  <slot />
   <div class="min-h-screen bg-white">
     <div class="max-w-7xl mx-auto px-4 py-8">
      <h1 class="text-4xl md:text-4xl  font-bold text-[#003049] text-start">
@@ -205,7 +207,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-
+import SnowEffect from '~/components/SnowEffect.vue'
 definePageMeta({ name: "contact" })
 
 const API_URL = "https://script.google.com/macros/s/AKfycbzadttG7NGKw7F-UTrBFxrIQ8pucexJQpjN-g3P1oEmsF3p4PC3NLAvuxla1ZLr6q2e/exec";
