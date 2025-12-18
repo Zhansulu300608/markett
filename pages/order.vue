@@ -31,12 +31,13 @@
           >
             Профиль
           </NuxtLink>
-          <NuxtLink
-            to="/order"
-            class="block px-4 py-3 rounded-xl text-[#ffffff] bg-[#003049] hover:bg-[#FDF0D5] hover:text-[#003049]"
-          >
-            Мои заказы
-          </NuxtLink>
+        <NuxtLink
+  to="/order"
+  class="block px-4 py-3 rounded-xl text-[#ffffff] bg-[#003049] hover:bg-[#FDF0D5] hover:text-[#003049]"
+>
+  {{ user.role === 'admin' ? 'Все заказы' : 'Мои заказы' }}
+</NuxtLink>
+
 
           <NuxtLink
             v-if="user.role === 'admin'"
@@ -236,6 +237,7 @@ const form = reactive({
 })
 
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth"
+
 const loadProfile = async () => {
   const token = localStorage.getItem("token")
   if (!token) return router.push("/profile")
@@ -251,19 +253,11 @@ const loadProfile = async () => {
     Object.assign(form, profile)
 
     localStorage.setItem("user", JSON.stringify(profile))
-
-  
-    if (profile.role === "admin") {
-      await loadAdminOrders()
-    }
-
   } catch (err) {
     console.error(err)
     logout()
   }
 }
-
-
 
 const sendToWhatsApp = () => {
   if (!orders.value.length) return
@@ -382,19 +376,12 @@ const loadAdminOrders = async () => {
     console.error("Admin orders error", e)
   }
 }
+onMounted(() => {
+  loadProfile()
 
-onMounted(loadProfile)
-
-import { watch } from "vue"
-
-watch(
-  () => user.role,
-  (role) => {
-    if (role === "admin") {
-      loadAdminOrders()
-    }
+  if (user.role === "admin") {
+    loadAdminOrders()
   }
-)
+})
 
-
-</script>
+</script> 
