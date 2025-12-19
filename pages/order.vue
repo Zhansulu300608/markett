@@ -104,12 +104,13 @@
             <span class="text-[#003049]">{{ totalPrice }} тг</span>
           </p>
 
-          <button
-            @click="submitOrder"
-            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold"
-          >
-            Оформить заказ
-          </button>
+      <button
+  @click="openCheckout"
+  class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold"
+>
+  Оформить заказ
+</button>
+
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -214,97 +215,101 @@
       </div>
     </div>
   </footer>
-</template>
+  
+<div
+  v-if="checkoutOpen"
+  class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
+  @click.self="checkoutOpen = false"
+>
+  <div class="bg-white rounded-2xl w-full max-w-md p-6">
+    <h2 class="text-xl font-bold mb-4">Подтверждение заказа</h2>
 
+    <p class="mb-4 text-gray-600">
+      Итоговая сумма:
+      <span class="font-bold text-[#003049]">{{ totalPrice }} тг</span>
+    </p>
+
+    <div class="space-y-3 mb-6">
+      <label class="flex items-center gap-3 cursor-pointer">
+        <input
+          type="radio"
+          value="card"
+          v-model="paymentMethod"
+        />
+        <span>Картой онлайн</span>
+      </label>
+
+      <label class="flex items-center gap-3 cursor-pointer">
+        <input
+          type="radio"
+          value="cash"
+          v-model="paymentMethod"
+        />
+        <span>Оплата при получении</span>
+      </label>
+    </div>
+
+    <div class="flex gap-3">
+      <button
+        @click="checkoutOpen = false"
+        class="flex-1 border rounded-xl py-3"
+      >
+        Отмена
+      </button>
+
+      <button
+        @click="confirmOrder"
+        class="flex-1 bg-green-600 hover:bg-green-700 text-white rounded-xl py-3 font-semibold"
+      >
+        Подтвердить
+      </button>
+    </div>
+  </div>
+</div>
+
+</template>
 <script setup lang="ts">
 import { reactive, ref, onMounted, computed } from "vue"
 import { useRouter } from "vue-router"
 import axios from "axios"
-import SnowEffect from '~/components/SnowEffect.vue'
+import SnowEffect from "~/components/SnowEffect.vue"
+
 definePageMeta({ name: "profile-orders" })
 
 const router = useRouter()
-const saving = ref(false)
+
+
 const user = reactive({
   name: "",
   email: "",
   role: "user",
 })
 
-const form = reactive({
-  name: "",
-  email: "",
-  phone: "",
-  address: "",
-})
-
 const API_URL = "https://medical-backend-54hp.onrender.com/api/auth"
 
 const loadProfile = async () => {
   const token = localStorage.getItem("token")
-  if (!token) return router.push("/profile")
+  if (!token) return router.push("/login")
 
   try {
     const res = await axios.get(`${API_URL}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     })
 
-    const profile = res.data.data || res.data.data?.user
-
+    const profile = res.data.data || res.data.user
     Object.assign(user, profile)
-    Object.assign(form, profile)
-
     localStorage.setItem("user", JSON.stringify(profile))
-  } catch (err) {
-    console.error(err)
+
+    if (profile.role === "admin") {
+      await loadAdminOrders()
+    }
+  } catch (e) {
     logout()
   }
 }
 
-const sendToWhatsApp = () => {
-  if (!orders.value.length) return
-
-  let message = " Мой заказ:%0A%0A"
-
-  orders.value.forEach((item, index) => {
-    message += `${index + 1}. ${item.name || "Без названия"} — ${item.final_price ?? 0} тг%0A`
-  })
-
-  message += `%0A Итого: ${totalPrice.value} тг`
-
-  const phone = "77766248255"
-  const url = `https://wa.me/${phone}?text=${message}`
-
-  window.open(url, "_blank")
-}
-
-const saveProfile = async () => {
-  const token = localStorage.getItem("token")
-  if (!token) return
-
-  saving.value = true
-  try {
-    const { data } = await axios.put(`${API_URL}/update`, form, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-
-    Object.assign(user, data)
-    localStorage.setItem("user", JSON.stringify(data))
-
-    alert("Данные сохранены")
-  } catch (err) {
-    console.error(err)
-    alert("Ошибка при сохранении")
-  } finally {
-    saving.value = false
-  }
-}
-
-onMounted(loadProfile)
-
 const logout = () => {
-  localStorage.removeItem("token")
-  localStorage.removeItem("user")
+  localStorage.clear()
   router.push("/login")
 }
 
@@ -315,17 +320,31 @@ onMounted(() => {
   orders.value = saved ? JSON.parse(saved) : []
 })
 
-const removeOrder = (id: string | number) => {
-  orders.value = orders.value.filter((item) => item.id !== id)
+const removeOrder = (id: number | string) => {
+  orders.value = orders.value.filter(o => o.id !== id)
   localStorage.setItem("orders", JSON.stringify(orders.value))
 }
 
-const totalPrice = computed(() => {
-  return orders.value.reduce((sum, item) => sum + Number(item.final_price || 0), 0)
-})
-const submitOrder = async () => {
-  if (!orders.value.length) return alert("Корзина пустая")
+const totalPrice = computed(() =>
+  orders.value.reduce((sum, i) => sum + Number(i.final_price || 0), 0)
+)
 
+
+const checkoutOpen = ref(false)
+const paymentMethod = ref<"card" | "cash" | "">("")
+
+const openCheckout = () => {
+  if (!orders.value.length) return alert("Корзина пустая")
+  checkoutOpen.value = true
+}
+
+const confirmOrder = async () => {
+  if (!paymentMethod.value) return alert("Выберите способ оплаты")
+  await submitOrder(paymentMethod.value)
+  checkoutOpen.value = false
+}
+
+const submitOrder = async (payment: "card" | "cash") => {
   const token = localStorage.getItem("token")
   if (!token) return router.push("/login")
 
@@ -333,30 +352,35 @@ const submitOrder = async () => {
     await axios.post(
       "https://medical-backend-54hp.onrender.com/api/orders",
       {
-        items: orders.value.map(item => ({
-          name: item.name,
-          price: item.final_price,
-          image: item.image
+        items: orders.value.map(i => ({
+          name: i.name,
+          price: i.final_price,
+          image: i.image,
         })),
-        total: totalPrice.value
+        total: totalPrice.value,
+        paymentMethod: payment,
       },
       {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: { Authorization: `Bearer ${token}` },
       }
     )
-
 
     orders.value = []
     localStorage.removeItem("orders")
 
-    alert("Заказ успешно оформлен 🎉")
+    alert(
+      payment === "card"
+        ? "Заказ оформлен. Оплата онлайн 💳"
+        : "Заказ оформлен. Оплата при получении 🚚"
+    )
+
     router.push("/profile")
   } catch (e) {
     alert("Ошибка при оформлении заказа")
   }
 }
+
+
 const adminOrders = ref<any[]>([])
 
 const loadAdminOrders = async () => {
@@ -367,23 +391,15 @@ const loadAdminOrders = async () => {
     const { data } = await axios.get(
       "https://medical-backend-54hp.onrender.com/api/orders",
       {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       }
     )
-
     adminOrders.value = data.data || data
   } catch (e) {
-    console.error("Admin orders error", e)
+    console.error(e)
   }
 }
-onMounted(() => {
-  loadProfile()
 
-  if (user.role === "admin") {
-    loadAdminOrders()
-  }
-})
 
-</script> 
+onMounted(loadProfile)
+</script>
