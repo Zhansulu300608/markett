@@ -122,41 +122,79 @@
         </div>
       </div>
 
-      
-      <footer class="bg-[#C1121F] py-16 mt-16">
-        <div
-          class="max-w-7xl mx-auto px-6 text-white
-                 grid grid-cols-1 md:grid-cols-4 gap-12 animate-on-scroll"
-        >
-          <div>
-            <img src="/images/logo.png" class="h-10 mb-4" />
-            <p class="font-bold">НАПОЛНЯЕМ ЖИЗНЬ</p>
-          </div>
+   
+ 
+  <footer class="bg-[#C1121F] py-16">
+    <div class="max-w-7xl mx-auto px-6 text-white grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div>
+        <img src="/images/logo.png" class="h-10 mb-4" />
+        <p class="font-bold">НАПОЛНЯЕМ ЖИЗНЬ</p>
+      </div>
+     <div>
+  <h3 class="font-bold mb-4">Быстрые ссылки</h3>
+  <ul class="space-y-2">
+    <li>
+      <NuxtLink to="/" class="hover:text-[#003049]">Главная</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/catalog" class="hover:text-[#003049]">Каталог</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/dashbord" class="hover:text-[#003049]">Дашборд</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/contacts" class="hover:text-[#003049]">Контакты</NuxtLink>
+    </li>
+  </ul>
+</div>
 
-          <div>
-            <h3 class="font-bold mb-4">Быстрые ссылки</h3>
-            <ul class="space-y-2">
-              <NuxtLink to="/">Главная</NuxtLink>
-              <NuxtLink to="/catalog">Каталог</NuxtLink>
-              <NuxtLink to="/dashbord">Дашборд</NuxtLink>
-              <NuxtLink to="/contacts">Контакты</NuxtLink>
-            </ul>
-          </div>
+      <div>
+        <h3 class="font-bold mb-4">Контакты</h3>
+        <p>+7 776 624 82 55</p>
+        <p>+7 776 777 77 09</p>
+      </div>
+       <div>
+          <h3 class="text-white font-semibold mb-4">Служба поддержки</h3>
+          <p class="text-lg mb-6 hover:text-[#003049] text-white">
+            <span class="font-semibold hover:text-[#003049] text-white">7766</span> | звонок бесплатный
+          </p>
 
-          <div>
-            <h3 class="font-bold mb-4">Контакты</h3>
-            <p>+7 776 624 82 55</p>
-            <p>+7 776 777 77 09</p>
-          </div>
+          <h3 class="text-white font-semibold mb-4">
+            Мы в социальных сетях
+          </h3>
 
-          <div>
-            <h3 class="font-bold mb-4">Служба поддержки</h3>
-            <p class="text-lg">
-              <span class="font-semibold">7766</span> | бесплатно
-            </p>
-          </div>
+       <div class="flex flex-wrap gap-3 mb-8">
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-phone-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-whatsapp-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+<a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-email-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-tiktok-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener" class="w-6 h-6">
+    <img src="/images/icons8-instagram-logo-50.png" alt="Twitter" class="w-full h-full object-contain" />
+  </a>
+
+  <a href="https://instagram.com" target="_blank" rel="noopener" class="w-6 h-6">
+   
+  </a>
+</div>
+
+
+          <h3 class="text-white font-semibold mb-2 hover:text-[#003049] text-white">
+            Служба доставки 
+          </h3>
+          <p class="text-lg hover:text-[#003049] text-white">
+            <span class="font-semibold">7772</span> | звонок бесплатный
+          </p>
         </div>
-      </footer>
+    </div>
+  </footer>
     </div>
   </Transition>
 </template>
