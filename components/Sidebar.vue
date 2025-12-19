@@ -2,7 +2,7 @@
   <div class="flex h-screen bg-gray-50 overflow-hidden">
     <div
       v-if="sidebarOpen"
-    
+      @click="sidebarOpen = false"
       class="fixed inset-0 bg-black/50 z-40 md:hidden"
     />
 
