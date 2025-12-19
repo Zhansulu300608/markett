@@ -156,12 +156,19 @@
         <input v-model="productForm.image" placeholder="URL изображения"
           class="w-full p-2 border rounded mb-2" />
 
-        <input v-model="productForm.action_start" placeholder="Начало акции"
-          class="w-full p-2 border rounded mb-2" />
+         <input
+          v-model="productForm.action_start"
+          placeholder="Дата начала акции"
+          class="w-full p-2 border rounded mb-2"
+          type="date"
+        />
+        <input
+          v-model="productForm.action_end"
+          placeholder="Дата окончания акции"
+          class="w-full p-2 border rounded mb-4"
+          type="date"
+        />
 
-        <input v-model.number="productForm.action_end" type="number"
-          placeholder="Конец акции"
-          class="w-full p-2 border rounded mb-4" />
 
         <div class="flex justify-end gap-2">
           <button @click="showModal=false" class="border px-4 py-2 rounded">
@@ -261,8 +268,8 @@ const editingOrder = ref<any>(null);
 const products = ref<any[]>([]);
 const productForm = ref({
   name: "",
-  start_price: 0,
-  final_price: 0,
+  start_price: "",
+  final_price: "",
   image: "",
   action_start: "",
   action_end: ""
@@ -354,8 +361,8 @@ const addProduct = () => {
   editingProduct.value = null;
   productForm.value = {
     name: "",
-    start_price: 0,
-    final_price: 0,
+    start_price: "",
+    final_price: "",
     image: "",
     action_start: "",
     action_end: ""
