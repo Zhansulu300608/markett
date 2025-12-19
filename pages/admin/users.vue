@@ -198,7 +198,7 @@ import { ref, computed, onMounted } from 'vue'
 import Sidebar from '@/components/Sidebar.vue'
 
 
-const API_URL = 'https://medical-backend-54hp.onrender.com/api/auth/users'
+const API_URL = 'https://medical-backend-54hp.onrender.com/api/auth'
 
 
 const sidebarOpen = ref(false)
